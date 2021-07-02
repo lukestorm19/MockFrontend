@@ -19,4 +19,11 @@ class Transaction(models.Model):
     transaction_timestamp = models.DateTimeField(default=datetime.datetime.now(),null=True)
     linked_transaction = models.IntegerField(null=True)
 
-    
+class ExceptionType(models.Model):
+
+    exceptionID = models.IntegerField(unique = True)
+    exception_name = models.CharField(max_length = 50)
+    exception_description = models.CharField(max_length = 200)
+    exception_function = models.CharField(max_length = 50)
+    exception_component = models.CharField(max_length = 20, choices = [('TAInbound','TAInbound'), ('TAI','TAI'), ('Accounting', 'Accounting')])
+    exception_level = models.CharField(max_length = 20, choices=[('HIGH','HIGH'),('LOW','LOW')])

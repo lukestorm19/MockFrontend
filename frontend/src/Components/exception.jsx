@@ -6,7 +6,9 @@ class Exception extends Component {
     constructor(props) {
         super(props);
         this.state = {exception};
+        
     };
+    
     render() { 
         return ( 
             <main className="content">
@@ -17,7 +19,7 @@ class Exception extends Component {
                   {this.state.exception.map(item => (
                   <div>
                     <h3>{item.exception_name}</h3>
-                    <span>{item.exception_desc}</span>
+                    <span>{item.exception_desc}</span>   
                   </div>
                   ))}
                   </ul>

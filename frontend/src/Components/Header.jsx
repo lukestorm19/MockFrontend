@@ -1,16 +1,20 @@
 import { AppBar, Toolbar, Typography, makeStyles } from "@material-ui/core";
+import {Row,Col} from 'react-bootstrap';
+
 import React from "react";
 import logo from "../assets/logo.png";
 const useStyles = makeStyles(() => ({
     header: {
       backgroundColor: "#FFFFFF",
+      position:"relative", 
+      marginTop:10,
     },
     text: {
       fontFamily: "Work Sans, sans-serif",
       fontWeight: 600,
       color: "#000000",
-      textAlign: "right",
     },
+    
   }));
   
   export default function Header() {
@@ -28,7 +32,7 @@ const useStyles = makeStyles(() => ({
   
     return (
       <header>
-        <AppBar className={header}>{displayText()}</AppBar>
+          <AppBar className={header}>{displayText()}</AppBar>
       </header>
     );
   }

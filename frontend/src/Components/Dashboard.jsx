@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Exception from './Exception';
 import Header from './Header';
 import Filter from './Filter';
+import Chart from './charts/Chart';
+import Counter from './Counter/Counter'
 class Dashboard extends Component {
     state = {  }
     render() { 
@@ -9,7 +11,8 @@ class Dashboard extends Component {
             <div>
               <Header/>
               
-              <Exception/> 
+              <Counter/>
+              <Chart/>
             </div>
        
          );

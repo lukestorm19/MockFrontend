@@ -5,6 +5,7 @@ body {
   url("./assets/fonts/Quicksand/Quicksand-SemiBold.ttf") format("truetype");
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {

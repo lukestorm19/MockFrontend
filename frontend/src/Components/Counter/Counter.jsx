@@ -32,6 +32,7 @@ export default class Counter extends Component {
     
     return (
       <div className = "Main">
+        
         <Row>
           <div className="totalNo">
           <div className="total">{this.state.record.number_of_records.total_records} <div className="totalText">Total Number <br/>of Records</div></div>

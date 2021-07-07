@@ -1,17 +1,17 @@
-<<<<<<< HEAD
+
 import React from "react";
 import logo from "../assets/logo.png";
 
 const customStyle={
-position: "absolute",
+position: "relative",
 width: "419px",
 height: "43px",
 left: "615px",
-top: "40px",
+top: "10px",
 fontFamily: "Roboto Mono",
 fontStyle: "normal",
 fontWeight: "bold",
-fontSize: "36px",
+fontSize: "30px",
 lineHeight: "28px",
 /* or 78% */
 display: "flex",
@@ -30,5 +30,5 @@ function Header() {
 }
 
 export default Header;
-=======
+
 

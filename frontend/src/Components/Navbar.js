@@ -14,6 +14,7 @@ const headStyle={
   "color": "#A4A6B3",
   "opacity": "0.7"
 
+
 }
 const navStyle={
   position: "absolute",

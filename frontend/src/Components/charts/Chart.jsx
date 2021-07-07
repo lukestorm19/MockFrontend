@@ -31,8 +31,12 @@ export default class Chart extends Component {
       return <div>didn't get records</div>;
     }
     
+    const chartStyle ={
+      
+      marginLeft:200,
+    }
     return (
-      <div> 
+      <div style={chartStyle}> 
       <Pie
         data={{
           labels: ['Filtered', 'High Exception', 'Low Exception', 'Processed'],
@@ -59,8 +63,8 @@ export default class Chart extends Component {
             },
           ],
         }}
-        height={300}
-        width={300}
+        height={250}
+        width={250}
         options = {{
             maintainAspectRatio: false,
             responsive: true,

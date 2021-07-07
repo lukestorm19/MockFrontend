@@ -1,38 +1,27 @@
 import { AppBar, Toolbar, Typography, makeStyles } from "@material-ui/core";
-import {Row,Col} from 'react-bootstrap';
+import {Row,Col,Container} from 'react-bootstrap';
 
-import React from "react";
+import React, {Component} from "react";
 import logo from "../assets/logo.png";
-const useStyles = makeStyles(() => ({
-    header: {
-      backgroundColor: "#FFFFFF",
-      position:"relative", 
-     
-    },
-    text: {
-      fontFamily: "Work Sans, sans-serif",
-      fontWeight: 600,
-      color: "#000000",
-    },
-    
-  }));
-  
-  export default function Header() {
-    const { header, text } = useStyles();
-  
-    const displayText = () => {
-      return <Toolbar>{heading}</Toolbar>;
-    };
-  
-    const heading = (
-      <Typography variant="h6" component="h1" className={text}>
-        Data Flow Dashboard
-      </Typography>
-    );
-  
-    return (
-      <header>
-          <AppBar className={header}>{displayText()}</AppBar>
-      </header>
-    );
-  }
+
+class Header extends Component {
+    state = {  }
+    render() { 
+        const style = {
+            height:50,
+            width:50,
+            
+          };
+        return ( 
+            <Container>
+                <Row>
+                 <Col><img src = {logo} style={style} alt="logo"/></Col>
+                 <Col><div className="Title">Data Flow Dashboard</div></Col>
+                </Row>
+            </Container>
+            
+         );
+    }
+}
+ 
+export default Header;

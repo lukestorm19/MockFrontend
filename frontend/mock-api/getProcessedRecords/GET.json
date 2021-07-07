@@ -1,0 +1,18 @@
+{
+    "number_of_records":{
+        "total_records":750,
+        "filtered_records":100,
+        "high_exception_records":150,
+        "low_exception_records":200,
+        "processed_records":300
+    },
+    "filtered_data": [
+        { "filter_id": 1, "filter_layer":"TAINBOUND", "filter_desc":"book missing" },
+        { "filter_id": 2, "filter_layer":"TAI", "filter_desc":"reportable amount type not mapped" }
+    ],
+    "exception_data": [
+        { "exception_id": 1, "exception_layer":"TAILAYER", "exception_name":"checkRequiredFieldEmpty", "exception_desc":"required field missing", "exception_type":"HIGH" },
+        { "exception_id": 2, "exception_layer":"ACCOUNTING", "exception_name":"ruleEngineScope", "exception_desc":"rule engine is out of scope", "exception_type":"HIGH"  }
+    ]
+}
+

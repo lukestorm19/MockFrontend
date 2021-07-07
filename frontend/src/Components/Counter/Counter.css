@@ -109,4 +109,65 @@ color: #855CF8;
     margin-bottom:200px;
 }
 
+.totalNo{
+    
+    margin-left: 140px;       
+    margin-top: 20px;
+    margin-bottom:50px;
+    margin-right:40px;
 
+
+/* White Base */
+height:70px;
+width:350px;
+background: #FFFFFF;
+/* Shadow Blue · 16dp */
+
+box-shadow: 0px 16px 24px rgba(54, 123, 245, 0.16), 0px 6px 12px rgba(54, 123, 245, 0.16);
+border-radius: 99px;
+
+}
+
+.total{
+
+margin-left: 20px;
+margin-top: 10px;
+margin-right: 50px;;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 22px;
+/* or 61% */
+
+display: flex;
+align-items: center;
+letter-spacing: 0.1px;
+
+color: #F5366F;
+}
+
+.totalText{
+
+
+/* 20 sp • H6 Quicksand */
+
+font-family: Quicksand;
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 28px;
+/* or 140% */
+margin-left:80px;
+
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.15px;
+
+/* Blue Base */
+
+color: #367BF5;
+
+}

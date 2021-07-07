@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import logo from "../assets/logo.png";
 
@@ -29,3 +30,5 @@ function Header() {
 }
 
 export default Header;
+=======
+

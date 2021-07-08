@@ -1,0 +1,81 @@
+{
+   "filter":[
+       {
+            "filter_id":1,
+            "filter_layer":"TAINBOUND",
+            "filter_desc":"book missing",
+            "cob_dt":"2021-07-08",
+            "book_name":"DB_N_LUCKER",
+            "profit_center":"india",
+            "legal_entity":"mumbai",
+            "region":"APAC",
+            "business line":"FX"
+       },
+       {
+        "filter_id":2,
+        "filter_layer":"TAILAYER",
+        "filter_desc":"reportable amount type",
+        "cob_dt":"2021-07-06",
+        "book_name":"DB_A_ABC",
+        "profit_center":"USA",
+        "legal_entity":"NY",
+        "region":"US",
+        "business line":"EQ"
+        } ,
+        {
+            "filter_id":3,
+            "filter_layer":"TAINBOUND",
+            "filter_desc":"book missing",
+            "cob_dt":"2021-07-05",
+            "book_name":"DB_C_XYZ",
+            "profit_center":"Germany",
+            "legal_entity":"Berlin",
+            "region":"Germany",
+            "business line":"LD"
+        }
+   ],
+   "exception":[
+    {
+         "exception_id":1,
+         "exception_layer":"TAILAYER",
+         "exception_name":"checkRequiredField",
+         "exception_desc":"required field missing",
+         "exception_type":"HIGH",
+         "cob_dt":"2021-07-08",
+         "book_name":"Db_A_QWE",
+         "profit_center":"india",
+         "legal_entity":"mumbai",
+         "region":"APAC",
+         "business line":"FX"
+    },
+    {
+        "exception_id":2,
+        "exception_layer":"TAILAYER",
+        "exception_name":"dataProvision",
+        "exception_desc":"Input data is missing vital information",
+        "exception_type":"HIGH",
+        "cob_dt":"2021-07-02",
+        "book_name":"Db_Q_GHJ",
+        "profit_center":"USA",
+        "legal_entity":"NY",
+        "region":"US",
+        "business line":"EQ"
+     } ,
+     {
+        "exception_id":3,
+        "exception_layer":"ACCOUNTING",
+        "exception_name":"scopeGap",
+        "exception_desc":"Input data is out of accounting scope for this schema",
+        "exception_type":"HIGH",
+        "cob_dt":"2021-06-30",
+        "book_name":"Db_N_BNM",
+        "profit_center":"Germany",
+            "legal_entity":"Berlin",
+            "region":"Germany",
+            "business line":"LD"
+     }
+]
+
+
+}
+

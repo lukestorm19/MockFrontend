@@ -1,0 +1,94 @@
+import React, { useEffect, useState, useMemo } from 'react';
+import {
+  Container,
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+} from 'reactstrap';
+import TableContainer from '../Table/TableContainer';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { SelectColumnFilter } from '../Table/Filter';
+
+const ExceptionReport = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+       const doFetch = async () => {
+      const response = await fetch('https://records.free.beeceptor.com/records');
+      const body = await response.json();
+      const records = body.exception;
+      console.log(records);
+      setData(records);
+    };
+    doFetch();
+  }, []);
+
+  
+
+
+  const columns = useMemo(
+    () => [
+        {  
+            Header: 'ID',  
+            accessor: 'exception_id',
+           }
+           ,{  
+            Header: 'Exception Layer',  
+            accessor: 'exception_layer' ,
+            }
+           ,{  
+           Header: 'Exception Name',  
+           accessor: 'exception_name' ,
+           }
+           ,{  
+           Header: 'Description',  
+           accessor: 'exception_desc',
+           },
+           {  
+            Header: 'Type',  
+            accessor: 'exception_type',
+            },
+            {  
+              Header: 'Date',  
+              accessor: 'cob_dt',
+              },
+            {  
+                Header: 'PC',  
+                accessor: 'profit_center',
+                Filter: SelectColumnFilter,
+                filter: 'equals',
+            },
+            {  
+                Header: 'LE',  
+                accessor: 'legal_entity',
+                Filter: SelectColumnFilter,
+                filter: 'equals',
+            },
+            {  
+                Header: 'Region',  
+                accessor: 'region',
+                Filter: SelectColumnFilter,
+                filter: 'equals',
+            },
+            {  
+                Header: 'BL',  
+                accessor: 'business line',
+                disableSortBy: true,
+                Filter: SelectColumnFilter,
+                filter: 'equals',
+            },
+    ],
+    []
+  )
+  return (
+    <Container style={{ marginTop: 100 }}>
+      <TableContainer
+        columns={columns}
+        data={data}
+        
+      />
+    </Container>
+  );
+}
+export default ExceptionReport;

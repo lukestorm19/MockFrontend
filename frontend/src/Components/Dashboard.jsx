@@ -5,15 +5,14 @@ import Navbar from './Navbar';
 import Filter from './Filter';
 import Chart from './charts/Chart';
 import Counter from './Counter/Counter'
+import ExceptionReport from './ExceptionReport/ExceptionReport';
+
 class Dashboard extends Component {
     state = {  }
     render() { 
         return ( 
             <div>
-              <Header/>  
-              <Navbar/>            
-              <Counter/>
-              <Chart/>
+             <ExceptionReport />
             </div>
        
          );

@@ -1,4 +1,6 @@
 import React from "react";
+import {Dashboard } from "../Overview/Dashboard"
+import {ExceptionReport} from "../ExceptionReport/ExceptionReport";
 const headStyle={
   "position": "absolute",
   "width": "105px",
@@ -47,9 +49,9 @@ function Navbar() {
     <nav style={navStyle}>
       <h3 style={headStyle} >Dashboard</h3>
       <ul style={listStyle}>
-        <li  ><a href="#" style={itemStyle}>Overview</a></li>
+        <li  ><a href="Dashboard" style={itemStyle}>Overview</a></li>
         <li ><a href="#" style={itemStyle}>Filter</a></li>
-        <li ><a href="#" style={itemStyle}>Exception</a></li>
+        <li ><a href="ExceptionReport" style={itemStyle}>Exception</a></li>
     </ul>
     </nav>
   );

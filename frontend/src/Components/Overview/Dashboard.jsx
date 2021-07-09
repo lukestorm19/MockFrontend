@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
-import Exception from '../Exception';
+
 import Header from '../Header/Header';
 import Navbar from '../Navbar/Navbar';
-import Filter from '../Filter';
+
 import Chart from '../charts/Chart';
 import Counter from '../Counter/Counter'
-import ExceptionReport from '../ExceptionReport/ExceptionReport';
+import ExceptionReport from '../Report/ExceptionReport';
 
+const Style ={
+  backgroundColor: "#ffffff",
+}
 class Dashboard extends Component {
     state = {  }
     render() { 
         return ( 
-            <div>
+            <div style={Style}>
               
-              
+              <Counter/>
               <Chart/>
             </div>
        

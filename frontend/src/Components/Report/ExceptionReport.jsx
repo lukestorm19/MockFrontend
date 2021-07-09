@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import App from "./App";
-import Header from '../Header/Header';
-import Navbar from '../Navbar/Navbar';
+import Counter from '../Counter/Counter';
 class ExceptionReport extends Component {
     state = {  }
     render() { 
         return ( 
-            <div>
-            <Header/>
-            
+            <div> 
+                <Counter/>     
             <App/>
             </div>
             

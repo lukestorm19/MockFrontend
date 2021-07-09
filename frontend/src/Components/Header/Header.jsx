@@ -1,18 +1,19 @@
 
 import React from "react";
-//import logo from "../assets/logo.png";
-
+import logo from "../../assets/logo.png";
+import { Container,Row,Col } from "reactstrap";
 const customStyle={
 position: "relative",
-width: "419px",
+
 height: "43px",
-left: "615px",
+left:600,
 top: "10px",
 fontFamily: "Roboto Mono",
 fontStyle: "normal",
 fontWeight: "bold",
-fontSize: "30px",
-lineHeight: "28px",
+fontSize: 28,
+borderRadius:0,
+
 /* or 78% */
 display: "flex",
 alignItems: "center",
@@ -24,7 +25,11 @@ color: "#000000",
 function Header() {
   return (
     <header> 
-      <h1 style={customStyle}>Dataflow Dashboard</h1>
+      
+      <div style={customStyle}><img src={logo} style={{height:40},{width:40}}/>Dataflow Dashboard</div>
+        
+      
+      
     </header>
   );
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Container, Row, Col } from 'reactstrap';
 import "./Counter.css"
-
+import Chart from '../charts/Chart';
 /*Class to display count of records*/
 export default class Counter extends Component {
   state = {
@@ -47,6 +47,8 @@ export default class Counter extends Component {
           <Col className="Processed">Processed<div className="processed">{this.state.record.number_of_records.processed_records}</div></Col>
         </Row>
         </Container>
+
+        
       </div>
     );
     

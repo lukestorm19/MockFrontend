@@ -65,7 +65,7 @@ class App extends Component {
           <nav style={navStyle}>
           <h3 style={headStyle} >Dashboard</h3>
           <ul  style={listStyle}>
-            <li style={itemStyle}><Link to={'/'}> <img src={aperture} style={{height:14},{width:14},{marginRight:10}}/>Overview </Link></li>
+            <li style={itemStyle}><Link to={'/dashboard'}> <img src={aperture} style={{height:14},{width:14},{marginRight:10}}/>Overview </Link></li>
             <li style={itemStyle}><Link to={'/ExceptionReport'}><img src={alert} style={{height:14},{width:14},{marginRight:10}}/>Exception Report</Link></li>
             <li style={itemStyle}><Link to={'/FilterReport'}><img src={filter} style={{height:14},{width:14},{marginRight:10}}/>Filter Report</Link></li>
             <li style={itemStyle}><Link to={''}><img src={check} style={{height:14},{width:14},{marginRight:10}}/>Processed Report</Link></li>
@@ -73,7 +73,7 @@ class App extends Component {
           </nav>
           <hr />
           <Switch>
-              <Route exact path='/' component={Dashboard} />
+              <Route exact path='/dashboard' component={Dashboard} />
               <Route path='/ExceptionReport' component={ExceptionReport} />
               <Route path='/FilterReport' component={FilterReport} />
           </Switch>

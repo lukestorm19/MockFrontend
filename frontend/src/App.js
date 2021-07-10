@@ -1,10 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import {
+  BrowserRouter,
+  Route
+} from 'react-router-dom';
 import Home from './Components/Home/Home'
 import { useState, useEffect } from "react";
 import { css } from "@emotion/react";
 import RingLoader from "react-spinners/RingLoader";
-import Login from './Components/SignIn/Login';
+import { Provider } from "react-redux";
+import store from "./app/store";
+import Routes from './routes';
 const override = css`
   display: block;
   margin: 0 auto;
@@ -24,9 +30,10 @@ function App() {
   return (
     <>
     {loading === false ? (
-    <div className="App">
-      <Home/>
-    </div>
+    <Provider store={store}>
+      <Routes />
+   </Provider>
+  
       ) : (
         <RingLoader color='#0000ff' loading={loading} css={override} size={60} />
 

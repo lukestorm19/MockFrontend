@@ -78,7 +78,7 @@ const FilterReport = () => {
   return (
     <div>
     <Counter/>
-    <Container style={{marginLeft: 200}}>
+    <Container style={{marginLeft: 300}}>
       <TableContainer
         columns={columns}
         data={data}

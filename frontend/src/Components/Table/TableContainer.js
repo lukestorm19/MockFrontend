@@ -9,6 +9,18 @@ import {
 import { Table, Row, Col, Button, Input, CustomInput } from 'reactstrap';
 import { Filter, DefaultColumnFilter } from './Filter';
 
+const tableStyle={
+  width: "100%",
+  height: "100px",
+  alignItems: "center",
+
+}
+const divStyle={
+  marginLeft: "10px",       
+  marginTop: "10px",
+  marginBottom: "60px",
+}
+
 const TableContainer = ({ columns, data, renderRowSubComponent }) => {
   const {
     getTableProps,
@@ -53,8 +65,9 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
   };
 
   return (
+    <div style={divStyle}>
     <Fragment>
-      <Table bordered hover {...getTableProps()}>
+      <Table style={tableStyle} bordered hover {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -157,6 +170,8 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
         </Col>
       </Row>
     </Fragment>
+    </div>
+    
   );
 };
 

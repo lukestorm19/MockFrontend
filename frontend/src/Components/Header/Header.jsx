@@ -11,7 +11,7 @@ top: "10px",
 fontFamily: "Roboto Mono",
 fontStyle: "normal",
 fontWeight: "bold",
-fontSize: 28,
+fontSize: 40,
 borderRadius:0,
 
 /* or 78% */
@@ -26,7 +26,7 @@ function Header() {
   return (
     <header> 
       
-      <div style={customStyle}><img src={logo} style={{height:40},{width:40}}/>Dataflow Dashboard</div>
+      <div style={customStyle}><img src={logo} style={{height:50},{width:40}}/>Dataflow Dashboard</div>
         
       
       

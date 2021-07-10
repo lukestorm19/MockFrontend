@@ -1,5 +1,3 @@
-
-
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Dashboard from '../Overview/Dashboard';
@@ -28,7 +26,7 @@ const headStyle={
 
 }
 const navStyle={
-  position: "absolute",
+  position: "fixed",
   width: "250px",
   height: "1000px",
   left: "-8px",
@@ -37,11 +35,11 @@ const navStyle={
   textDecoration:"none",
 }
 const itemStyle={ 
-  top:"20px",  
-  fontFamily: "Quicksand-Normal",
+  // marginTop:"20px",  
+   fontFamily: "Quicksand-Normal",
   textDecoration:"none",
   fontWeight: "normal",
-  fontSize: "19px",
+  fontSize: "18px",
   lineWeight: "20px",
   letterSpacing: "0.2px",
   color: "#EEEEEE", 
@@ -54,6 +52,7 @@ const listStyle={
   textAlign: "left",
   top:"100px"
 }
+
 class App extends Component {
   render() {
     return (

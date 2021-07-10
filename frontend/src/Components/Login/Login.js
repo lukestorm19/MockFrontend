@@ -1,8 +1,103 @@
 import React, { useState,Component } from 'react'
-import "./Login.css";
 
+import dashboard from "./dashboard.svg";
 import { login, logout } from "../../features/userSlice";
 import { useDispatch } from "react-redux";
+import styled, { createGlobalStyle, css } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  html {
+    height: 100%
+  }
+  body {
+    font-family: "Roboto", sans-serif;
+    background-color:#F3F2F2; 
+    height: 80%;
+    margin: 0;
+  }
+`;
+
+const sharedStyles = css`
+  background-color: #224957;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  margin: 10px 0 20px 0;
+  padding: 20px;
+  box-sizing: border-box;
+`;
+
+const StyledFormWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0 20px;
+`;
+
+const StyledForm = styled.form`
+  width: 100%;
+  max-width: 700px;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+`;
+
+const StyledInput = styled.input`
+  display: block;
+  width: 100%;
+  background-color: #224957;
+  border-radius: 10px;
+  ${sharedStyles}
+`;
+
+const StyledTextArea = styled.textarea`
+  background-color: #ffffff;
+  width: 100%;
+  min-height: 100px;
+  resize: none;
+  ${sharedStyles}
+`;
+const StyledButton = styled.button`
+  display: block;
+  background-color: #069697;
+   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+   border-radius: 10px;
+  color: #fff;
+  border: 0;
+  font-size:18px;
+  height: 40px;
+  
+  padding: 0 50px;
+  cursor: pointer;
+  box-sizing: border-box;
+  align-items:center;
+`;
+
+const StyledFieldset = styled.fieldset`
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 20px 0;
+  legend {
+    padding: 0 10px;
+  }
+  label {
+    padding-right: 20px;
+  }
+  input {
+    margin-right: 10px;
+  }
+`;
+
+const StyledError = styled.div`
+  color: red;
+  font-weight: 800;
+  margin: 0 0 40px 0;
+`;
+
 
 const Login = () => {
 
@@ -30,39 +125,48 @@ const Login = () => {
       setRegion("");
       setBusinessLine("");
     };
+
+    
     return(
-        <div className="Login">
-            <form className="login__form" onSubmit={(e) => handleSubmit(e)}>
-                <h1>Login Here</h1>
-                <input 
+      <>
+      <GlobalStyle />
+      <StyledFormWrapper>
+        <StyledForm onSubmit={(e) => handleSubmit(e)}>
+          <h2 style={{color:"#000000"},{fontFamily:"Lexend Deca"},{fontSize:30}}>Login</h2>
+          <label htmlFor="email" style={{color:"#000000"},{fontFamily:"Lexend Deca"},{fontSize:18}}>Email</label>
+          <StyledInput 
                 type = "email" 
-                placeholder="email" 
-                value={email}
+                 style={{color:"#ffffff"}}
+                value = {email}
                 onChange = {(e) => setEmail(e.target.value)}/>
-                <input 
+          <label htmlFor="password" style={{color:"#000000"},{fontFamily:"Lexend Deca"},{fontSize:18}}>Password</label>
+          <StyledInput 
                 type = "password" 
-                placeholder="password" 
+                style={{color:"#ffffff"}}
                 value = {password}
                 onChange = {(e) => setPassword(e.target.value)}/>
-                <input 
-                type = "name" 
-                placeholder="region" 
+          <label htmlFor="region" style={{color:"#000000"},{fontFamily:"Lexend Deca"},{fontSize:18}}>Region</label>
+          <StyledInput 
+                type = "text" 
+                style={{color:"#ffffff"}}
                 value = {region}
                 onChange = {(e) => setRegion(e.target.value)}/>
-                <input
-                type = "name" 
-                placeholder="business line" 
+          <label htmlFor="businessLine" style={{color:"#000000"},{fontFamily:"Lexend Deca"},{fontSize:18}}>Business Line</label>      
+          <StyledInput 
+                type = "text" 
+                style={{color:"#ffffff"}}
                 value = {businessLine}
                 onChange = {(e) => setBusinessLine(e.target.value)}/>
-                <button type="submit" className="submit__btn">
-                  Submit
-                </button>
-
-
-            </form>
-        </div>
+          <StyledButton type="submit" style={{fontFamily:"Lexend Deca"}}>Login</StyledButton>
+        </StyledForm>
+      </StyledFormWrapper>
+    </>
+      
+        
+        
     )
     
 }
 
 export default Login;
+

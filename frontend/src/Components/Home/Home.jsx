@@ -17,7 +17,7 @@ const Home = () => {
           <Header/>
           <Navbar/>
           <h1>
-        Welcome <span className="user__name">{user.email}</span>!
+        Welcome <span style={{marginLeft:200}}>{user.businessLine}</span>!
       </h1>
       <button className="logout__button" onClick={(e) => logout(e)}>
         Log out

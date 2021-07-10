@@ -3,8 +3,6 @@ body {
   font-family: "Quicksand-Semibold";
  src: local("Quicksand"),
   url("./assets/fonts/Quicksand/Quicksand-SemiBold.ttf") format("truetype");
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   
 }
 

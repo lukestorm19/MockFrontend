@@ -11,16 +11,20 @@ import TableContainer from '../Table/TableContainer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { SelectColumnFilter } from '../Table/Filter';
 import Counter from '../Counter/Counter';
-
+import { useDispatch, useSelector } from "react-redux";
+import { logout, selectUser } from "../../features/userSlice";
 const FilterReport = () => {
   const [data, setData] = useState([]);
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
   useEffect(() => {
        const doFetch = async () => {
       const response = await fetch('https://m8xm8i7lyx.api.quickmocker.com/records');
       const body = await response.json();
       const records = body.filter;
-      console.log(records);
-      setData(records);
+      const user_records = records.filter(item => item.business_line === user.businessLine && item.region === user.region)
+      console.log(user_records);
+      setData(user_records);
     };
     doFetch();
   }, []);
@@ -63,7 +67,7 @@ const FilterReport = () => {
             },
             {  
                 Header: 'BL',  
-                accessor: 'business line',
+                accessor: 'business_line',
                 disableSortBy: true,
                 Filter: SelectColumnFilter,
                 filter: 'equals',

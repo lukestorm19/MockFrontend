@@ -27,9 +27,9 @@ const headStyle={
 }
 const navStyle={
   position: "fixed",
-  width: "250px",
+  width: "200px",
   height: "1000px",
-  left: "-8px",
+  left: "-5px",
   top: "0px",
   background: "#363740",
   textDecoration:"none",
@@ -39,10 +39,10 @@ const itemStyle={
    fontFamily: "Quicksand-Normal",
   textDecoration:"none",
   fontWeight: "normal",
-  fontSize: "18px",
+  fontSize: "14px",
   lineWeight: "20px",
   letterSpacing: "0.2px",
-  color: "#EEEEEE", 
+  color: "#FFFFFF", 
   
 }
 const listStyle={

@@ -53,7 +53,7 @@ const listStyle={
   top:"100px"
 }
 
-class App extends Component {
+class Navbar extends Component {
   render() {
     return (
     <Router>

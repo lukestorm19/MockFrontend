@@ -65,19 +65,19 @@ const App = () => {
                 Filter: SelectColumnFilter,
                 filter: 'equals',
             },
-            {  
-                Header: 'Region',  
-                accessor: 'region',
-                Filter: SelectColumnFilter,
-                filter: 'equals',
-            },
-            {  
-                Header: 'BL',  
-                accessor: 'business_line',
-                disableSortBy: true,
-                Filter: SelectColumnFilter,
-                filter: 'equals',
-            },
+            // {  
+            //     Header: 'Region',  
+            //     accessor: 'region',
+            //     Filter: SelectColumnFilter,
+            //     filter: 'equals',
+            // },
+            // {  
+            //     Header: 'BL',  
+            //     accessor: 'business_line',
+            //     disableSortBy: true,
+            //     Filter: SelectColumnFilter,
+            //     filter: 'equals',
+            // },
     ],
     []
   )

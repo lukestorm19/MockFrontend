@@ -8,18 +8,20 @@ import {
 } from 'react-table';
 import { Table, Row, Col, Button, Input, CustomInput } from 'reactstrap';
 import { Filter, DefaultColumnFilter } from './Filter';
+import "./Table.css"
 
-const tableStyle={
-  width: "100%",
-  height: "100px",
-  alignItems: "center",
+// const tableStyle={
+//   width: "100%",
+//   height: "100px",
+//   alignItems: "center",
+//   border:"none"
 
-}
-const divStyle={
-  marginLeft: "10px",       
-  marginTop: "10px",
-  marginBottom: "60px",
-}
+// }
+// const divStyle={
+//   marginLeft: "10px",       
+//   marginTop: "10px",
+//   marginBottom: "60px",
+// }
 
 const TableContainer = ({ columns, data, renderRowSubComponent }) => {
   const {
@@ -65,10 +67,10 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
   };
 
   return (
-    <div style={divStyle}>
+    <div classNmae = "divStyle">
     <Fragment>
-      <Table style={tableStyle} bordered hover {...getTableProps()}>
-        <thead>
+      <Table className="tableStyle" bordered hover {...getTableProps()}>
+        <thead className="heading">
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (

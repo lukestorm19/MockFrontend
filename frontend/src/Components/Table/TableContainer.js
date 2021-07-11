@@ -25,6 +25,7 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
   const {
     getTableProps,
     getTableBodyProps,
+    getCellProps,
     headerGroups,
     page,
     prepareRow,
@@ -107,6 +108,7 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
             );
           })}
         </tbody>
+        
       </Table>
 
       <Row style={{ maxWidth: 1000, margin: '0 auto', textAlign: 'center' }}>

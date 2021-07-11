@@ -13,6 +13,7 @@ import { SelectColumnFilter } from '../Table/Filter';
 import Counter from '../Counter/Counter';
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../features/userSlice";
+import Dropdown from '../DropDown/Dropdown';
 const FilterReport = () => {
   const [data, setData] = useState([]);
   const dispatch = useDispatch();
@@ -77,7 +78,7 @@ const FilterReport = () => {
   )
   return (
     <div>
-    <Counter/>
+    <Dropdown/>
     <Container style={{marginLeft: 300}}>
       <TableContainer
         columns={columns}

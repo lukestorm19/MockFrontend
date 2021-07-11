@@ -1,11 +1,6 @@
-body {
-    
-    margin-top: 20;
-    
-   
-}
+
 .Main{
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 /*Filtered Data*/
 
@@ -113,14 +108,14 @@ color: #855CF8;
 .totalNo{
     
     margin-left: 270px;       
-    margin-top: 90px;
+    margin-top: 20px;
     margin-bottom:52px;
     margin-right:819px;
 
 
 /* White Base */
-height:70px;
-width:351px;
+height:60px;
+width:400px;
 background: #FFFFFF;
 /* Shadow Blue · 16dp */
 
@@ -132,14 +127,14 @@ border-radius: 99px;
 .total{
 
 margin-left: 35px;
-margin-bottom: 19px;
-margin-top:13px;
+
+margin-top:7px;
 margin-right: 50px;;
 
 font-family: Roboto;
 font-style: normal;
 font-weight: bold;
-font-size: 32px;
+font-size: 30px;
 
 
 
@@ -153,15 +148,15 @@ color: #F5366F;
 position: absolute;
 left:370px;
 right: 5px;
-top: 20.67%;
-bottom: 35%;
+
+bottom:66%;
 
 /* 20 sp • H6 Quicksand */
 
 font-family: Roboto;
 font-style: normal;
 font-weight: 500;
-font-size: 20px;
+font-size: 18px;
 line-height: 28px;
 /* or 140% */
 

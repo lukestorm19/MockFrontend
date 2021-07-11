@@ -82,7 +82,7 @@ const App = () => {
     []
   )
   return (
-    <Container style={{ marginLeft: 200 }}>
+    <Container style={{ marginLeft: "300px" }}>
       <TableContainer
         columns={columns}
         data={data}

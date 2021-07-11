@@ -48,6 +48,7 @@ const App = () => {
            {  
             Header: 'Type',  
             accessor: 'exception_type',
+            
             },
             {  
               Header: 'Date',  

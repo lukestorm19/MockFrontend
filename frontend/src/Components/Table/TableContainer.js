@@ -10,18 +10,26 @@ import { Table, Row, Col, Button, Input, CustomInput } from 'reactstrap';
 import { Filter, DefaultColumnFilter } from './Filter';
 import "./Table.css"
 
-// const tableStyle={
-//   width: "100%",
-//   height: "100px",
-//   alignItems: "center",
-//   border:"none"
-
-// }
-// const divStyle={
-//   marginLeft: "10px",       
-//   marginTop: "10px",
-//   marginBottom: "60px",
-// }
+const highStyle = {
+  backgroundColor: "#CE1212",
+  borderRadius: "10px",
+  color:"#FFFFFF",
+  fontWeight: "bold",
+  lineHeight: "14px",
+  letterSpacing: "0.5px",
+  paddingLeft:"10px",
+  paddingRight:"10px",
+};
+const lowStyle = {
+  backgroundColor: "#FFC947",
+  borderRadius: "12px",
+  color:"#FFFFFF",
+  fontWeight: "bold",
+  lineHeight: "14px",
+  letterSpacing: "0.5px",
+  paddingLeft:"10px",
+  paddingRight:"10px",
+};
 
 const TableContainer = ({ columns, data, renderRowSubComponent }) => {
   const {
@@ -96,7 +104,18 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
               <Fragment key={row.getRowProps().key}>
                 <tr>
                   {row.cells.map((cell) => {
-                    return (
+                    if (cell.value==="HIGH"){
+                      return (                      
+                      <td{...cell.getCellProps()}><span  style ={highStyle}>{cell.render('Cell')}</span></td>
+                    );
+                    }
+                    else if (cell.value==="LOW"){
+                      return (                      
+                      <td {...cell.getCellProps()}><span style ={lowStyle}>{cell.render('Cell')}</span></td>
+                    );
+                    }
+                    else
+                    return (                      
                       <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                     );
                   })}

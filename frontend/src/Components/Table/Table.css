@@ -21,7 +21,12 @@
 }
 td {                            
     text-align: center;                       
-    padding: 1em;       }       
+    padding: 1em;   
+    align-items: center;
+    border:none;  
+    text-align: center;
+
+   }       
      
 th {                             
     text-align: center;                 

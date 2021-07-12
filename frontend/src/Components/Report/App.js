@@ -5,7 +5,7 @@ import {
 } from 'reactstrap';
 import TableContainer from '../Table/TableContainer';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { SelectColumnFilter } from '../Table/Filter';
+import { SelectColumnFilter,DateRangeColumnFilter } from '../Table/Filter';
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../features/userSlice";
 const App = () => {
@@ -53,6 +53,8 @@ const App = () => {
             {  
               Header: 'Date',  
               accessor: 'cob_dt',
+              id: "date",
+              
               },
             {  
                 Header: 'PC',  
@@ -83,7 +85,9 @@ const App = () => {
     []
   )
   return (
+    
     <Container style={{ marginLeft: "300px" }}>
+      
       <TableContainer
         columns={columns}
         data={data}

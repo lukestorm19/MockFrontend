@@ -9,7 +9,7 @@ import {
 } from 'reactstrap';
 import TableContainer from '../Table/TableContainer';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { SelectColumnFilter } from '../Table/Filter';
+import { SelectColumnFilter,DateRangeColumnFilter } from '../Table/Filter';
 import Counter from '../Counter/Counter';
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../features/userSlice";
@@ -47,6 +47,8 @@ const FilterReport = () => {
            ,{  
               Header: 'Date',  
               accessor: 'cob_dt',
+              Filter: DateRangeColumnFilter,
+              filter: "between"
               },
             {  
                 Header: 'PC',  
@@ -66,16 +68,13 @@ const FilterReport = () => {
             //     Filter: SelectColumnFilter,
             //     filter: 'equals',
             // },
-            {  
-                Header: 'BL',  
-                accessor: 'business_line',
-                disableSortBy: true,
-                Filter: SelectColumnFilter,
-                filter: 'equals',
-            },
+           
     ],
     []
   )
+  const style={
+    border:10,
+  };
   return (
     <div>
     <Dropdown/>

@@ -40,6 +40,7 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
     nextPage,
     previousPage,
     setPageSize,
+    setAllFilters,
     state: { pageIndex, pageSize },
   } = useTable(
     {
@@ -69,6 +70,7 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
 
   return (
     <div classNmae = "divStyle">
+      {/*<button onClick={() => setAllFilters([])}>Reset</button>*/}
     <Fragment>
       <Table className="tableStyle" bordered hover {...getTableProps()}>
         <thead className="heading">

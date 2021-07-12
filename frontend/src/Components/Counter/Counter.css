@@ -106,15 +106,19 @@ color: #855CF8;
 
 .totalNo{
     
-    margin-left: 270px;       
+    margin-left: 352px;       
     margin-top: 20px;
     margin-bottom:52px;
-    margin-right:819px;
+   
 
 
 /* White Base */
 height:60px;
+<<<<<<< HEAD
 width:300px;
+=======
+width:330px;
+>>>>>>> 800c159b2cbba91c59be127ae036626effec1591
 background: #FFFFFF;
 /* Shadow Blue · 16dp */
 
@@ -144,11 +148,10 @@ color: #F5366F;
 }
 
 .totalText{
-position: absolute;
-left:370px;
+position: relative;
+left:70px;
 right: 30px;
-
-bottom:66%;
+top:-45px;
 
 /* 20 sp • H6 Quicksand */
 
@@ -159,7 +162,7 @@ font-size: 20px;
 line-height: 28px;
 /* or 140% */
 
-display: flex;
+
 align-items: center;
 text-align: center;
 letter-spacing: 0.15px;

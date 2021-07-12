@@ -5,11 +5,12 @@
     border:none;  
     text-align: center;
     border-collapse: collapse;
+    margin-top: 100px;
 }
 .divStyle{
     margin-left: 10px;       
     margin-top: 10px;
-    margin-bottom: 60px;
+    margin-bottom: 300px;
   }
 
 .Heading{
@@ -20,7 +21,7 @@ td {
     text-align: center;                       
     padding: 1em;       }       
      
-    th {                             
+th {                             
     text-align: center;                 
     padding: 1em;
     color: #9FA2B4;   
@@ -33,11 +34,10 @@ td {
     color: #252733;
     }                 
      
-    tr {    
-    height: 1em;    }
+
      
-    table tr:nth-child(even) {            
+table tr:nth-child(even) {            
         background-color: #eee;     }
      
-    table tr:nth-child(odd) {            
+table tr:nth-child(odd) {            
     background-color:#fff;      }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Dashboard from '../Overview/Dashboard';
 import ExceptionReport from '../Report/ExceptionReport';
-//import FilterReport from '../Report/FilterReport';
+import FilterReport from '../Report/FilterReport';
 import aperture from './aperture (1).svg';
 import alert from './alert-circle (1).svg';
 import filter from './filter (1).svg';
@@ -66,7 +66,7 @@ class Navbar extends Component {
             <br></br>
             <li ><Link to={'/ExceptionReport'} style={itemStyle}><img src={alert} style={{height:14},{width:14},{marginRight:10}}/>Exception Report</Link></li>
             <br></br>
-            {/*<li><Link to={'/FilterReport'}  style={itemStyle}><img src={filter} style={{height:14},{width:14},{marginRight:10}}/>Filter Report</Link></li>*/}
+            <li><Link to={'/FilterReport'}  style={itemStyle}><img src={filter} style={{height:14},{width:14},{marginRight:10}}/>Filter Report</Link></li>
             <br></br>
             <li><Link to={''} style={itemStyle}><img src={check} style={{height:14},{width:14},{marginRight:10}}/>Processed Report</Link></li>
           </ul>
@@ -75,7 +75,7 @@ class Navbar extends Component {
           <Switch>
               <Route exact path='/dashboard' component={Dashboard} />
               <Route path='/ExceptionReport' component={ExceptionReport} />
-              {/*<Route path='/FilterReport' component={FilterReport} />*/}
+              <Route path='/FilterReport' component={FilterReport} />
           </Switch>
         </div>
       </Router>

@@ -20,9 +20,9 @@ const FilterReport = () => {
   const user = useSelector(selectUser);
   useEffect(() => {
        const doFetch = async () => {
-      const response = await fetch('https://m8xm8i7lyx.api.quickmocker.com/records');
+      const response = await fetch('http://localhost:8000/getFilteredRecords');
       const body = await response.json();
-      const records = body.filter;
+      const records = body;
       const user_records = records.filter(item => item.business_line === user.businessLine && item.region === user.region)
       console.log(user_records);
       
@@ -35,21 +35,21 @@ const FilterReport = () => {
     () => [
         {  
             Header: 'ID',  
-            accessor: 'filter_id',
+            accessor: 'filter_ID',
            }
+           
            ,{  
             Header: 'Filter Layer',  
-            accessor: 'filter_layer' ,
+            accessor: 'filter_component' ,
             }
            ,{  
            Header: 'Filter Description',  
-           accessor: 'filter_desc' ,
+           accessor: 'filter_description' ,
            }
            ,{  
               Header: 'Date',  
               accessor: 'cob_dt',
-              Filter: DateRangeColumnFilter,
-              filter: "between"
+              
               },
             {  
                 Header: 'PC',  

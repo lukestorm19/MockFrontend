@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'Accounting',
     'TAI',
     'Exceptions',
+    'Users',
+    'Filters',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

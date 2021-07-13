@@ -18,6 +18,9 @@ from django.urls import path
 import TAI
 from TAI import views as tai_views
 from Exceptions import views as exceptions_views
+from Users import views as users_views
+from Filters import views as filters_views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('readFile/path=<str:path>', tai_views.readFile),
@@ -25,6 +28,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', exceptions_views.apiOverview),
     path('getProcessedRecords', exceptions_views.getProcessedRecords),
+    path('getUserRecords', users_views.getUserRecords),
+    path('getFilteredRecords', filters_views.getFilteredRecords),
 
 
     

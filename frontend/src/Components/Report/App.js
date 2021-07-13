@@ -13,7 +13,7 @@ const App = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   useEffect(() => {
-       const doFetch = async () => {
+      const doFetch = async () => {
       const response = await fetch('http://localhost:8000/getProcessedRecords');
       const body = await response.json();
       const records = body;

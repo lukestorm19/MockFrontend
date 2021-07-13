@@ -1,10 +1,10 @@
-import React, { useState,Component } from 'react'
+import React, {useEffect,useState,Component } from 'react'
 
 import dashboard from "./dashboard.svg";
 import { login, logout } from "../../features/userSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
 import styled, { createGlobalStyle, css } from 'styled-components';
-
+import axios from "axios";
 const GlobalStyle = createGlobalStyle`
   html {
     height: 100%
@@ -100,30 +100,51 @@ const StyledError = styled.div`
 
 
 const Login = () => {
-
+    
     const[email,setEmail] = useState();
     const[region,setRegion] = useState();
     const[businessLine,setBusinessLine] = useState();
     const[password,setPassword] = useState();
     const dispatch = useDispatch();
-
+     
     const handleSubmit = (e) => {
       e.preventDefault();
+      axios.get('http://localhost:8000/getUserRecords')
+      .then(res => {
+        const user = res.data[0].user_name;
+        const password = res.data[0].password;
+        const businessLine = res.data[0].user_business_line;
+        const region = res.data[0].user_region;
+        const username = email;
+        const passwordEntered = password;
+        if(username === '' && passwordEntered === ''){
+          console.log("username password")
+        }else if(user === username && passwordEntered === password){
+          
+          console.log(user, password)
+          dispatch(
+            login({
+              email: email,
+              password: password,
+              region:region,
+              businessLine:businessLine,
+              loggedIn: true,
+            })
+          );
+      
+          setEmail("");
+          setPassword("");
+          setRegion("");
+          setBusinessLine("");
+    
+        }else{
+            console.log("error")
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   
-      dispatch(
-        login({
-          email: email,
-          password: password,
-          region:region,
-          businessLine:businessLine,
-          loggedIn: true,
-        })
-      );
-  
-      setEmail("");
-      setPassword("");
-      setRegion("");
-      setBusinessLine("");
     };
 
     
@@ -145,18 +166,7 @@ const Login = () => {
                 style={{color:"#ffffff"}}
                 value = {password}
                 onChange = {(e) => setPassword(e.target.value)}/>
-          <label htmlFor="region" style={{color:"#000000"},{fontFamily:"Lexend Deca"},{fontSize:18}}>Region</label>
-          <StyledInput 
-                type = "text" 
-                style={{color:"#ffffff"}}
-                value = {region}
-                onChange = {(e) => setRegion(e.target.value)}/>
-          <label htmlFor="businessLine" style={{color:"#000000"},{fontFamily:"Lexend Deca"},{fontSize:18}}>Business Line</label>      
-          <StyledInput 
-                type = "text" 
-                style={{color:"#ffffff"}}
-                value = {businessLine}
-                onChange = {(e) => setBusinessLine(e.target.value)}/>
+          
           <StyledButton type="submit" style={{fontFamily:"Lexend Deca"}}>Login</StyledButton>
         </StyledForm>
       </StyledFormWrapper>

@@ -1,0 +1,22 @@
+button{
+    border-radius:50%;
+    border:1px solid #3C5186 ;
+    background-color:#3C5186;
+    color:white;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    padding:2px 8px 2px 8px;
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: bold;
+    float: right;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+button:hover {
+    box-shadow: 0 5px #999;   
+  }
+
+
+  

@@ -19,7 +19,7 @@ const FilterReport = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   useEffect(() => {
-       const doFetch = async () => {
+      const doFetch = async () => {
       const response = await fetch('https://m8xm8i7lyx.api.quickmocker.com/records');
       const body = await response.json();
       const records = body.filter;
@@ -57,18 +57,6 @@ const FilterReport = () => {
                 Filter: SelectColumnFilter,
                 filter: 'equals',
             },
-            // {  
-            //     Header: 'LE',  
-            //     accessor: 'legal_entity',
-            //     Filter: SelectColumnFilter,
-            //     filter: 'equals',
-            // },
-            // {  
-            //     Header: 'Region',  
-            //     accessor: 'region',
-            //     Filter: SelectColumnFilter,
-            //     filter: 'equals',
-            // },
            
     ],
     []
@@ -76,10 +64,24 @@ const FilterReport = () => {
   const style={
     border:10,
   };
+
+  function refreshPage() {
+    // window.location.reload();
+    const doFetch = async () => {
+      const response = await fetch('http://localhost:8000/getProcessedRecords');
+      const body = await response.json();
+      const records = body;
+      const user_records = records.filter(item => item.business_line === user.businessLine && item.region === user.region)
+      console.log(user_records);      
+      setData(user_records);
+    };
+    doFetch();
+  }
   return (
     <div>
     <Dropdown/>
     <Container style={{marginLeft: 300}}>
+    <button onClick={refreshPage}>⟳</button>
       <TableContainer
         columns={columns}
         data={data}

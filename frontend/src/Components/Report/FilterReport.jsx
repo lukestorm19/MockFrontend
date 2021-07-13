@@ -25,11 +25,12 @@ const FilterReport = () => {
       const records = body.filter;
       const user_records = records.filter(item => item.business_line === user.businessLine && item.region === user.region)
       console.log(user_records);
+      
       setData(user_records);
     };
     doFetch();
   }, []);
-
+ 
   const columns = useMemo(
     () => [
         {  

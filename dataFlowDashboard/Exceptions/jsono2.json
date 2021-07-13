@@ -1,0 +1,14 @@
+[
+  {
+    "exception_ID": 1,
+    "exception_name": "MandatoryField",
+    "exception_component": "TAILAYER",
+    "exception_level": "LOW",
+    "exception_description": "960 Thomas Street, Monument, Michigan, 9545",
+    "cob_dt":"2021-07-06",
+	  "business_line":"LD",
+  	"region":"APAC",
+	  "profit_center":"India",
+	  "legal_entity":"Mumbai"
+  }
+]

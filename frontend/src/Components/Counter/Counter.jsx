@@ -34,11 +34,14 @@ export default class Counter extends Component {
     }
     return (
       <div className = "Main">
+        <Container >
         <Row>
           <div className="totalNo">
-          <div className="total">{this.state.record.number_of_records.total_records} <div className="totalText">Total Number <br/>of Records</div></div>
+          <Col className="total">{this.state.record.number_of_records.total_records}</Col> <Col className="totalText">Total Number <br/>of Records</Col>
           </div>
         </Row>
+        </Container>
+        
         <Container>
         <Row>
           <Col className="Filtered">Filtered <div className="filter">{this.state.record.number_of_records.filtered_records}</div></Col>

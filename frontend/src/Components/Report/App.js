@@ -14,11 +14,12 @@ const App = () => {
   const user = useSelector(selectUser);
   useEffect(() => {
        const doFetch = async () => {
-      const response = await fetch('https://m8xm8i7lyx.api.quickmocker.com/records');
+      const response = await fetch('http://localhost:8000/getProcessedRecords');
       const body = await response.json();
-      const records = body.exception;
+      const records = body;
       const user_records = records.filter(item => item.business_line === user.businessLine && item.region === user.region)
       console.log(user_records);
+      
       setData(user_records);
     };
     doFetch();
@@ -31,11 +32,11 @@ const App = () => {
     () => [
         {  
             Header: 'ID',  
-            accessor: 'exception_id',
+            accessor: 'exception_ID',
            }
            ,{  
             Header: 'Exception Layer',  
-            accessor: 'exception_layer' ,
+            accessor: 'exception_component' ,
             }
            ,{  
            Header: 'Exception Name',  
@@ -43,11 +44,11 @@ const App = () => {
            }
            ,{  
            Header: 'Description',  
-           accessor: 'exception_desc',
+           accessor: 'exception_description',
            },
            {  
             Header: 'Type',  
-            accessor: 'exception_type',
+            accessor: 'exception_level',
             
             },
             {  
@@ -84,8 +85,10 @@ const App = () => {
     ],
     []
   )
+
   return (
     
+
     <Container style={{ marginLeft: "300px" }}>
       
       <TableContainer

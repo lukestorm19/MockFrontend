@@ -75,7 +75,8 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
     const page = event.target.value ? Number(event.target.value) - 1 : 0;
     gotoPage(page);
   };
-
+  const { rows } = useTable({ columns, data })
+  console.log(rows.length)
   return (
     <div classNmae = "divStyle">
       {/*<button onClick={() => setAllFilters([])}>Reset</button>*/}

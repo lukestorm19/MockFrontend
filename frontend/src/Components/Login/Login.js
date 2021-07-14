@@ -111,23 +111,28 @@ const Login = () => {
       e.preventDefault();
       axios.get('http://localhost:8000/getUserRecords')
       .then(res => {
-        const user = res.data[0].user_name;
-        const password = res.data[0].password;
-        const businessLine = res.data[0].user_business_line;
-        const region = res.data[0].user_region;
+        console.log(res);
+        //console.log(res.data[0]);
+        //const user = res.data[0].user_name;
+        //const password_data = res.data[0].password;
+        //const businessLine = res.data[0].user_business_line;
+        //const region = res.data[0].user_region;
         const username = email;
         const passwordEntered = password;
+        for(var i in res.data){
         if(username === '' && passwordEntered === ''){
           console.log("username password")
-        }else if(user === username && passwordEntered === password){
+
+        }
+        else if(res.data[i].user_name === username && passwordEntered === res.data[i].password){
           
-          console.log(user, password)
+          console.log(username, passwordEntered)
           dispatch(
             login({
               email: email,
               password: password,
-              region:region,
-              businessLine:businessLine,
+              region:res.data[i].user_region,
+              businessLine:res.data[i].user_business_line,
               loggedIn: true,
             })
           );
@@ -139,7 +144,7 @@ const Login = () => {
     
         }else{
             console.log("error")
-        }
+        }}
       })
       .catch(error => {
         console.log(error);

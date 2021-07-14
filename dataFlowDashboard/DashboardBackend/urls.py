@@ -30,8 +30,4 @@ urlpatterns = [
     path('getProcessedRecords', exceptions_views.getProcessedRecords),
     path('getUserRecords', users_views.getUserRecords),
     path('getFilteredRecords', filters_views.getFilteredRecords),
-
-
-    
-
 ]

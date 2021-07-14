@@ -16,7 +16,8 @@ const App = () => {
       const response = await fetch('http://localhost:8000/getProcessedRecords');
       const body = await response.json();
       const records = body;
-      const user_records = records.filter(item => item.business_line === user.businessLine && item.region === user.region)
+      console.log(body);
+      const user_records = records.filter(item => item.exception_BusinessLine === user.businessLine && item.exception_Region === user.region)
       console.log(user_records);
       
       setData(user_records);
@@ -52,19 +53,19 @@ const App = () => {
             },
             {  
               Header: 'Date',  
-              accessor: 'cob_dt',
+              accessor: 'exception_COBDT',
               id: "date",
               
               },
             {  
                 Header: 'PC',  
-                accessor: 'profit_center',
+                accessor: 'exception_ProfitCenter',
                 Filter: SelectColumnFilter,
                 filter: 'equals',
             },
             {  
                 Header: 'LE',  
-                accessor: 'legal_entity',
+                accessor: 'exception_LegalEntity',
                 Filter: SelectColumnFilter,
                 filter: 'equals',
             },

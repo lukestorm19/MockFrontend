@@ -11,7 +11,19 @@ from Exceptions.serializers import ExceptionTypeSerializer
 
 # Create your views here.
 # Create your views here.
-
+# PICKLE CODE
+import pickle
+import datetime 
+data =list(ExceptionType.objects.filter(exception_COBDT__gte=datetime.date.today()).values())
+file=JsonResponse(data,safe = False)
+pickle_out=open("file.pickle","wb")
+pickle.dump(file,pickle_out)
+pickle_out.close()
+def jsondata(request):    
+    pickle_in=open("file.pickle","rb")
+    file=pickle.load(pickle_in)
+    return file
+# END
 
 
 
@@ -27,6 +39,10 @@ def apiOverview(request):
 
 @api_view(['GET'])
 def getProcessedRecords(request):
-    records = ExceptionType.objects.all()
-    serializer = ExceptionTypeSerializer(records, many=True)
-    return Response(serializer.data)
+    pickle_in=open("file.pickle","rb")
+    file=pickle.load(pickle_in)
+    # records = ExceptionType.objects.all()
+    # serializer = ExceptionTypeSerializer(records, many=True)
+    # return Response(serializer.data)
+    return Response(file)
+

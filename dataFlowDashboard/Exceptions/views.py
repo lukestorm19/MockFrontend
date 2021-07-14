@@ -15,14 +15,11 @@ from Exceptions.serializers import ExceptionTypeSerializer
 import pickle
 import datetime 
 data =list(ExceptionType.objects.filter(exception_COBDT__gte=datetime.date.today()).values())
-file=JsonResponse(data,safe = False)
-pickle_out=open("file.pickle","wb")
-pickle.dump(file,pickle_out)
+# file=JsonResponse(data,safe = False)
+pickle_out=open("data.pickle","wb")
+pickle.dump(data,pickle_out)
 pickle_out.close()
-def jsondata(request):    
-    pickle_in=open("file.pickle","rb")
-    file=pickle.load(pickle_in)
-    return file
+
 # END
 
 
@@ -39,10 +36,11 @@ def apiOverview(request):
 
 @api_view(['GET'])
 def getProcessedRecords(request):
-    pickle_in=open("file.pickle","rb")
-    file=pickle.load(pickle_in)
+    pickle_in=open("data.pickle","rb")
+    data=pickle.load(pickle_in)
     # records = ExceptionType.objects.all()
     # serializer = ExceptionTypeSerializer(records, many=True)
-    # return Response(serializer.data)
-    return Response(file)
+    serializer = ExceptionTypeSerializer(data, many=True)
+    return Response(serializer.data)
+
 

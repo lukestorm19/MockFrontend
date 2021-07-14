@@ -78,8 +78,10 @@ const App = () => {
       const response = await fetch('http://localhost:8000/getProcessedRecords');
       const body = await response.json();
       const records = body;
-      const user_records = records.filter(item => item.business_line === user.businessLine && item.region === user.region)
-      console.log(user_records);      
+      console.log(body);
+      const user_records = records.filter(item => item.exception_BusinessLine === user.businessLine && item.exception_Region === user.region)
+      console.log(user_records);
+      
       setData(user_records);
     };
     doFetch();

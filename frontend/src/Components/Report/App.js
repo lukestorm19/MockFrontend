@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import {  Container, } from 'reactstrap';
 import TableContainer from '../Table/TableContainer';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { SelectColumnFilter,DateRangeColumnFilter } from '../Table/Filter';
+import { SelectColumnFilter,DateFilter } from '../Table/Filter';
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../features/userSlice";
 import "./Button.css";
@@ -26,7 +26,26 @@ const App = () => {
   }, []);
 
   
+  function dateBetweenFilterFn(rows, id, filterValues) {
+    let sd = filterValues[0] ? new Date(filterValues[0]) : undefined
+    let ed = filterValues[1] ? new Date(filterValues[1]) : undefined
 
+    if (ed || sd) {
+      return rows.filter(r => {
+        var time = new Date(r.values[id])
+
+        if (ed && sd) {
+          return (time >= sd && time <= ed)
+        } else if (sd){
+          return (time >= sd)
+        } else if (ed){
+          return (time <= ed)
+        }
+      })
+    } else {
+      return rows
+    }
+  }
 
   const columns = useMemo(
     () => [
@@ -55,6 +74,9 @@ const App = () => {
               Header: 'Date',  
               accessor: 'exception_COBDT',
               id: "date",
+              Filter:DateFilter,
+              filter:dateBetweenFilterFn,
+              
               
               },
             {  

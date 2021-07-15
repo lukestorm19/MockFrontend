@@ -36,11 +36,8 @@ def apiOverview(request):
 
 @api_view(['GET'])
 def getProcessedRecords(request):
-    pickle_in=open("data.pickle","rb")
-    data=pickle.load(pickle_in)
-    # records = ExceptionType.objects.all()
-    # serializer = ExceptionTypeSerializer(records, many=True)
-    serializer = ExceptionTypeSerializer(data, many=True)
+    records = ExceptionType.objects.all()
+    serializer = ExceptionTypeSerializer(records, many=True)
     return Response(serializer.data)
 
 

@@ -13,7 +13,7 @@ const DatePickerCustomInput = React.forwardRef(
 
 const ref = React.createRef(); // we need to add a Dom ref to the new Component to avoid Dom reffrence Error
 
-const DatePickerCalendar = (props) => {
+const Datepicker = (props) => {
     return (
         <div className="datepicker" style={style} >
             <DatePicker
@@ -33,4 +33,4 @@ const style = {
     color: "#32e0c4",
     cursor: "pointer"  
 }
-export default DatePickerCalendar
+export default Datepicker

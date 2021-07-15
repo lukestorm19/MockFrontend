@@ -1,6 +1,6 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import { Input, CustomInput } from 'reactstrap';
-import DatePickerCalendar from './DatePickerCalendar';
+import Datepicker from './Datepicker';
 export const Filter = ({ column }) => {
   return (
     <div style={{ marginTop: 5 }}>
@@ -9,51 +9,48 @@ export const Filter = ({ column }) => {
   );
 };
 
-export function DateRangeColumnFilter({
-  column: { filterValue = [], preFilteredRows, setFilter, id },
-}) {
+export function DateFilter({
+  column: {
+    filterValue = [],
+    preFilteredRows,
+    setFilter,
+    id
+  }})
+{
   const [min, max] = React.useMemo(() => {
-    let min = preFilteredRows.length ? preFilteredRows[0].values[id] : 0
-    let max = preFilteredRows.length ? preFilteredRows[0].values[id] : 0
+    let min = preFilteredRows.length ? new Date(preFilteredRows[0].values[id]) : new Date(0)
+    let max = preFilteredRows.length ? new Date(preFilteredRows[0].values[id]) : new Date(0)
+
     preFilteredRows.forEach(row => {
-      min = Math.min(row.values[id], min)
-      max = Math.max(row.values[id], max)
+      const rowDate = new Date(row.values[id])
+
+      min = rowDate <= min ? rowDate : min
+      max = rowDate >= max ? rowDate : max
     })
+
     return [min, max]
   }, [id, preFilteredRows])
 
   return (
-    <div
-      style={{
-        display: 'flex',
-      }}
-    >
+    <div>
       <input
+        min={min.toISOString().slice(0, 10)}
+        onChange={e => {
+          const val = e.target.value
+          setFilter((old = []) => [val ? val : undefined, old[1]])
+        }}
+        type="date"
         value={filterValue[0] || ''}
-        type="string"
-        onChange={e => {
-          const val = e.target.value
-          setFilter((old = []) => [val ? parseInt(val, 10) : undefined, old[1]])
-        }}
-        placeholder={`Min (${min})`}
-        style={{
-          width: '70px',
-          marginRight: '0.5rem',
-        }}
       />
-      to
+      {' to '}
       <input
-        value={filterValue[1] || ''}
-        type="string"
+        max={max.toISOString().slice(0, 10)}
         onChange={e => {
           const val = e.target.value
-          setFilter((old = []) => [old[0], val ? parseInt(val, 10) : undefined])
+          setFilter((old = []) => [old[0], val ? val.concat('T23:59:59.999Z') : undefined])
         }}
-        placeholder={`Max (${max})`}
-        style={{
-          width: '70px',
-          marginLeft: '0.5rem',
-        }}
+        type="date"
+        value={filterValue[1]?.slice(0, 10) || ''}
       />
     </div>
   )

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useMemo } from 'react';
 import {
   useTable,
   useSortBy,
@@ -7,7 +7,7 @@ import {
   usePagination,
 } from 'react-table';
 import { Table, Row, Col, Button, Input, CustomInput } from 'reactstrap';
-import { Filter, DefaultColumnFilter } from './Filter';
+import { Filter, DefaultColumnFilter, DateFilter } from './Filter';
 import "./Table.css"
 
 const highStyle = {
@@ -32,6 +32,17 @@ const lowStyle = {
 };
 
 const TableContainer = ({ columns, data, renderRowSubComponent }) => {
+
+  const filterTypes = React.useMemo(() => ({
+    dateFilter: (rows, id, filterValue) => {
+        return rows = rows.filter(row => {
+            return new Date(row.values.date) >= filterValue[0] && new Date(row.values.date) <= filterValue[1];
+        });
+    },
+}),
+    []
+)
+
   const {
     getTableProps,
     getTableBodyProps,

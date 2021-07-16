@@ -13,14 +13,24 @@ const App = () => {
   const user = useSelector(selectUser);
   useEffect(() => {
       const doFetch = async () => {
-      const response = await fetch('http://localhost:8000/getProcessedRecords');
+      const response = await fetch('http://localhost:8000/getProcessedRecords/');
+      const response_accounting = await fetch('http://localhost:8000/getAccountingRecords/');
       const body = await response.json();
+      const body_accounting = await response_accounting.json();
       const records = body;
+      const records_accounting = body_accounting;
       console.log(body);
+      console.log(records_accounting);
       const user_records = records.filter(item => item.exception_BusinessLine === user.businessLine && item.exception_Region === user.region)
       console.log(user_records);
-      
-      setData(user_records);
+      const accounting_records = records_accounting.filter(item => item.exception_BusinessLine === user.businessLine && item.exception_Region === user.region)
+      const final_records = user_records.concat(accounting_records);
+      console.log(accounting_records)
+      console.log(final_records)
+
+      //setData(accounting_records);
+      setData(final_records);
+
     };
     doFetch();
   }, []);

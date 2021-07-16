@@ -39,5 +39,11 @@ def getProcessedRecords(request):
     records = ExceptionType.objects.all()
     serializer = ExceptionTypeSerializer(records, many=True)
     return Response(serializer.data)
-
-
+"""
+@api_view(['GET'])
+def getProcessedRecords(request, businessLine, region):
+    records = ExceptionType.objects.all()
+    serializer = ExceptionTypeSerializer(records, many=True)
+    return Response(serializer.data)
+"""
+  # urls 

@@ -43,7 +43,7 @@ def apiOverview(request):
 #            # print(Exception,i)
 #     return HttpResponse('Hi')
 
-def readFile(path):
+def readFile(path,isXML = False):
 #  reading the file
     print("Reading", path)
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -51,8 +51,21 @@ def readFile(path):
     tar = tarfile.open(os.path.join(BASE_DIR, path))
     f = tar.extractfile("2276a85aee5e94c0df04b2ab62d04410.json")
 
+    
     import json
-    j=json.loads(f.read())
+    import xmltodict
+    if(isXML):
+        print(f)
+        with open("data.xml") as xml_file:
+            data_dict1 = xmltodict.parse(xml_file.read())
+        xml_file.close()
+        data_dict={}
+        for key, val in data_dict1.keys():
+            data_dict[key] = val
+
+    else:
+        data_dict = json.loads(f.read())
+    print(data_dict)
     # objects=[]
     # for json_obj in j:
     #     objects.append(ExceptionType(**json_obj))
@@ -78,6 +91,10 @@ def readFile(path):
     print(path)
     print("The data has been inserted")
     return HttpResponse(path)
+
+
+
+
 
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser   
@@ -181,3 +198,11 @@ def fileIsReady(request):
     #         </remote_data>
     #     </feed_meta_data>
     # </cm:ta_control_message>
+from django.core.cache import cache
+
+def cacheData(data):
+    cache.set('data',data)
+    print(cache.get('data'))
+
+def getCacheData():
+    print(cache.get("data"))

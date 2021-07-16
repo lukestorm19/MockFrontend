@@ -74,9 +74,9 @@ def readFile(path,isXML = False):
     # for i in j:
     #     d1=ExceptionType(**i)
     #     d1.save
-    for result in j:
+    for result in data_dict:
         ExceptionType.objects.create(
-           exception_ID = result['exception_ID'],
+           exception_ID = int(result['exception_ID']),
            exception_name= result['exception_name'],
            exception_component=result['exception_component'],
            exception_level = result['exception_level'],

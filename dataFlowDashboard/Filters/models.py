@@ -7,7 +7,6 @@ class FilterData(models.Model):
     filter_name=models.CharField(max_length=50,null=True,default='')
     filter_component=models.CharField(max_length=50,null=True,default='')
     filter_description=models.CharField(max_length=20,null=True,default='')
-    business_line=models.CharField(max_length=20,null=True,default='')
     region=models.CharField(max_length=20,null=True,default='')
     business_line=models.CharField(max_length=20,null=True,default='')
     legal_entity=models.CharField(max_length=20,null=True,default='')

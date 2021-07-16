@@ -7,3 +7,9 @@ def insert_db_task(filePath):
 
     # call the insert db fun
     return views.readFile(filePath)
+
+@shared_task
+def insert_dbfilter_task(filePath):
+
+    # call the insert db fun
+    return views.readFile(filePath)

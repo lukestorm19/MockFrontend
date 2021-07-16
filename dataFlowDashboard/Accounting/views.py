@@ -12,7 +12,7 @@ final_buffer=[]
 def Accounting_Query(): 
     entry_list = list(AccountingData.objects.filter(exception_component="Accounting"))
     for i in entry_list:
-        if not (ExceptionType.objects.filter(exception_ID=i.Exception_ID).exists()):
+        if not (ExceptionType.objects.filter(exception_ID=i.exception_ID).exists()):
             new_entry = ExceptionType(exception_ID=i.exception_ID,
             exception_name=i.exception_name,exception_component=i.exception_component,
             exception_level=i.exception_level,exception_description=i.exception_description,

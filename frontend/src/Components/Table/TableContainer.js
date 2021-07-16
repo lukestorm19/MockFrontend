@@ -149,14 +149,14 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
       <Row style={{ maxWidth: 1000, margin: '0 auto', textAlign: 'center' }}>
         <Col md={3}>
           <Button
-            color='primary'
+            style={{backgroundColor:"#3C5186"}}
             onClick={() => gotoPage(0)}
             disabled={!canPreviousPage}
           >
             {'<<'}
           </Button>
           <Button
-            color='primary'
+            style={{backgroundColor:"#3C5186"}}
             onClick={previousPage}
             disabled={!canPreviousPage}
           >
@@ -194,11 +194,11 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
           </CustomInput>
         </Col>
         <Col md={3}>
-          <Button color='primary' onClick={nextPage} disabled={!canNextPage}>
+          <Button style={{backgroundColor:"#3C5186"}} onClick={nextPage} disabled={!canNextPage}>
             {'>'}
           </Button>
           <Button
-            color='primary'
+            style={{backgroundColor:"#3C5186"}}
             onClick={() => gotoPage(pageCount - 1)}
             disabled={!canNextPage}
           >

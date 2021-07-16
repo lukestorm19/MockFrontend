@@ -6,6 +6,8 @@
   "dependencies": {
     "@emotion/react": "^11.4.0",
     "@fontsource/quicksand": "^4.4.5",
+    "@progress/kendo-licensing": "^1.2.0",
+    "@progress/kendo-react-excel-export": "^4.7.0",
     "@reduxjs/toolkit": "^1.6.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -13,6 +15,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "chart.js": "^3.4.1",
+    "export-from-json": "^1.4.0",
     "mdbreact": "^5.1.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",

@@ -1,4 +1,5 @@
 #celery worker 
-celery -A my_project_name worker --pool=solo -l info
+celery -A DashboardBackend worker --pool=solo -l info
 
 #celery beat
+celery -A DashboardBackend beat --loglevel=info

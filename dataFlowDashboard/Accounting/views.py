@@ -34,7 +34,7 @@ def Accounting_Query():
     #     new_entry.save()
     # final_buffer.extend(temp_buffer)
 
-
+"""
 @api_view(['GET'])
 def apiOverview(request):
     api_urls = {
@@ -50,3 +50,4 @@ def getAccountingRecords(request):
     records = AccountingData.objects.all()
     serializer = AccountingDataSerializer(records, many=True)
     return Response(serializer.data)   
+"""

@@ -9,7 +9,7 @@ import {
 } from 'reactstrap';
 import TableContainer from '../Table/TableContainer';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { SelectColumnFilter,DateRangeColumnFilter } from '../Table/Filter';
+import { SelectColumnFilter,DateFilter } from '../Table/Filter';
 import Counter from '../Counter/Counter';
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../features/userSlice";
@@ -40,6 +40,28 @@ const FilterReport = () => {
     };
     doFetch();
   }, []);
+
+  function dateBetweenFilterFn(rows, id, filterValues) {
+    let sd = filterValues[0] ? new Date(filterValues[0]) : undefined
+    let ed = filterValues[1] ? new Date(filterValues[1]) : undefined
+
+    if (ed || sd) {
+      return rows.filter(r => {
+        var time = new Date(r.values[id])
+
+        if (ed && sd) {
+          return (time >= sd && time <= ed)
+        } else if (sd){
+          return (time >= sd)
+        } else if (ed){
+          return (time <= ed)
+        }
+      })
+    } else {
+      return rows
+    }
+  }
+
  
   const columns = useMemo(
     () => [
@@ -59,7 +81,8 @@ const FilterReport = () => {
            ,{  
               Header: 'Date',  
               accessor: 'cob_dt',
-              
+              Filter:DateFilter,
+              filter:dateBetweenFilterFn,
               },
             {  
                 Header: 'PC',  

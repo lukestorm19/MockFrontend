@@ -6,6 +6,10 @@ import { SelectColumnFilter,DateFilter } from '../Table/Filter';
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../features/userSlice";
 import "./Button.css";
+// import { ExcelExport } from '@progress/kendo-react-excel-export';
+import exportFromJSON from 'export-from-json'
+const fileName = 'download'  
+const exportType = 'xls' 
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -85,9 +89,7 @@ const App = () => {
               accessor: 'exception_COBDT',
               id: "date",
               Filter:DateFilter,
-              filter:dateBetweenFilterFn,
-              
-              
+              filter:dateBetweenFilterFn,             
               },
             {  
                 Header: 'PC',  
@@ -118,15 +120,38 @@ const App = () => {
     };
     doFetch();
   }
+  // const _export = React.useRef(null);
+
+  // const excelExport = () => {
+  //   if (_export.current !== null) {
+  //     _export.current.save();
+  //   }
+  // };
+
+  const ExportToExcel = () => {  
+    exportFromJSON({ data, fileName, exportType })  
+  } 
   return (   
+    
     <Container style={{ marginLeft: "300px" }}>
-      <button onClick={refreshPage}>⟳</button>
+    {/* <ExcelExport data={data} ref={_export}> */}
+    <button className="btn1" onClick={refreshPage}>⟳</button>
+    <button type="button" className="btn2" onClick={ExportToExcel}>Export To Excel</button>  
+      {/* <button
+            title="Export Excel"
+            className="btn2"
+            onClick={excelExport}
+          >
+            Export to Excel
+      </button> */}
       <TableContainer
         columns={columns}
         data={data}
         
       />
+      {/* </ExcelExport> */}
     </Container>
+    
   );
 }
 export default App;

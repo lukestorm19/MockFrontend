@@ -1,6 +1,5 @@
 button{
-    border-radius:50%;
-    border:1px solid #3C5186 ;
+     border:1px solid #3C5186 ;
     background-color:#3C5186;
     color:white;
     font-size: 18px;
@@ -17,6 +16,17 @@ button{
 button:hover {
     box-shadow: 0 5px #999;   
   }
+button:active {
+    transform: scale(0.95);
+  }  
 
+.btn1{
+    border-radius:50%;
+}
 
+.btn2{
+    margin-right: 15px;
+    margin-left: 15px;
+    border-radius:15px;
+}
   

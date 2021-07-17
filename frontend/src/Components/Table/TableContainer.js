@@ -89,10 +89,10 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
   const { rows } = useTable({ columns, data })
   console.log(rows.length)
   return (
-    <div classNmae = "divStyle">
-      {/*<button onClick={() => setAllFilters([])}>Reset</button>*/}
+     
     <Fragment>
-      <Table className="tableStyle" bordered hover {...getTableProps()}>
+    <button style={{borderRadius:"15px"}} onClick={() => setAllFilters([])}>Reset</button>
+      <Table  bordered hover {...getTableProps()}>
         <thead className="heading">
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -146,24 +146,24 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
         
       </Table>
 
-      <Row style={{ maxWidth: 1000, margin: '0 auto', textAlign: 'center' }}>
+      <Row style={{ maxWidth: 1000, marginTop: "20px",textAlign: 'center' }}>
         <Col md={3}>
           <Button
-            color='primary'
+            style={{backgroundColor:"#3C5186"}}
             onClick={() => gotoPage(0)}
             disabled={!canPreviousPage}
           >
             {'<<'}
           </Button>
           <Button
-            color='primary'
+            style={{backgroundColor:"#3C5186"}}
             onClick={previousPage}
             disabled={!canPreviousPage}
           >
             {'<'}
           </Button>
         </Col>
-        <Col md={2} style={{ marginTop: 7 }}>
+        <Col md={2} style={{ marginTop: "40px" }}>
           Page{' '}
           <strong>
             {pageIndex + 1} of {pageOptions.length}
@@ -173,7 +173,7 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
           <Input
             type='number'
             min={1}
-            style={{ width: 70 }}
+            style={{ width: "50px", marginTop: "40px" }}
             max={pageOptions.length}
             defaultValue={pageIndex + 1}
             onChange={onChangeInInput}
@@ -181,6 +181,7 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
         </Col>
         <Col md={2}>
           <CustomInput
+            style={{ marginTop: "40px" }}
             type='select'
             value={pageSize}
             onChange={onChangeInSelect}
@@ -194,11 +195,11 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
           </CustomInput>
         </Col>
         <Col md={3}>
-          <Button color='primary' onClick={nextPage} disabled={!canNextPage}>
+          <Button style={{backgroundColor:"#3C5186"}} onClick={nextPage} disabled={!canNextPage}>
             {'>'}
           </Button>
           <Button
-            color='primary'
+            style={{backgroundColor:"#3C5186"}}
             onClick={() => gotoPage(pageCount - 1)}
             disabled={!canNextPage}
           >
@@ -207,8 +208,7 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
         </Col>
       </Row>
     </Fragment>
-    </div>
-    
+   
   );
 };
 

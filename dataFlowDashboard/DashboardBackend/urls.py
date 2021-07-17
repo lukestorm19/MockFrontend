@@ -20,7 +20,7 @@ from TAI import views as tai_views
 from Exceptions import views as exceptions_views
 from Users import views as users_views
 from Filters import views as filters_views
-from Accounting import views as accounting_views
+#from Accounting import views as accounting_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('readFile/path=<str:path>', tai_views.readFile),
@@ -30,7 +30,7 @@ urlpatterns = [
     path('getProcessedRecords/', exceptions_views.getProcessedRecords),
     path('getUserRecords/', users_views.getUserRecords),
     path('getFilteredRecords/', filters_views.getFilteredRecords),
-    path('getAccountingRecords/', accounting_views.getAccountingRecords),
+    #path('getAccountingRecords/', accounting_views.getAccountingRecords),
 
    # path('getProcessedRecords/businessLine=<str:businessLine>/region=<str:region>/', views.getProcessedRecords)
 ]

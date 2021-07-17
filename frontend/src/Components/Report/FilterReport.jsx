@@ -23,10 +23,16 @@ const FilterReport = () => {
       const response = await fetch('http://localhost:8000/getFilteredRecords');
       const body = await response.json();
       const records = body;
-      const user_records = records.filter(item => item.business_line === user.businessLine && item.region === user.region)
-      console.log(user_records);
-      
-      setData(user_records);
+      if (records.filter(item => item.business_line === user.businessLine && item.region === user.region)){
+        const user_records = records.filter(item => item.business_line === user.businessLine && item.region === user.region)
+        setData(user_records);
+        console.log(user_records);
+      }
+      if (records.filter(item => item.business_line === 'NA' && item.region === 'NA')){
+        const user_records = records.filter(item => item.filter_component === 'TAINBOUND')
+        setData(user_records);
+        console.log(user_records);
+      }
     };
     doFetch();
   }, []);
@@ -57,6 +63,13 @@ const FilterReport = () => {
                 Filter: SelectColumnFilter,
                 filter: 'equals',
             },
+            {  
+              Header: 'Book Name',  
+              accessor: 'book_name',
+              Filter: SelectColumnFilter,
+              filter: 'equals',
+          },
+
            
     ],
     []

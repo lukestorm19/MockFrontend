@@ -18,8 +18,9 @@ class Dashboard extends Component {
             <div style={Style}>
               
               <Dropdown/>
-              <Counter/>
               <Chart/>
+              <Counter/>
+              
             </div>
        
          );

@@ -26,7 +26,7 @@ function Header() {
     <header> 
       <div style={customStyle}>
         <img src={logo} style={{height:60},{width:60}}/>
-        <h1 style={{marginLeft:"125px"}}>Dataflow Dashboard</h1>
+        <h1 style={{marginLeft:"40px"}}>Data Flow Dashboard</h1>
       </div>     
     </header>
   );

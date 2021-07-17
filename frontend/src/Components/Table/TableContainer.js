@@ -90,7 +90,7 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
   console.log(rows.length)
   return (
     <div classNmae = "divStyle">
-      {/*<button onClick={() => setAllFilters([])}>Reset</button>*/}
+     <button onClick={() => setAllFilters([])}>Reset</button>
     <Fragment>
       <Table className="tableStyle" bordered hover {...getTableProps()}>
         <thead className="heading">

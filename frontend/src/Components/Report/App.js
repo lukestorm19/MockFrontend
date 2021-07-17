@@ -89,9 +89,7 @@ const App = () => {
               accessor: 'exception_COBDT',
               id: "date",
               Filter:DateFilter,
-              filter:dateBetweenFilterFn,
-              
-              
+              filter:dateBetweenFilterFn,             
               },
             {  
                 Header: 'PC',  

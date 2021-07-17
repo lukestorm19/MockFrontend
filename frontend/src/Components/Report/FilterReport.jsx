@@ -61,6 +61,12 @@ const FilterReport = () => {
                 Filter: SelectColumnFilter,
                 filter: 'equals',
             },
+            {  
+              Header: 'LE',  
+              accessor: 'legal_entity',
+              Filter: SelectColumnFilter,
+              filter: 'equals',
+          },
            
     ],
     []

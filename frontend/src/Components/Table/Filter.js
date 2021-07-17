@@ -32,7 +32,7 @@ export function DateFilter({
   }, [id, preFilteredRows])
 
   return (
-    <div>
+    <div style={{alignItems:"center"}}>
       <input
         min={min.toISOString().slice(0, 10)}
         onChange={e => {

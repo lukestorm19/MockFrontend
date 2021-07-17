@@ -1,8 +1,10 @@
 
 import React, {Component} from 'react'
 import { Pie, defaults } from 'react-chartjs-2'
-
-export default class Chart extends Component {
+import './Charts.css'
+import Dropdown from '../DropDown/Dropdown';
+export default class Charts extends Component {
+    
   state = {
     loading: true,
     record: null
@@ -31,19 +33,16 @@ export default class Chart extends Component {
     if (!this.state.record) {
       return <div>didn't get records</div>;
     }
-    
-    const chartStyle ={
-      
-      marginLeft:200,
-    }
+ 
     
     return (
-      <div style={chartStyle}> 
       
-      <Pie
+      <div className="Chart"> 
       
+       <Pie
+       
         data={{
-          labels: ['Filtered', 'High Exception', 'Low Exception', 'Processed'],
+          labels: ['Filtered'+ ' '+this.state.record.number_of_records.filtered_records, 'High Exception'+ ' '+this.state.record.number_of_records.high_exception_records, 'Low Exception'+ ' '+this.state.record.number_of_records.low_exception_records, 'Processed'+ ' '+this.state.record.number_of_records.processed_records],
           datasets: [
             {
               
@@ -67,17 +66,33 @@ export default class Chart extends Component {
             },
           ],
         }}
-        height={250}
-        width={250}
+        height={300}
+        width={300}
         
         options = {{
+            plugins:{
+                
+                legend:{
+                    display:true,
+                    position:"bottom",
+                    labels:{
+                       
+                        font:{
+                            family:"Quicksand",
+                            style:"normal",
+                            size: 18,
+                            weight:500,
+                            
+                        },
+                        color: "#000000",
+                         
+                    },
+                    color: "#000000",
+                    }
+            },
             maintainAspectRatio: false,
             responsive: true,
             
-            legend: {
-              position:"bottom",
-              
-            }
         }}
       />
     </div>

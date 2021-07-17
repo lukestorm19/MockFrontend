@@ -10,7 +10,7 @@ import { css } from "@emotion/react";
 import RingLoader from "react-spinners/RingLoader";
 import { Provider } from "react-redux";
 import store from "./app/store";
-import Routes from './routes';
+import Auth from './auth';
 const override = css`
   display: block;
   margin: 0 auto;
@@ -31,7 +31,7 @@ function App() {
     <>
     {loading === false ? (
     <Provider store={store}>
-      <Routes />
+      <Auth />
    </Provider>
   
       ) : (

@@ -1,18 +1,25 @@
-  
-import React from "react";
-import Login from "./Components/Login/Login";
-import "./App.css";
 
-import { selectUser } from "./features/userSlice"
-import { useSelector } from "react-redux";
-import Logout from "./Components/Logout/Logout";
-import Home from "./Components/Home/Home";
-import Dashboard from "./Components/Overview/Dashboard";
-const Routes = () => {
-  const user = useSelector(selectUser);
-  console.log(user);
+import React from 'react';
+import './App.css';
+import Navbar from './Components/Navbar/Navbar';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Dashboard from './Components/Overview/Dashboard'
+import FilterReport from './Components/Report/FilterReport';
+import ExceptionReport from './Components/Report/ExceptionReport';
 
-  return <div>{user ? <Home /> : <Login />}</div>;
-};
+function Routes() {
+  return (
+    <>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path='/' exact component={Dashboard} />
+          <Route path='/filterReport' component={FilterReport} />
+          <Route path='/exceptionReport' component={ExceptionReport} />
+        </Switch>
+      </Router>
+    </>
+  );
+}
 
 export default Routes;

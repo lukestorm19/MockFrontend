@@ -14,6 +14,10 @@ import Counter from '../Counter/Counter';
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../features/userSlice";
 import Dropdown from '../DropDown/Dropdown';
+import exportFromJSON from 'export-from-json'
+const fileName = 'download'  
+const exportType = 'xls'
+
 const FilterReport = () => {
   const [data, setData] = useState([]);
   const dispatch = useDispatch();
@@ -64,12 +68,11 @@ const FilterReport = () => {
                 filter: 'equals',
             },
             {  
-              Header: 'Book Name',  
-              accessor: 'book_name',
+              Header: 'LE',  
+              accessor: 'legal_entity',
               Filter: SelectColumnFilter,
               filter: 'equals',
           },
-
            
     ],
     []
@@ -90,11 +93,15 @@ const FilterReport = () => {
     };
     doFetch();
   }
+  const ExportToExcel = () => {  
+    exportFromJSON({ data, fileName, exportType })  
+  } 
   return (
-    <div>
-    <Dropdown/>
+    <div style={{marginTop:100}}>
+    <Dropdown />
     <Container style={{marginLeft: 300}}>
-    <button onClick={refreshPage}>⟳</button>
+    <button className="btn1" onClick={refreshPage}>⟳</button>
+    <button type="button" className="btn2" onClick={ExportToExcel}>Export To Excel</button>
       <TableContainer
         columns={columns}
         data={data}

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Container, Row, Col } from 'reactstrap';
 import "./Counter.css"
-import Chart from '../charts/Chart';
+//import Chart from '../charts/Chart';
 /*Class to display count of records*/
 export default class Counter extends Component {
   state = {
@@ -34,22 +34,19 @@ export default class Counter extends Component {
     }
     return (
       <div className = "Main">
-        <Container >
+        {/*<Container >
         <Row>
           <div className="totalNo">
           <Col className="total">{this.state.record.number_of_records.total_records}</Col> <Col className="totalText">Total Number <br/>of Records</Col>
           </div>
         </Row>
-        </Container>
-        
-        <Container>
-        <Row>
-          <Col className="Filtered">Filtered <div className="filter">{this.state.record.number_of_records.filtered_records}</div></Col>
-          <Col className="HighException">High Exception <div className="highexception">{this.state.record.number_of_records.high_exception_records}</div></Col>
-          <Col className="LowException">Low Exception <div className="lowexception">{this.state.record.number_of_records.low_exception_records}</div></Col>
-          <Col className="Processed">Processed<div className="processed">{this.state.record.number_of_records.processed_records}</div></Col>
-        </Row>
-        </Container>
+        </Container>*/}
+   
+          <div className="Filtered">Filtered <div className="filter">{this.state.record.number_of_records.filtered_records}</div></div>
+          <div className="HighException">High Exception <div className="highexception">{this.state.record.number_of_records.high_exception_records}</div></div>
+          <div className="LowException">Low Exception <div className="lowexception">{this.state.record.number_of_records.low_exception_records}</div></div>
+          <div className="Processed">Processed<div className="processed">{this.state.record.number_of_records.processed_records}</div></div>
+     
 
         
       </div>

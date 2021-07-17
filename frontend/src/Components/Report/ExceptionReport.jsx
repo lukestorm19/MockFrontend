@@ -7,7 +7,7 @@ class ExceptionReport extends Component {
     state = {  }
     render() { 
         return ( 
-            <div> 
+            <div style={{marginTop:100}}> 
             <Dropdown/>         
             <App/>
             </div>

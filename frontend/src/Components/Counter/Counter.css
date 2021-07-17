@@ -1,20 +1,26 @@
 .Main{
-    margin-bottom: 20px;
+    margin-left:350px;
+    position:fixed;
+   margin-top:50px;
+   width:100%;
 }
+
+
 /*Filtered Data*/
 
 .Filtered{
 /* Gray · 10% */
-height:120px;
-width:100px;
-margin-top: 10px;
-margin-left: 170px;
+height:100px;
+width:180px;
+left:50px;
+padding-left:10px;
 padding-top: 10px;
 background: #F7F9FA;
 border-radius: 16px;
 text-align: left;
 font-family: "Quicksand-Medium";
 font-size: 20px;
+position:absolute;
 
 }
 .filter{
@@ -32,14 +38,17 @@ text-align: left;
 /*High Exception*/
 .HighException{
 /* Gray · 10% */
-margin-left: 30px;
-margin-top: 10px;
+height:100px;
+width:180px;
+left:280px;
+padding-left:10px;
 padding-top: 10px;
 background: #F7F9FA;
 border-radius: 16px;
 text-align: left;
 font-family: "Quicksand-Medium";
 font-size: 20px;
+position:absolute;
 }
 .highexception{
 font-family: "Quicksand-Medium";
@@ -57,14 +66,17 @@ color: #E289F2;
 
 .LowException{
 /* Gray · 10% */
-margin-left: 30px;
-margin-top: 10px;
+height:100px;
+width:180px;
+left:510px;
+padding-left:10px;
 padding-top: 10px;
 background: #F7F9FA;
 border-radius: 16px;
 text-align: left;
 font-family: "Quicksand-Medium";
 font-size: 20px;
+position:absolute;
 }
 .lowexception{
 font-family: "Quicksand-Medium";
@@ -80,14 +92,18 @@ color: #B085FF;
 /*Processed*/
 .Processed{
  /* Gray · 10% */
-margin-left: 30px;       
-margin-top: 10px;
+/* Gray · 10% */
+height:100px;
+width:180px;
+left:740px;
+padding-left:10px;
 padding-top: 10px;
 background: #F7F9FA;
 border-radius: 16px;
 text-align: left;
 font-family: "Quicksand-Medium";
 font-size: 20px;
+position:absolute;
 }
 .processed{
 font-family: "Quicksand-Medium";

@@ -1,37 +1,45 @@
-import React from "react";
-import logo from "../../assets/logo.png";
-/*header styles*/
-function headerStyle() {
-  return {
-    position: "relative",
-    marginLeft: 550,
-    height: "50px",
-    top: "5px",
-    fontFamily: "Playfair Display Black",
-    fontStyle: "normal",
-    fontWeight: "bold",
-    fontSize: "40px",
-    borderRadius: 0,
-    display: "flex",
-    alignItems: "center",
-    textAlign: "center",
-    letterSpacing: "0.5px",
-    color: "#000000",
-  };
+import React, { Component } from 'react';
+import download from './download.png';
+import {Container, Col, Row} from 'reactstrap';
+import logo from './download.png'
+
+const styles = {
+
+    Header:{
+        background:'#ffffff',
+        height: "50px",
+        top: "10px",
+        marginLeft:600,
+        width:"100%",   
+        position:"fixed",
+
+    },
+    Logo:{
+        width: 50,
+        height: 50,
+        float:"left",
+        marginRight:20,
+    },
+
+    heading:{
+        fontFamily: "Quicksand",
+        fontStyle: "Medium",
+        fontWeight: "bold",
+        fontSize: 200,
+        float:"right",
+        width:"100%",
+        
+    }
 }
-const customStyle=headerStyle()
 
-function Header() {
-  return (
-    <header> 
-      <div style={customStyle}>
-        <img src={logo} style={{height:60},{width:60}}/>
-        <h1 style={{marginLeft:"40px"}}>Data Flow Dashboard</h1>
-      </div>     
-    </header>
-  );
+
+export default function Header(){
+    return(
+        <Container className = "Header" style={styles.Header}>
+         <Row>
+         <Col xs="auto"><img className = "Logo" style = {styles.Logo} src={logo} /></Col>
+         <Col><h1 className = "Heading" style = {styles.Heading}>Data Flow Dashboard </h1> </Col>
+         </Row>
+       </Container>
+    );
 }
-
-export default Header;
-
-

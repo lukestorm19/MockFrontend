@@ -165,13 +165,14 @@ const Login = () => {
                  style={{color:"#ffffff"}}
                 value = {email}
                 onChange = {(e) => setEmail(e.target.value)}/>
+                <div>
           <label htmlFor="password" style={{color:"#000000"},{fontFamily:"Lexend Deca"},{fontSize:18}}>Password</label>
           <StyledInput 
                 type = "password" 
                 style={{color:"#ffffff"}}
                 value = {password}
                 onChange = {(e) => setPassword(e.target.value)}/>
-          
+          </div>
           <StyledButton type="submit" style={{fontFamily:"Lexend Deca"}}>Login</StyledButton>
         </StyledForm>
       </StyledFormWrapper>

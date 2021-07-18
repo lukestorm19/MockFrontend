@@ -9,7 +9,7 @@ class ExceptionReport extends Component {
         return ( 
             <div style={{marginTop:100}}> 
             <Dropdown/>         
-            <App/>
+            <App />
             </div>
             
          );

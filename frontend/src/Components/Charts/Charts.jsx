@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import { Pie, defaults } from 'react-chartjs-2'
 import './Charts.css'
 import Dropdown from '../DropDown/Dropdown';
+import Bars from './Bars';
 export default class Charts extends Component {
     
   state = {
@@ -66,8 +67,8 @@ export default class Charts extends Component {
             },
           ],
         }}
-        height={300}
-        width={300}
+        height={200}
+        width={200}
         
         options = {{
             plugins:{
@@ -80,7 +81,7 @@ export default class Charts extends Component {
                         font:{
                             family:"Quicksand",
                             style:"normal",
-                            size: 18,
+                            size: 14,
                             weight:500,
                             
                         },

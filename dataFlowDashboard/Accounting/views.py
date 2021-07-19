@@ -6,6 +6,8 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from django.core.cache import cache
+
 from Accounting.serializers import AccountingDataSerializer
 # Create your views here.
 final_buffer=[]
@@ -20,6 +22,18 @@ def Accounting_Query():
             exception_ProfitCenter=i.exception_ProfitCenter,exception_BusinessLine=i.exception_BusinessLine,
             exception_Region=i.exception_Region)
             new_entry.save()
+        else:
+            entry_list.remove(i)
+    if(cache.get('data_dict')==None):
+        cache.set('data_dict', data_dict)
+    else:
+        data_dict.extend(cache.get('data_dict'))
+        cache.set('data_dict', data_dict)
+    # cache.get('data_dict').append(result)
+
+    print("The cache is updated")
+    print("Cache data:")
+    print(cache.get('data_dict'))
 
     # for i in entry_list:
     #     if i not in final_buffer:

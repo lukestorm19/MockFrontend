@@ -33,4 +33,5 @@ urlpatterns = [
     #path('getAccountingRecords/', accounting_views.getAccountingRecords),
 
    # path('getProcessedRecords/businessLine=<str:businessLine>/region=<str:region>/', views.getProcessedRecords)
+   path("getCurrentData/", tai_views.getCurrentData)
 ]

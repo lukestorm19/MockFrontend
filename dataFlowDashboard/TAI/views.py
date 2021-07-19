@@ -86,7 +86,16 @@ def readFile(path,fileName, isXML = False):
            exception_BusinessLine = result['exception_BusinessLine'],
            exception_Region= result['exception_Region'] 
          ) 
-        
+    if(cache.get('data_dict')==None):
+        cache.set('data_dict', data_dict)
+    else:
+        data_dict.extend(cache.get('data_dict'))
+        cache.set('data_dict', data_dict)
+    # cache.get('data_dict').append(result)
+
+    print("The cache is updated")
+    print("Cache data:")
+    print(cache.get('data_dict'))
     print(path)
     print("The data has been inserted")
     return HttpResponse(path)
@@ -176,3 +185,10 @@ def cacheData(data):
 
 def getCacheData():
     print(cache.get("data"))
+
+
+# @api_view(['POST'])
+def getCurrentData(request):
+    
+    print()
+    return HttpResponse(cache.get("data_dict"))

@@ -120,7 +120,7 @@ const FilterReport = () => {
     exportFromJSON({ data, fileName, exportType })  
   } 
   return (
-    <div style={{marginTop:100}}>
+    <div style={{marginTop:100, marginLeft: "30px"}}>
     <Dropdown />
     <Container style={{marginLeft: 300}}>
     <button className="btn1" onClick={refreshPage}>⟳</button>

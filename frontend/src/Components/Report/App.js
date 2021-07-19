@@ -131,7 +131,7 @@ const App = () => {
   } 
   return (   
     
-    <Container style={{ marginLeft: "300px" }}>
+    <Container style={{ marginLeft: "330px" }}>
     {/* <ExcelExport data={data} ref={_export}> */}
     <button className="btn1" onClick={refreshPage}>⟳</button>
     <button type="button" className="btn2" onClick={ExportToExcel}>Export To Excel</button>  

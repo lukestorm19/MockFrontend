@@ -30,6 +30,7 @@ urlpatterns = [
     path('getProcessedRecords/', exceptions_views.getProcessedRecords),
     path('getUserRecords/', users_views.getUserRecords),
     path('getFilteredRecords/', filters_views.getFilteredRecords),
+    path('fileIsReadyFilter/',filters_views.fileIsReadyFilter)
     #path('getAccountingRecords/', accounting_views.getAccountingRecords),
 
    # path('getProcessedRecords/businessLine=<str:businessLine>/region=<str:region>/', views.getProcessedRecords)

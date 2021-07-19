@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import {Bar} from 'react-chartjs-2';
+import Loader from 'react-loader-spinner';
 
 import Charts from './Charts';
 
@@ -12,7 +13,9 @@ export default class Bars extends Component {
 
   async componentDidMount() {
     try{
-     const url = "https://mocki.io/v1/e5da5eb9-979a-4ae4-ab92-8db601e881fd";
+    // const url = "https://mocki.io/v1/e5da5eb9-979a-4ae4-ab92-8db601e881fd";
+
+     const url = "https://mocki.io/v1/e5da5eb9-979a-4ae4-ab92-";
      const response = await fetch(url);
      const data = await response.json();
      this.setState({record:data, loading:false});
@@ -27,7 +30,7 @@ export default class Bars extends Component {
   render() {
     
     if (this.state.loading) {
-      return <div>loading...</div>;
+      return <div style={{marginTop:120, marginLeft:230}}><Loader type="Circles" color="#00BFFF" height={80} width={80} /> </div>;
     }
 
     if (!this.state.record) {

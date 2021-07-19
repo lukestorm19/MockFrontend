@@ -6,6 +6,7 @@ import { SidebarData } from './SidebarData';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
 import Header from '../Header/Header';
+import Cobdt from '../Cobdt/Cobdt';
 import Dropdown from '../DropDown/Dropdown';
 function Navbar() {
   const [sidebar, setSidebar] = useState(true);
@@ -19,15 +20,18 @@ function Navbar() {
         
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items'>
+          <div className = "cob">
+          <Cobdt/>
+          </div>
             <div className="main">
                Dashboard
             </div>
             {SidebarData.map((item, index) => {
               return (
                 <li key={index} className={item.cName}>
-                  <Link to={item.path}>
+                  <Link to={item.path} >
                     {item.icon}
-                    <span>{item.title}</span>
+                    <span >{item.title}</span>
                   </Link>
                 </li>
               );

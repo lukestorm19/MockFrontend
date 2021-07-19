@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {Bar} from 'react-chartjs-2';
-import './Bars.css';
+
 import Charts from './Charts';
 
 export default class Bars extends Component {
@@ -50,12 +50,12 @@ export default class Bars extends Component {
               label: 'TA Inbound Layer',
               data: [this.state.record.TAINBOUND.filtered,0,0,0],
               backgroundColor: [
-                '#003f5c',
-                '#bc5090',
+                '#FFC996',
+                '#FF8474',
               ],
               borderColor: [
-                '#003f5c',
-                '#bc5090',
+                '#FFC996',
+                '#FF8474',
                 
               ],
               borderWidth: 1,
@@ -68,14 +68,14 @@ export default class Bars extends Component {
               label: 'TAI Layer',
               data: [this.state.record.TAILAYER.filtered,this.state.record.TAILAYER.low_exception,this.state.record.TAILAYER.high_exception,0],
               backgroundColor: [
-                '#bc5090',
-                '#bc5090',
+                '#FF8474',
+                '#FF8474',
                 
                
               ],
               borderColor: [
-                '#bc5090',
-                '#bc5090',
+                '#FF8474',
+                '#FF8474',
                 
                 
                 
@@ -90,12 +90,12 @@ export default class Bars extends Component {
               data: [0,this.state.record.Accounting.low_exception,this.state.record.Accounting.high_exception,this.state.record.Accounting.processed],
               backgroundColor: [
                 
-                '#7a5195',
+                '#9F5F80',
                
               ],
               borderColor: [
                 
-               '#7a5195',
+               '#9F5F80',
                 
                 
               ],
@@ -133,7 +133,8 @@ export default class Bars extends Component {
                     display:true,
                     position:"bottom",
                     labels:{
-                       
+                        boxWidth:20,
+                        boxHeight:20,
                         font:{
                             family:"Quicksand",
                             style:"normal",

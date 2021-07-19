@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react'
 import { Pie, defaults } from 'react-chartjs-2'
-import './Charts.css'
+
 import Dropdown from '../DropDown/Dropdown';
 import Bars from './Bars';
 export default class Charts extends Component {
@@ -75,9 +75,10 @@ export default class Charts extends Component {
                 
                 legend:{
                     display:true,
-                    position:"bottom",
+                    position:"right",
                     labels:{
-                       
+                       boxWidth:20,
+                       boxHeight:20,
                         font:{
                             family:"Quicksand",
                             style:"normal",

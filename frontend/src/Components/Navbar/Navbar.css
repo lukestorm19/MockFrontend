@@ -1,10 +1,12 @@
 .navbar {
     background-color: #363740;
-    height: 80px;
+    height: 100%;
     display: flex;
     justify-content: start;
     align-items: center;
     text-decoration: none;
+    position:fixed;
+    
   }
 .drop{
   margin-top: 100px;
@@ -22,6 +24,8 @@
     background-color: #060b26;
     width: 280px;
     height: 100vh;
+    right:-100%;
+    overflow:hidden;
     display: flex;
     justify-content: center;
     position: fixed;
@@ -29,13 +33,13 @@
     left: -100%;
     transition: 850ms;
     text-decoration: none;
-
+    position:fixed;
   }
   
   .nav-menu.active {
     left: 0;
     transition: 350ms;
-    text-decoration: none;
+    
 
   }
   
@@ -51,7 +55,7 @@
   }
   
   .nav-text a {
-    text-decoration: none;
+    
     color: #f5f5f5;
     font-size: 25px;
     width: 95%;
@@ -65,7 +69,7 @@ font-style: normal;
 font-weight: normal;
 font-size: 16px;
 line-height: 20px;
-text-decoration: none;
+
 
 /* identical to box height */
 
@@ -125,5 +129,5 @@ letter-spacing: 0.2px;
   span {
     margin-left: 16px;
     text-decoration: none;
-
+    color:#f5f5f5;
   }

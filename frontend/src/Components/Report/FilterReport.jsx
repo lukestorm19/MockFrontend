@@ -37,6 +37,11 @@ const FilterReport = () => {
         setData(user_records);
         console.log(user_records);
       }
+      if (records.filter(item => item.business_line === 'ALL' && item.region === 'ALL')){
+        const user_records = records;
+        setData(user_records);
+        console.log(user_records);
+      }
     };
     doFetch();
   }, []);
@@ -96,6 +101,12 @@ const FilterReport = () => {
               Filter: SelectColumnFilter,
               filter: 'equals',
           },
+          {  
+           Header: 'Book Name',  
+           accessor: 'book_name' ,
+            Filter: SelectColumnFilter,
+              filter: 'equals',
+           }
            
     ],
     []

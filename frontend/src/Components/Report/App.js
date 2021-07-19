@@ -22,12 +22,16 @@ const App = () => {
       const body = await response.json();
       
       const records = body;
-      
-     
-      const user_records = records.filter(item => item.exception_BusinessLine === user.businessLine && item.exception_Region === user.region)
-      console.log(user_records);
-      
-      setData(user_records);
+      if (records.filter(item => item.business_line === user.businessLine && item.region === user.region)){
+        const user_records = records.filter(item => item.business_line === user.businessLine && item.region === user.region)
+        setData(user_records);
+        console.log(user_records);
+      }
+      if (records.filter(item => item.business_line === 'ALL' && item.region === 'ALL')){
+        const user_records = records;
+        setData(user_records);
+        console.log(user_records);
+      }
 
     };
     doFetch();

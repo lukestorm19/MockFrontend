@@ -13,8 +13,8 @@ export default class Charts extends Component {
 
   async componentDidMount() {
     try{
-     //const url = "https://mocki.io/v1/371fb4a1-2acd-43d0-85c8-8a3f057435db";
-     const url = "https://mocki.io/v1/371fb4a1-2acd-43d0-85c8-";
+     const url = "https://mocki.io/v1/371fb4a1-2acd-43d0-85c8-8a3f057435db";
+     //const url = "https://mocki.io/v1/371fb4a1-2acd-43d0-85c8-";
 
      const response = await fetch(url);
      const data = await response.json();

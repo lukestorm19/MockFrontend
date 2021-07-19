@@ -13,9 +13,9 @@ export default class Bars extends Component {
 
   async componentDidMount() {
     try{
-    // const url = "https://mocki.io/v1/e5da5eb9-979a-4ae4-ab92-8db601e881fd";
+    const url = "https://mocki.io/v1/e5da5eb9-979a-4ae4-ab92-8db601e881fd";
 
-     const url = "https://mocki.io/v1/e5da5eb9-979a-4ae4-ab92-";
+     //const url = "https://mocki.io/v1/e5da5eb9-979a-4ae4-ab92-";
      const response = await fetch(url);
      const data = await response.json();
      this.setState({record:data, loading:false});

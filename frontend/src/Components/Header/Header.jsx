@@ -10,8 +10,9 @@ const styles = {
         height: "50px",
         top: "10px",
         marginLeft:600,
-        width:"100%",   
-        position:"fixed",
+        width:"50%",   
+        position: "relative",
+        marginBottom:"50px",
 
     },
     Logo:{

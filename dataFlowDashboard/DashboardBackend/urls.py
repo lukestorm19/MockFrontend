@@ -25,12 +25,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('readFile/path=<str:path>', tai_views.readFile),
     path('fileIsReady/', tai_views.fileIsReady),
-    path('admin/', admin.site.urls),
+    
     path('', exceptions_views.apiOverview),
     path('getProcessedRecords/', exceptions_views.getProcessedRecords),
     path('getUserRecords/', users_views.getUserRecords),
     path('getFilteredRecords/', filters_views.getFilteredRecords),
+    path('fileIsReadyFilter/',filters_views.fileIsReadyFilter),
     #path('getAccountingRecords/', accounting_views.getAccountingRecords),
 
    # path('getProcessedRecords/businessLine=<str:businessLine>/region=<str:region>/', views.getProcessedRecords)
+   path("getCurrentData/", tai_views.getCurrentData)
 ]

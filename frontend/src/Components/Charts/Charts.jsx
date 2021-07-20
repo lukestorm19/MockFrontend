@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react'
 import { Pie, defaults } from 'react-chartjs-2'
-import './Charts.css'
+import Loader from 'react-loader-spinner';
 import Dropdown from '../DropDown/Dropdown';
 import Bars from './Bars';
 export default class Charts extends Component {
@@ -13,7 +13,9 @@ export default class Charts extends Component {
 
   async componentDidMount() {
     try{
-     const url = "https://mocki.io/v1/371fb4a1-2acd-43d0-85c8-8a3f057435db";
+     //const url = "https://mocki.io/v1/371fb4a1-2acd-43d0-85c8-8a3f057435db";
+     const url = "https://mocki.io/v1/371fb4a1-2acd-43d0-85c8-";
+
      const response = await fetch(url);
      const data = await response.json();
      this.setState({record:data, loading:false});
@@ -28,7 +30,7 @@ export default class Charts extends Component {
   render() {
     
     if (this.state.loading) {
-      return <div>loading...</div>;
+      return <div style={{marginTop:55, marginLeft:160}}><Loader type="Circles" color="#00BFFF" height={80} width={80} /> </div>;
     }
 
     if (!this.state.record) {
@@ -75,9 +77,10 @@ export default class Charts extends Component {
                 
                 legend:{
                     display:true,
-                    position:"bottom",
+                    position:"right",
                     labels:{
-                       
+                       boxWidth:20,
+                       boxHeight:20,
                         font:{
                             family:"Quicksand",
                             style:"normal",

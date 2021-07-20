@@ -18,6 +18,7 @@ button:hover {
   }
 button:active {
     transform: scale(0.95);
+    box-shadow: 0 0; 
   }  
 
 .btn1{

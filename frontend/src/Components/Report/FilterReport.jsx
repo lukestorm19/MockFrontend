@@ -37,6 +37,11 @@ const FilterReport = () => {
         setData(user_records);
         console.log(user_records);
       }
+      if (records.filter(item => item.business_line === 'ALL' && item.region === 'ALL')){
+        const user_records = records;
+        setData(user_records);
+        console.log(user_records);
+      }
     };
     doFetch();
   }, []);
@@ -96,6 +101,12 @@ const FilterReport = () => {
               Filter: SelectColumnFilter,
               filter: 'equals',
           },
+          {  
+           Header: 'Book Name',  
+           accessor: 'book_name' ,
+            Filter: SelectColumnFilter,
+              filter: 'equals',
+           }
            
     ],
     []
@@ -120,7 +131,7 @@ const FilterReport = () => {
     exportFromJSON({ data, fileName, exportType })  
   } 
   return (
-    <div style={{marginTop:100}}>
+    <div style={{marginTop:100, marginLeft: "30px"}}>
     <Dropdown />
     <Container style={{marginLeft: 300}}>
     <button className="btn1" onClick={refreshPage}>⟳</button>

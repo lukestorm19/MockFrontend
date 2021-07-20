@@ -7,3 +7,4 @@ def insert_db_task(filePath, fileName):
 
     # call the insert db fun
     return views.readFile(filePath, fileName)
+

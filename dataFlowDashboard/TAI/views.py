@@ -12,10 +12,6 @@ from rest_framework_xml.renderers import XMLRenderer
 # from TAI.tasks import insert_db_task
 from TAI import tasks
 
-# from .serializers import PostSerializer, UserSerializer, PostCommentSerializer, FollowSerializer
-# from .models import Posts, User, PostComments, Follow
-# Create your views here.
-# TODO Create shared task for Accounting
 @api_view(['GET'])
 def apiOverview(request):
     api_urls = {
@@ -27,21 +23,6 @@ def apiOverview(request):
     }
 
     return Response(api_urls)
-
-# def populateDatabase(request):
-#     # for i in Data["book"]:
-#     #    print(i)
-#     #    #obj = Book(book_id = i["book_id"],book_name=i["name"],type=i["Type"],location=i["Location"])
-#        #obj.save()
-#     for i in json_mock:
-
-#         if(1):
-#          # try:
-#         # obj = Transaction(transaction_id = i["transaction_id"],book_id=Book.objects.get(book_id=i["book_id"]),cust_id=Customer.objects.get(cust_id=i["cust_id"]),transaction_type=i["transaction_type"],linked_transaction=i["linked_transaction"])
-#         # obj.save()
-#         #   #except Exception:
-#            # print(Exception,i)
-#     return HttpResponse('Hi')
 
 def readFile(path,fileName, isXML = False):
 #  reading the file
@@ -64,17 +45,9 @@ def readFile(path,fileName, isXML = False):
 
     else:
         data_dict = json.loads(f.read())
-    print(data_dict)
-    # objects=[]
-    # for json_obj in j:
-    #     objects.append(ExceptionType(**json_obj))
-    # ExceptionType.objects.bulk_create(objects)
-    # print(j)
-    # for i in j:
-    #     d1=ExceptionType(**i)
-    #     d1.save
-    for result in data_dict:
-        ExceptionType.objects.create(
+        print(data_dict)
+        for result in data_dict:
+            ExceptionType.objects.create(
            exception_ID = int(result['exception_ID']),
            exception_name= result['exception_name'],
            exception_component=result['exception_component'],
@@ -86,7 +59,16 @@ def readFile(path,fileName, isXML = False):
            exception_BusinessLine = result['exception_BusinessLine'],
            exception_Region= result['exception_Region'] 
          ) 
-        
+    if(cache.get('data_dict')==None):
+        cache.set('data_dict', data_dict)
+    else:
+        data_dict.extend(cache.get('data_dict'))
+        cache.set('data_dict', data_dict)
+    # cache.get('data_dict').append(result)
+
+    print("The cache is updated")
+    print("Cache data:")
+    print(cache.get('data_dict'))
     print(path)
     print("The data has been inserted")
     return HttpResponse(path)
@@ -97,12 +79,7 @@ def readFile(path,fileName, isXML = False):
 
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser   
-# TODO Accept location as a hosted link
-# TODO CACHE TABLE  
-# TODO CREATE A Q 
-# TODO WHY ARE WE USING Q (NEXT MEETING)
 from rest_framework.decorators import parser_classes
-
 from rest_framework_xml.parsers import XMLParser
 
 @api_view(['POST'])
@@ -113,7 +90,7 @@ def fileIsReady(request):
     loc = xml['feed_meta_data']['remote_data']['transport']['location']
     # print(XMLParser().parse(request))
     print(loc)
-    # loc = "6ccb12be686ee16a9c95f604b26d2c9b.tar.gz"
+    loc = "2276a85aee5e94c0df04b2ab62d04410.tar.gz"
     # call the task
     fileName = "2276a85aee5e94c0df04b2ab62d04410.json"
     # fileName = "data.xml"
@@ -176,3 +153,10 @@ def cacheData(data):
 
 def getCacheData():
     print(cache.get("data"))
+
+
+# @api_view(['POST'])
+def getCurrentData(request):
+    
+    print()
+    return HttpResponse(cache.get("data_dict"))

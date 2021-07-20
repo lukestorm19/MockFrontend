@@ -163,7 +163,7 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
             {'<'}
           </Button>
         </Col>
-        <Col md={2} style={{ marginTop: "40px" }}>
+        <Col md={2} style={{ marginTop: "40px"}}>
           Page{' '}
           <strong>
             {pageIndex + 1} of {pageOptions.length}
@@ -173,7 +173,7 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
           <Input
             type='number'
             min={1}
-            style={{ width: "50px", marginTop: "40px" }}
+            style={{ width: "20px", marginTop: "40px" }}
             max={pageOptions.length}
             defaultValue={pageIndex + 1}
             onChange={onChangeInInput}

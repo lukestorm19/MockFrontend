@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import {
   BrowserRouter,
   Route
@@ -21,7 +21,7 @@ function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 1500)
+    setTimeout(() => setLoading(false), 1000)
   }, [])
   let [color, setColor] = useState("#ffffff");
   

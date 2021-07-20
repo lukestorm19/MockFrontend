@@ -1,3 +1,4 @@
+from typing import final
 from Exceptions.models import ExceptionType
 from django.db import models
 from django.shortcuts import redirect, render
@@ -11,8 +12,66 @@ from rest_framework_xml.parsers import XMLParser
 from rest_framework_xml.renderers import XMLRenderer
 # from TAI.tasks import insert_db_task
 from TAI import models
+from django.core.cache import cache
 
 def insert_data_exceptionTable(data_dict):
+    print("__________________________________________")
+    print("Inserting from TAI.exceptions")
+    data_dict = [
+            {
+                "exception_ID": 8,
+                "exception_name": "MandatoryField",
+                "exception_component": "TAILAYER",
+                "exception_level": "LOW",
+                "exception_description": "",
+                "exception_COBDT": "2006-10-25",
+                "exception_LegalEntity": "Mumbai",
+                "exception_ProfitCenter": "Asia",
+                "exception_BusinessLine": "OTC",
+                "exception_Region": "India"
+            },
+                {
+                    "exception_ID": 2,
+                    "exception_name": "MandatoryField",
+                    "exception_component": "TAILAYER",
+                    "exception_level": "LOW",
+                    "exception_description": "",
+                    "exception_COBDT": "2006-10-25",
+                    "exception_LegalEntity": "Mumbai",
+                    "exception_ProfitCenter": "Asia",
+                    "exception_BusinessLine": "FX",
+                    "exception_Region": "India"
+                }
+
+        ]
+
+    print(data_dict)
+    if(cache.get('data_dict') == None):
+        print("Cache is empty")
+        finalDict = {
+
+        }
+    # format for this finalDict will be
+        # {
+
+        #     region1:
+        #     {
+        #         bLine1: [ data for bLine1 ]
+        #         bLine2: [data for bLine1]
+
+        #     }
+        #     region2:
+        #     {
+        #         bLine1: [ data for bLine1 ]
+        #         bLine2: [data for bLine1]
+
+        #     }
+        # }
+    else:
+        print("Data in cache")
+        finalDict = cache.get("data_dict")
+        print(finalDict)
+
     for result in data_dict:
         ExceptionType.objects.create(
         exception_ID = int(result['exception_ID']),
@@ -26,7 +85,25 @@ def insert_data_exceptionTable(data_dict):
         exception_BusinessLine = result['exception_BusinessLine'],
         exception_Region= result['exception_Region'] 
         )
+        exception_BusinessLine = result['exception_BusinessLine']
+        exception_Region = result['exception_Region']
+        if(exception_BusinessLine not in finalDict):
+            print(exception_BusinessLine,"not in cache")
+            finalDict[exception_BusinessLine] = {}
+            finalDict[exception_BusinessLine][exception_Region] = []
+        elif(exception_Region not in finalDict[exception_BusinessLine]):
+            print(exception_Region, "not in cache")
 
+            finalDict[exception_BusinessLine][exception_Region] = []
+        else:
+            print(exception_BusinessLine, exception_Region, "in cache")
+        print("Appending into finaldict,", finalDict)
+        finalDict[exception_BusinessLine][exception_Region].append(result)
+        print("Appended into finaldict,", finalDict)
+
+    # if(cache.get('data_dict')==None):
+    cache.set('data_dict', finalDict)
+    print(len(cache.get('data_dict')))
 
 @api_view(['GET'])
 def apiOverview(request):

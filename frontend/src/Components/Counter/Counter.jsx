@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Container, Row, Col } from 'reactstrap';
-import "./Counter.css"
+import "./Counter.scss"
 //import Chart from '../charts/Chart';
 /*Class to display count of records*/
 export default class Counter extends Component {

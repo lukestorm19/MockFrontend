@@ -6,7 +6,6 @@ import { SelectColumnFilter,DateFilter } from '../Table/Filter';
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../features/userSlice";
 import "./Button.css";
-// import { ExcelExport } from '@progress/kendo-react-excel-export';
 import exportFromJSON from 'export-from-json'
 const fileName = 'download'  
 const exportType = 'xls' 
@@ -17,33 +16,44 @@ const App = () => {
   const user = useSelector(selectUser);
   useEffect(() => {
       const doFetch = async () => {
-      const response = await fetch('http://localhost:8000/getProcessedRecords/');
-      
-      const body = await response.json();
-      
+      const response = await fetch('http://localhost:8000/getProcessedRecords/');      
+      const body = await response.json();      
       const records = body;
-      
-     
-      const user_records = records.filter(item => item.exception_BusinessLine === user.businessLine && item.exception_Region === user.region)
-      console.log(user_records);
-      
-      setData(user_records);
-
+      if (records.filter(item => item.business_line === user.businessLine && item.region === user.region)){
+        const user_records = records.filter(item => item.business_line === user.businessLine && item.region === user.region)
+        setData(user_records);
+        console.log(user_records);
+      }
+      if (records.filter(item => item.business_line === 'ALL' && item.region === 'ALL')){
+        const user_records = records;
+        setData(user_records);
+        console.log(user_records);
+      }
     };
     doFetch();
   }, []);
+  // function getData(sd,ed) {
+  //   const doFetch = async () => {
+  //     const response = await fetch('https://mocki.io/v1/cd05b8fa-c279-4cce-b63f-efdc5d12b7cf');
+  //     const body = await response.json();
+  //     const records = body;
+  //     const user_records = records.filter(item => item.exception_BusinessLine === user.businessLine 
+  //     && item.exception_Region === user.region && item.exception_COBDT>=sd && item.exception_COBDT<=ed)    
+  //     console.log(user_records)
+  //     setData(user_records);
+  //   };
+  //   doFetch();
+  // }
 
   
   function dateBetweenFilterFn(rows, id, filterValues) {
     let sd = filterValues[0] ? new Date(filterValues[0]) : undefined
     let ed = filterValues[1] ? new Date(filterValues[1]) : undefined
-
     if (ed || sd) {
       return rows.filter(r => {
         var time = new Date(r.values[id])
-
         if (ed && sd) {
-          return (time >= sd && time <= ed)
+          return (time >= sd && time <= ed)          
         } else if (sd){
           return (time >= sd)
         } else if (ed){
@@ -114,36 +124,19 @@ const App = () => {
     };
     doFetch();
   }
-  // const _export = React.useRef(null);
-
-  // const excelExport = () => {
-  //   if (_export.current !== null) {
-  //     _export.current.save();
-  //   }
-  // };
-
   const ExportToExcel = () => {  
     exportFromJSON({ data, fileName, exportType })  
   } 
   return (   
     
     <Container style={{ marginLeft: "330px" }}>
-    {/* <ExcelExport data={data} ref={_export}> */}
     <button className="btn1" onClick={refreshPage}>⟳</button>
     <button type="button" className="btn2" onClick={ExportToExcel}>Export To Excel</button>  
-      {/* <button
-            title="Export Excel"
-            className="btn2"
-            onClick={excelExport}
-          >
-            Export to Excel
-      </button> */}
       <TableContainer
         columns={columns}
         data={data}
         
       />
-      {/* </ExcelExport> */}
     </Container>
     
   );

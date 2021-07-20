@@ -1,0 +1,42 @@
+.Dashboard{
+    
+    width:100%;
+    height:100%;
+    position:fixed;
+    left: 320px;
+}
+
+.Bar{
+    position:absolute;
+    top:50px;
+    
+    width:40%;
+    height:55%;
+    padding: 30px 30px 30px 10px;
+    box-shadow: 0 3px 10px 10px rgba(0, 0, 0, 0.1);
+    border-radius :20px;
+    
+}
+
+.Pie{
+    position:absolute;
+    top:50px;
+    left:650px;
+    width:30%;
+    height:55%;
+    padding: 100px 10px 10px 10px;
+    box-shadow: 0 3px 10px 10px rgba(0, 0, 0, 0.1);
+    border-radius :20px;
+}
+
+.Counter{
+    position:absolute;
+    top:550px;
+    left:100px;
+}
+
+.Cob{
+    position:absolute;
+    
+    left:800px;
+}

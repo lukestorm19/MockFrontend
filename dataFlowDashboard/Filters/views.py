@@ -31,11 +31,11 @@ def insert_data_filterTable(data_dict):
            filter_component=result['filter_component'],
            book_name = result['book_name'],
            filter_description  = result['filter_description'],
-           cob_dt = result['filter_COBDT'],
-           legal_entity= result['filter_LegalEntity'],
-           profit_center= result['filter_ProfitCenter'],
-           business_line = result['filter_BusinessLine'],
-           region= result['filter_Region'] 
+           cob_dt = result['cob_dt'],
+           legal_entity= result['legal_entity'],
+           profit_center= result['profit_center'],
+           business_line = result['business_line'],
+           region= result['region'] 
          ) 
 
 
@@ -80,7 +80,7 @@ def getFilteredRecords(request):
     #                     <type>HDFS</type>
     #                     <host>hdfs://sdl-uat</host>
     #                     <port>8020</port>
-    #                     <location>Exceptions/MyZippedJsons/FilterJsons/Filter1.tar.gz</location>
+    #                     <location>Exceptions/MyZippedJsons/FilterJsons/Filterxyzjsono.tar.gz</location>
     #                 </transport>
     #                 <file_list>
     #                     <relativeURI>IFRS9_AMERICAS_LATIN_AM_ME578806part-00000.gz</relativeURI>

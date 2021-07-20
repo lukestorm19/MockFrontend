@@ -77,7 +77,7 @@ def fileIsReady(request):
     print(loc)
     # call the task
     # fileName = "data.xml"
-    tasks.insert_db_task(loc,filename="43f35501000ba42f214aa397f7f527f7.json")
+    tasks.insert_db_task(loc,filename="1bd263d98e55962ecdbad254802d4fea.json")
     # readFile(loc)
     # var = parse(request)
     return HttpResponse("File is inserted")

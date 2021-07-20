@@ -1,3 +1,4 @@
+from typing import final
 from Exceptions.models import ExceptionType
 from django.db import models
 from django.shortcuts import redirect, render
@@ -48,7 +49,9 @@ def readFile(path,fileName, isXML = False):
     print("Reading", path)
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     print(BASE_DIR)
+    # path = "Exception1.tar.gz"
     tar = tarfile.open(os.path.join(BASE_DIR, path))
+    # fileName = "849efce063e40d8010a1747bba3264fa.json"
     f = tar.extractfile(fileName)
     import json
     import xmltodict
@@ -64,15 +67,58 @@ def readFile(path,fileName, isXML = False):
 
     else:
         data_dict = json.loads(f.read())
+    data_dict = [
+            {
+                "exception_ID": 1,
+                "exception_name": "MandatoryField",
+                "exception_component": "TAILAYER",
+                "exception_level": "LOW",
+                "exception_description": "",
+                "exception_COBDT": "2006-10-25",
+                "exception_LegalEntity": "Mumbai",
+                "exception_ProfitCenter": "Asia",
+                "exception_BusinessLine": "OTC",
+                "exception_Region": "India"
+            },
+                {
+                    "exception_ID": 2,
+                    "exception_name": "MandatoryField",
+                    "exception_component": "TAILAYER",
+                    "exception_level": "LOW",
+                    "exception_description": "",
+                    "exception_COBDT": "2006-10-25",
+                    "exception_LegalEntity": "Mumbai",
+                    "exception_ProfitCenter": "Asia",
+                    "exception_BusinessLine": "OTC",
+                    "exception_Region": "India"
+                }
+
+        ]
+
     print(data_dict)
-    # objects=[]
-    # for json_obj in j:
-    #     objects.append(ExceptionType(**json_obj))
-    # ExceptionType.objects.bulk_create(objects)
-    # print(j)
-    # for i in j:
-    #     d1=ExceptionType(**i)
-    #     d1.save
+    if(cache.get('data_dict') == None):
+        finalDict = {
+
+        }
+    # format for this finalDict will be
+        # {
+
+        #     region1:
+        #     {
+        #         bLine1: [ data for bLine1 ]
+        #         bLine2: [data for bLine1]
+
+        #     }
+        #     region2:
+        #     {
+        #         bLine1: [ data for bLine1 ]
+        #         bLine2: [data for bLine1]
+
+        #     }
+        # }
+    else:
+        finalDict = cache.get("data_dict")
+
     for result in data_dict:
         ExceptionType.objects.create(
            exception_ID = int(result['exception_ID']),
@@ -86,11 +132,20 @@ def readFile(path,fileName, isXML = False):
            exception_BusinessLine = result['exception_BusinessLine'],
            exception_Region= result['exception_Region'] 
          ) 
-    if(cache.get('data_dict')==None):
-        cache.set('data_dict', data_dict)
-    else:
-        data_dict.extend(cache.get('data_dict'))
-        cache.set('data_dict', data_dict)
+        exception_BusinessLine = result['exception_BusinessLine']
+        exception_Region = result['exception_Region']
+        if(exception_BusinessLine not in finalDict):
+            finalDict[exception_BusinessLine] = {}
+            finalDict[exception_BusinessLine][exception_Region] = []
+        elif(exception_Region not in finalDict[exception_BusinessLine]):
+            finalDict[exception_BusinessLine][exception_Region] = []
+        finalDict[exception_BusinessLine][exception_Region].append(result)
+
+    # if(cache.get('data_dict')==None):
+    cache.set('data_dict', finalDict)
+    # else:
+        # data_dict.extend(cache.get('data_dict'))
+        # cache.set('data_dict', data_dict)
     # cache.get('data_dict').append(result)
 
     print("The cache is updated")

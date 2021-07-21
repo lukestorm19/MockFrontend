@@ -40,17 +40,15 @@ const App = () => {
 
   function getData(sd,ed){
     const doFetch = async () => {
+      console.log(sd,ed)
       const response = await fetch('https://mocki.io/v1/ce62db04-c3ee-43e3-b410-b36c180149b4');
       const body = await response.json();
       const records = body;
-      if(sd && ed){
         const user_records = records.filter(item => item.exception_BusinessLine === user.businessLine
           && item.exception_Region === user.region
-          && new Date(item.exception_COBDT)>=sd && new Date(item.exception_COBDT)>=ed)
-       console.log(user_records);
+          && new Date(item.exception_COBDT)>=new Date(sd) && new Date(item.exception_COBDT)<=new Date(ed))
+      console.log(user_records);
        setData(user_records);
-
-      }
 
     };
     doFetch();   
@@ -72,7 +70,6 @@ const App = () => {
     };
   }
   });
-  console.log(date.sd,date.ed)
   getData(date.sd,date.ed);
 }   
 
@@ -166,11 +163,13 @@ const App = () => {
           name="sd"
           type="date"
           onChange={handleChange}
+          value={date.sd}
         />      
         <input style={{width:"150px"}}
           name="ed"
           type="date"
           onChange={handleChange}
+          value={date.ed}
         />    
       </div>
     <button className="btn1" onClick={refreshPage}>⟳</button>

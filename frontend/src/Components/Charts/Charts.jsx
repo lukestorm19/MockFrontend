@@ -4,13 +4,17 @@ import { Pie, defaults } from 'react-chartjs-2'
 import Loader from 'react-loader-spinner';
 import Dropdown from '../DropDown/Dropdown';
 import Bars from './Bars';
+import { Chart } from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+Chart.register(ChartDataLabels);
+
 export default class Charts extends Component {
     
   state = {
     loading: true,
     record: null
   };
-
+  
   async componentDidMount() {
     try{
      const url = "https://mocki.io/v1/371fb4a1-2acd-43d0-85c8-8a3f057435db";
@@ -45,7 +49,7 @@ export default class Charts extends Component {
        <Pie
        
         data={{
-          labels: ['Filtered'+ ' '+this.state.record.number_of_records.filtered_records, 'High Exception'+ ' '+this.state.record.number_of_records.high_exception_records, 'Low Exception'+ ' '+this.state.record.number_of_records.low_exception_records, 'Processed'+ ' '+this.state.record.number_of_records.processed_records],
+          labels: ['Filtered', 'High Exception', 'Low Exception', 'Processed'],
           datasets: [
             {
               
@@ -73,12 +77,20 @@ export default class Charts extends Component {
         width={200}
         
         options = {{
+            label:{
+              render:'percentage',
+            },
             plugins:{
+                datalabels: {
                 
+                 color: '#ffffff',
+                 fontFamily:"Quicksand"
+                },
                 legend:{
                     display:true,
                     position:"right",
                     labels:{
+                       
                        boxWidth:20,
                        boxHeight:20,
                         font:{

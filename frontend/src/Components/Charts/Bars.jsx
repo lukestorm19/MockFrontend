@@ -114,7 +114,7 @@ export default class Bars extends Component {
         width={200}
         
         options = {{  
-          
+           
             scales: {    
               
                 x: {
@@ -131,7 +131,9 @@ export default class Bars extends Component {
                 }
            },
             plugins:{
-                
+                datalabels: {
+                 display:false,
+                },
                 legend:{
                     display:true,
                     position:"bottom",

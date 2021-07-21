@@ -12,6 +12,10 @@ const exportType = 'xls'
 
 const App = () => {
   const [data, setData] = useState([]);
+  const [date, setDate] = useState({
+    sd: new Date(),
+    ed: new Date(),
+  });
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   useEffect(() => {
@@ -32,18 +36,45 @@ const App = () => {
     };
     doFetch();
   }, []);
-  // function getData(sd,ed) {
-  //   const doFetch = async () => {
-  //     const response = await fetch('https://mocki.io/v1/cd05b8fa-c279-4cce-b63f-efdc5d12b7cf');
-  //     const body = await response.json();
-  //     const records = body;
-  //     const user_records = records.filter(item => item.exception_BusinessLine === user.businessLine 
-  //     && item.exception_Region === user.region && item.exception_COBDT>=sd && item.exception_COBDT<=ed)    
-  //     console.log(user_records)
-  //     setData(user_records);
-  //   };
-  //   doFetch();
-  // }
+
+
+  function getData(sd,ed){
+    const doFetch = async () => {
+      const response = await fetch('https://mocki.io/v1/ce62db04-c3ee-43e3-b410-b36c180149b4');
+      const body = await response.json();
+      const records = body;
+      if(sd && ed){
+        const user_records = records.filter(item => item.exception_BusinessLine === user.businessLine
+          && item.exception_Region === user.region
+          && new Date(item.exception_COBDT)>=sd && new Date(item.exception_COBDT)>=ed)
+       console.log(user_records);
+       setData(user_records);
+
+      }
+
+    };
+    doFetch();   
+  }
+
+  function handleChange(event){
+    const { value, name } = event.target;
+    setDate(prevValue => {
+    if (name === "sd") {
+    return {
+     sd : value,
+     ed : prevValue.ed
+    };
+    }
+    else if (name === "ed") {
+    return {
+      sd: prevValue.sd,
+      ed: value
+    };
+  }
+  });
+  console.log(date.sd,date.ed)
+  getData(date.sd,date.ed);
+}   
 
   
   function dateBetweenFilterFn(rows, id, filterValues) {
@@ -130,6 +161,18 @@ const App = () => {
   return (   
     
     <Container style={{ marginLeft: "330px" }}>
+      <div style={{marginLeft:500}}>
+        <input style={{width:"150px"}}
+          name="sd"
+          type="date"
+          onChange={handleChange}
+        />      
+        <input style={{width:"150px"}}
+          name="ed"
+          type="date"
+          onChange={handleChange}
+        />    
+      </div>
     <button className="btn1" onClick={refreshPage}>⟳</button>
     <button type="button" className="btn2" onClick={ExportToExcel}>Export To Excel</button>  
       <TableContainer

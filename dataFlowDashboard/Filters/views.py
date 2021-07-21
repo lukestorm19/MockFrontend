@@ -3,8 +3,7 @@ from Filters.models import FilterData
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.http import JsonResponse
-import tarfile
-import os
+
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from Filters.models import FilterData
@@ -14,47 +13,7 @@ from Filters.models import FilterData
 # Create your views here.
 
 
-def readFileFilter(path,filename,isXML = False):
-#  reading the file
-    print("Reading", path)
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# os.path.join(BASE_DIR, path)
-    tar = tarfile.open(r"C:\Users\Administrator\Desktop\data-flow-dashboard\dataFlowDashboard\a5e2fa845c04f0140fc9e00fffeff520.tar.gz")
-    f = tar.extractfile("a5e2fa845c04f0140fc9e00fffeff520.tar.gz")
-
-    
-    import json
-    import xmltodict
-    if(isXML):
-        print(f)
-        with open("data.xml") as xml_file:
-            data_dict1 = xmltodict.parse(xml_file.read())
-        xml_file.close()
-        data_dict={}
-        for key, val in data_dict1.keys():
-            data_dict[key] = val
-
-    else:
-        data_dict = json.loads(f.read())
-    print(data_dict)
-    for result in data_dict:
-        ExceptionType.objects.create(
-           filter_ID = int(result['filter_ID']),
-           filter_name= result['filter_name'],
-           filter_component=result['filter_component'],
-           book_name = result['book_name'],
-           filter_description  = result['filter_description'],
-           cob_dt = result['filter_COBDT'],
-           legal_entity= result['filter_LegalEntity'],
-           profit_center= result['filter_ProfitCenter'],
-           business_line = result['filter_BusinessLine'],
-           region= result['filter_Region'] 
-         ) 
-        
-    print(path)
-    print("The data has been inserted")
-    return HttpResponse(path)
-
+from django.core.cache import cache
 
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser   
@@ -62,36 +21,66 @@ from rest_framework.parsers import JSONParser
 # TODO CACHE TABLE  
 # TODO CREATE A Q 
 # TODO WHY ARE WE USING Q (NEXT MEETING)
-from rest_framework.decorators import parser_classes
 
-from rest_framework_xml.parsers import XMLParser
-from Filters import tasks 
-@api_view(['POST'])
-@parser_classes((XMLParser,))   
-def fileIsReadyFilter(request):
-    xml  = request.data
-    print(xml)
-    loc = xml['feed_meta_data']['remote_data']['transport']['location']
-    # print(XMLParser().parse(request))
-    print(loc)
-    loc = "a5e2fa845c04f0140fc9e00fffeff520.tar.gz"
-    # call the task
-    fileName = "a5e2fa845c04f0140fc9e00fffeff520.json"
-    # fileName = "data.xml"
-    tasks.insert_dbfilter_task(loc, fileName)
-    # readFile(loc)
-    # var = parse(request)
-    return HttpResponse()
-    # return HttpResponse(XMLParser().parse(request))
-    # return HttpResponse(XMLParser().parse(request)['feed_meta_data']['remote_data']['location'])
-    # print(var)
-    # print(var['feed_meta_data']['remote_data']['location'])
+def insert_data_filterTable(filter_data_dict):
+    if(cache.get('filter_data_dict') == None):
+        print("Cache is empty")
+        finalDict = {
 
-    # print(request.POST)
-    # return Response(var)
-    #     {
-    # location:"jsono1.tar.gz"
-    # }
+        }
+    # format for this finalDict will be
+        # {
+
+        #     region1:
+        #     {
+        #         bLine1: [ data for bLine1 ]
+        #         bLine2: [data for bLine1]
+
+        #     }
+        #     region2:
+        #     {
+        #         bLine1: [ data for bLine1 ]
+        #         bLine2: [data for bLine1]
+
+        #     }
+        # }
+    else:
+        print("Data in cache")
+        finalDict = cache.get("filter_data_dict")
+        print(finalDict)
+    for result in filter_data_dict:
+        print(filter_data_dict)
+        print(result)
+        FilterData.objects.create(
+           filter_ID = int(result['filter_ID']),
+           filter_name= result['filter_name'],
+           filter_component=result['filter_component'],
+           book_name = result['book_name'],
+           filter_description  = result['filter_description'],
+           cob_dt = result['cob_dt'],
+           legal_entity= result['legal_entity'],
+           profit_center= result['profit_center'],
+           business_line = result['business_line'],
+           region= result['region'] 
+        ) 
+        exception_BusinessLine = result['exception_BusinessLine']
+        exception_Region = result['exception_Region']
+        if(exception_BusinessLine not in finalDict):
+            print(exception_BusinessLine,"not in cache")
+            finalDict[exception_BusinessLine] = {}
+            finalDict[exception_BusinessLine][exception_Region] = []
+        elif(exception_Region not in finalDict[exception_BusinessLine]):
+            print(exception_Region, "not in cache")
+
+            finalDict[exception_BusinessLine][exception_Region] = []
+        else:
+            print(exception_BusinessLine, exception_Region, "in cache")
+        print("Appending into finaldict,", finalDict)
+        finalDict[exception_BusinessLine][exception_Region].append(result)
+        print("Appended into finaldict,", finalDict)
+    cache.set("filter_data_dict",finalDict)
+
+        
 
 
 @api_view(['GET'])
@@ -111,7 +100,7 @@ def getFilteredRecords(request):
     return Response(serializer.data)
 
 
-    # # Input XML 
+    # Input XML 
     # <cm:ta_control_message xmlns:val="TAValuation" xmlns:acc="TAAccounting" xmlns:tra="TATrade" xmlns:ps="TAProcessStatus" xmlns:ece="TAExpectedCreditEvent" xmlns:adj="TAAdjustment" xmlns:sett="TASettlement" xmlns:cm="TAControlMessage" xmlns:bal="TABalance" xmlns:et="TAExtendedAttributes" xmlns:mov="TAMovement" xmlns:conv="TAConversion" xmlns:ns15="TACallAccountInterest" xmlns:mh="TAMessageHeader" xmlns:ns14="TACompoundInterest">
     #         <header>
     #             <mh:business_object_id>148</mh:business_object_id>
@@ -134,7 +123,7 @@ def getFilteredRecords(request):
     #                     <type>HDFS</type>
     #                     <host>hdfs://sdl-uat</host>
     #                     <port>8020</port>
-    #                     <location>a5e2fa845c04f0140fc9e00fffeff520.tar.gz</location>
+    #                     <location>Exceptions/MyZippedJsons/FilterJsons/Filterxyzjsono.tar.gz</location>
     #                 </transport>
     #                 <file_list>
     #                     <relativeURI>IFRS9_AMERICAS_LATIN_AM_ME578806part-00000.gz</relativeURI>
@@ -144,4 +133,3 @@ def getFilteredRecords(request):
     #             </remote_data>
     #         </feed_meta_data>
     #     </cm:ta_control_message>
-

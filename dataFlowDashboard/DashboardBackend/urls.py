@@ -23,16 +23,15 @@ from Filters import views as filters_views
 #from Accounting import views as accounting_views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('readFile/path=<str:path>', tai_views.readFile),
-    path('fileIsReady/', tai_views.fileIsReady),
+    path('readFile/path=<str:path>', exceptions_views.readFile),
+    path('fileIsReady/', exceptions_views.fileIsReady),
     
     path('', exceptions_views.apiOverview),
     path('getProcessedRecords/', exceptions_views.getProcessedRecords),
     path('getUserRecords/', users_views.getUserRecords),
     path('getFilteredRecords/', filters_views.getFilteredRecords),
-    path('fileIsReadyFilter/',filters_views.fileIsReadyFilter),
     #path('getAccountingRecords/', accounting_views.getAccountingRecords),
 
    # path('getProcessedRecords/businessLine=<str:businessLine>/region=<str:region>/', views.getProcessedRecords)
-   path("getCurrentData/", tai_views.getCurrentData)
+   path("getCurrentData/", exceptions_views.getCurrentData)
 ]

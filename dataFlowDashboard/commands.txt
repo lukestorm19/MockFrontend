@@ -3,3 +3,8 @@ celery -A DashboardBackend worker --pool=solo -l info
 
 #celery beat
 celery -A DashboardBackend beat --loglevel=info
+
+#rabbitmq start cmd
+
+rabbitmq-plugins enable rabbitmq_management
+

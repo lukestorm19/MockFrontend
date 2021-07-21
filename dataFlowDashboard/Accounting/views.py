@@ -1,3 +1,4 @@
+from typing import final
 from django.shortcuts import render
 from django.http import HttpResponse
 from Accounting.models import AccountingData
@@ -5,35 +6,85 @@ from Exceptions.models import ExceptionType
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
+from django.forms.models import model_to_dict
 from django.core.cache import cache
 
 from Accounting.serializers import AccountingDataSerializer
 # Create your views here.
-final_buffer=[]
+
 def Accounting_Query(): 
+    final_buffer=[]
     entry_list = list(AccountingData.objects.filter(exception_component="Accounting"))
-    for i in entry_list:
-        if not (ExceptionType.objects.filter(exception_ID=i.exception_ID).exists()):
-            new_entry = ExceptionType(exception_ID=i.exception_ID,
-            exception_name=i.exception_name,exception_component=i.exception_component,
-            exception_level=i.exception_level,exception_description=i.exception_description,
-            exception_COBDT=i.exception_COBDT,exception_LegalEntity=i.exception_LegalEntity,
-            exception_ProfitCenter=i.exception_ProfitCenter,exception_BusinessLine=i.exception_BusinessLine,
-            exception_Region=i.exception_Region)
-            new_entry.save()
-        else:
-            entry_list.remove(i)
-    if(cache.get('data_dict')==None):
-        cache.set('data_dict', data_dict)
+    for j in entry_list:
+       if not (ExceptionType.objects.filter(exception_ID=j.exception_ID).exists()):
+           final_buffer.append(j)
+    if(cache.get('data_dict') == None):
+        print("Cache is empty")
+        finalDict = {
+
+        }
+    # format for this finalDict will be
+        # {
+
+        #     region1:
+        #     {
+        #         bLine1: [ data for bLine1 ]
+        #         bLine2: [data for bLine1]
+
+        #     }
+        #     region2:
+        #     {
+        #         bLine1: [ data for bLine1 ]
+        #         bLine2: [data for bLine1]
+
+        #     }
+        # }
     else:
-        data_dict.extend(cache.get('data_dict'))
-        cache.set('data_dict', data_dict)
+        print("Data in cache")
+        finalDict = cache.get("data_dict")
+        print(finalDict)
+    print("this is final buffer",final_buffer)
+    for i in final_buffer:
+        new_entry = ExceptionType(exception_ID=i.exception_ID,
+           exception_name=i.exception_name,exception_component=i.exception_component,
+           exception_level=i.exception_level,exception_description=i.exception_description,
+           exception_COBDT=i.exception_COBDT,exception_LegalEntity=i.exception_LegalEntity,
+           exception_ProfitCenter=i.exception_ProfitCenter,exception_BusinessLine=i.exception_BusinessLine,
+           exception_Region=i.exception_Region)
+        new_entry.save()
+        exception_BusinessLine = i.exception_BusinessLine
+        exception_Region = i.exception_Region
+        
+        if(exception_BusinessLine not in finalDict):
+            print(exception_BusinessLine, "not in cache")
+            finalDict[exception_BusinessLine] = {}
+            finalDict[exception_BusinessLine][exception_Region] = []
+        elif(exception_Region not in finalDict[exception_BusinessLine]):
+            print(exception_Region, "not in cache")
+
+            finalDict[exception_BusinessLine][exception_Region] = []
+        else:
+            print(exception_BusinessLine, exception_Region, "in cache")
+                
+        print("Appending into finaldict,", finalDict)
+        
+        resultDict = model_to_dict(i)
+        print(resultDict)
+        finalDict[exception_BusinessLine][exception_Region].append(resultDict)
+
+        print("Appended into finaldict,", finalDict)
+
+   
+   
+    cache.set('data_dict', finalDict)
+
     # cache.get('data_dict').append(result)
 
     print("The cache is updated")
     print("Cache data:")
+    print("Cache check")
     print(cache.get('data_dict'))
+    #print(entry_list)
 
     # for i in entry_list:
     #     if i not in final_buffer:

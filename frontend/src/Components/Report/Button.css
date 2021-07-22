@@ -30,4 +30,8 @@ button:active {
     margin-left: 15px;
     border-radius:15px;
 }
-  
+input{
+  color: grey;
+  border: 1px solid grey;
+  border-radius: 5px;
+}

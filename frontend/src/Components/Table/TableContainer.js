@@ -173,7 +173,7 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
           <Input
             type='number'
             min={1}
-            style={{ width: "20px", marginTop: "40px" }}
+            style={{ width: "50px", marginTop: "40px" }}
             max={pageOptions.length}
             defaultValue={pageIndex + 1}
             onChange={onChangeInInput}

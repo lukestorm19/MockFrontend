@@ -1,5 +1,5 @@
 button{
-     border:1px solid #3C5186 ;
+    border:1px solid white;
     background-color:#3C5186;
     color:white;
     font-size: 18px;
@@ -12,9 +12,12 @@ button{
     float: right;
     margin-top: 40px;
     margin-bottom: 15px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
 }
 button:hover {
-    box-shadow: 0 5px #999;   
+    background-color: #182138;
+    transform: translateY(-3px);
   }
 button:active {
     transform: scale(0.95);

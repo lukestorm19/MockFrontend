@@ -85,16 +85,7 @@ def fileIsReady(request):
     return HttpResponse("File is inserted")
     # return HttpResponse(XMLParser().parse(request))
     # return HttpResponse(XMLParser().parse(request)['feed_meta_data']['remote_data']['location'])
-    # print(var)
-    # print(var['feed_meta_data']['remote_data']['location'])
-
-    # print(request.POST)
-    # return Response(var)
-    #     {
-    # location:"jsono1.tar.gz"
-    # }
-
-
+   
 
 
 from django.core.cache import cache

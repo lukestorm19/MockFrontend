@@ -10,6 +10,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework_xml.parsers import XMLParser
 from rest_framework_xml.renderers import XMLRenderer
+import FastData.views as FastDataViews
+
 # from TAI.tasks import insert_db_task
 
 from TAI import models
@@ -47,31 +49,7 @@ def insert_data_exceptionTable(data_dict):
         ]
 
     print(data_dict)
-    if(cache.get('data_dict') == None):
-        print("Cache is empty")
-        finalDict = {
-
-        }
-    # format for this finalDict will be
-        # {
-
-        #     region1:
-        #     {
-        #         bLine1: [ data for bLine1 ]
-        #         bLine2: [data for bLine1]
-
-        #     }
-        #     region2:
-        #     {
-        #         bLine1: [ data for bLine1 ]
-        #         bLine2: [data for bLine1]
-
-        #     }
-        # }
-    else:
-        print("Data in cache")
-        finalDict = cache.get("data_dict")
-        print(finalDict)
+    
 
     for result in data_dict:
         ExceptionType.objects.create(
@@ -86,24 +64,9 @@ def insert_data_exceptionTable(data_dict):
         exception_BusinessLine = result['exception_BusinessLine'],
         exception_Region= result['exception_Region'] 
         )
-        exception_BusinessLine = result['exception_BusinessLine']
-        exception_Region = result['exception_Region']
-        if(exception_BusinessLine not in finalDict):
-            print(exception_BusinessLine,"not in cache")
-            finalDict[exception_BusinessLine] = {}
-            finalDict[exception_BusinessLine][exception_Region] = []
-        elif(exception_Region not in finalDict[exception_BusinessLine]):
-            print(exception_Region, "not in cache")
-
-            finalDict[exception_BusinessLine][exception_Region] = []
-        else:
-            print(exception_BusinessLine, exception_Region, "in cache")
-        print("Appending into finaldict,", finalDict)
-        finalDict[exception_BusinessLine][exception_Region].append(result)
-        print("Appended into finaldict,", finalDict)
-    cache.set("data_dict",finalDict)
+        
+        
     # if(cache.get('data_dict')==None):
-    print(len(cache.get('data_dict')))
     
 @api_view(['GET'])
 def apiOverview(request):

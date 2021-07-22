@@ -17,10 +17,7 @@ from django.core.cache import cache
 
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser   
-# TODO Accept location as a hosted link
-# TODO CACHE TABLE  
-# TODO CREATE A Q 
-# TODO WHY ARE WE USING Q (NEXT MEETING)
+
 
 def insert_data_filterTable(filter_data_dict):
     if(cache.get('filter_data_dict') == None):
@@ -28,6 +25,8 @@ def insert_data_filterTable(filter_data_dict):
         finalDict = {
 
         }
+
+
     # format for this finalDict will be
         # {
 

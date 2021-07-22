@@ -4,8 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.core.cache import cache
 
-@api_view(['GET',])
-def intermediate_loadFunction(request, data_dict):
+def intermediate_loadFunction( data_dict):
 
     print(data_dict)
       # format for this finalDict will be

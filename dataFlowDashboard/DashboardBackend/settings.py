@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'Exceptions',
     'Users',
     'Filters',
+    'FastData',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

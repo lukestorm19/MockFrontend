@@ -14,7 +14,7 @@ const App = () => {
   const [data, setData] = useState([]);
   const [date, setDate] = useState({
     sd: new Date(),
-    ed: new Date(),
+    ed: new Date().toLocaleDateString(),
   });
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -44,12 +44,11 @@ const App = () => {
       const response = await fetch('https://mocki.io/v1/ce62db04-c3ee-43e3-b410-b36c180149b4');
       const body = await response.json();
       const records = body;
-        const user_records = records.filter(item => item.exception_BusinessLine === user.businessLine
-          && item.exception_Region === user.region
-          && new Date(item.exception_COBDT)>=new Date(sd) && new Date(item.exception_COBDT)<=new Date(ed))
-      console.log(user_records);
-       setData(user_records);
-
+      const user_records = records.filter(item => item.exception_BusinessLine === user.businessLine
+      && item.exception_Region === user.region
+      && new Date(item.exception_COBDT)>=new Date(sd) && new Date(item.exception_COBDT)<=new Date(ed))
+        console.log(user_records);
+         setData(user_records);  
     };
     doFetch();   
   }

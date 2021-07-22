@@ -18,4 +18,5 @@ def UpdataCache():
         if i not in final_today:
             final_today.append(i)
     for j in final_today:
-        intermediate_loadFunction(model_to_dict(j))
+        redirect()
+        intermediate_loadFunction(request,model_to_dict(j))

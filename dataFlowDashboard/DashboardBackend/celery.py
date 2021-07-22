@@ -14,8 +14,10 @@ app.conf.beat_schedule ={
         'schedule':5,
     },
       'Reloading Cache':{
-        'task':'FastData.tasks.UpdataCache',
+        'task':'FastData.tasks.UpdataCache()',
         'schedule':5,
+        # 'args': request
+
     }
 }
 app.autodiscover_tasks()

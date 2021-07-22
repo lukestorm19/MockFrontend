@@ -157,14 +157,15 @@ const App = () => {
   return (   
     
     <Container style={{ marginLeft: "330px" }}>
-      <div style={{marginLeft:500}}>
-        <input style={{width:"150px"}}
+      <div style={{paddingBottom:"0px"}}>
+        <input style={{width:"150px",marginTop:"40px",marginRight:"10px"}}
           name="sd"
           type="date"
           onChange={handleChange}
           value={date.sd}
-        />      
-        <input style={{width:"150px"}}
+        />    
+        
+        <input style={{width:"150px",marginTop:"40px"}}
           name="ed"
           type="date"
           onChange={handleChange}

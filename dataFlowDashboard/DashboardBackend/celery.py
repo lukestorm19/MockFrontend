@@ -12,12 +12,6 @@ app.conf.beat_schedule ={
     'AccountFetch':{
         'task':'Accounting.tasks.Accounting_Data_Fetch',
         'schedule':5,
-    },
-      'Reloading Cache':{
-        'task':'FastData.tasks.UpdataCache()',
-        'schedule':5,
-        # 'args': request
-
     }
 }
 app.autodiscover_tasks()

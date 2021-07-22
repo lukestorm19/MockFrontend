@@ -34,6 +34,6 @@ urlpatterns = [
     path('getFilteredRecords/', filters_views.getFilteredRecords),
     #path('getAccountingRecords/', accounting_views.getAccountingRecords),
 
-   path('getCurrentData/businessLine=<str:businessLine>/region=<str:region>/', fastDataViews.getCacheContent),
+#    path('getCurrentData/businessLine=<str:businessLine>/region=<str:region>/', fastDataViews.getCacheContent),
    path("getCurrentData/", exceptions_views.getCurrentData)
 ]

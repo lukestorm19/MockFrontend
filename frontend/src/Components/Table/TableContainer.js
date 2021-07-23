@@ -61,19 +61,32 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
     setPageSize,
     setAllFilters,
     state: { pageIndex, pageSize },
+    initialState,
   } = useTable(
     {
       columns,
       data,
       defaultColumn: { Filter: DefaultColumnFilter },
-      initialState: { pageIndex: 0, pageSize: 10 },
+      initialState: { pageIndex: 0, pageSize: 10,
+        sortBy: [
+          { 
+              
+            id: "exception_level", 
+            desc: false
+            }, 
+          { 
+            id: "date", 
+            desc: true
+            },
+        ]},
+      
     },
     useFilters,
     useSortBy,
     useExpanded,
     usePagination
   );
-
+  
   const generateSortingIndicator = (column) => {
     return column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : '';
   };
@@ -173,7 +186,7 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
           <Input
             type='number'
             min={1}
-            style={{ width: "20px", marginTop: "40px" }}
+            style={{ width: "50px", marginTop: "40px" }}
             max={pageOptions.length}
             defaultValue={pageIndex + 1}
             onChange={onChangeInInput}

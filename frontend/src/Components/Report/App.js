@@ -5,17 +5,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { SelectColumnFilter,DateFilter } from '../Table/Filter';
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../features/userSlice";
-import "./Button.css";
+import "./Button.scss";
 import exportFromJSON from 'export-from-json'
+import DateRangeFilter from '../DateFilter/DateRangeFilter'
 const fileName = 'download'  
 const exportType = 'xls' 
 
 const App = () => {
   const [data, setData] = useState([]);
+  /*
   const [date, setDate] = useState({
     sd: new Date(),
     ed: new Date().toLocaleDateString(),
-  });
+  });*/
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   useEffect(() => {
@@ -23,21 +25,21 @@ const App = () => {
       const response = await fetch('http://localhost:8000/getProcessedRecords/');      
       const body = await response.json();      
       const records = body;
-      if (records.filter(item => item.business_line === user.businessLine && item.region === user.region)){
-        const user_records = records.filter(item => item.business_line === user.businessLine && item.region === user.region)
+      if (records.filter(item => item.exception_BusinessLine === user.businessLine && item.exception_Region === user.region)){
+        const user_records = records.filter(item => item.exception_BusinessLine === user.businessLine && item.exception_Region === user.region)
         setData(user_records);
         console.log(user_records);
-      }
+      }/*
       if (records.filter(item => item.business_line === 'ALL' && item.region === 'ALL')){
         const user_records = records;
         setData(user_records);
         console.log(user_records);
-      }
+      }*/
     };
     doFetch();
   }, []);
 
-
+/*
   function getData(sd,ed){
     const doFetch = async () => {
       console.log(sd,ed)
@@ -71,7 +73,7 @@ const App = () => {
   });
   getData(date.sd,date.ed);
 }   
-
+*/
   
   function dateBetweenFilterFn(rows, id, filterValues) {
     let sd = filterValues[0] ? new Date(filterValues[0]) : undefined
@@ -157,6 +159,8 @@ const App = () => {
   return (   
     
     <Container style={{ marginLeft: "330px" }}>
+    
+    {/*
       <div style={{paddingBottom:"0px"}}>
         <input style={{width:"150px",marginTop:"40px",marginRight:"10px"}}
           name="sd"
@@ -170,8 +174,9 @@ const App = () => {
           type="date"
           onChange={handleChange}
           value={date.ed}
-        />    
-      </div>
+        /> 
+          
+      </div>*/}
     <button className="btn1" onClick={refreshPage}>⟳</button>
     <button type="button" className="btn2" onClick={ExportToExcel}>Export To Excel</button>  
       <TableContainer

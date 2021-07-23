@@ -18,39 +18,6 @@ from TAI import models
 from django.core.cache import cache
 
 def insert_data_exceptionTable(data_dict):
-    print("__________________________________________")
-    print("Inserting from TAI.exceptions")
-    data_dict = [
-            {
-                "exception_ID": 8,
-                "exception_name": "MandatoryField",
-                "exception_component": "TAILAYER",
-                "exception_level": "LOW",
-                "exception_description": "",
-                "exception_COBDT": "2006-10-25",
-                "exception_LegalEntity": "Mumbai",
-                "exception_ProfitCenter": "Asia",
-                "exception_BusinessLine": "OTC",
-                "exception_Region": "India"
-            },
-                {
-                    "exception_ID": 2,
-                    "exception_name": "MandatoryField",
-                    "exception_component": "TAILAYER",
-                    "exception_level": "LOW",
-                    "exception_description": "",
-                    "exception_COBDT": "2006-10-25",
-                    "exception_LegalEntity": "Mumbai",
-                    "exception_ProfitCenter": "Asia",
-                    "exception_BusinessLine": "FX",
-                    "exception_Region": "India"
-                }
-
-        ]
-
-    print(data_dict)
-    
-
     for result in data_dict:
         ExceptionType.objects.create(
         exception_ID = int(result['exception_ID']),
@@ -82,7 +49,7 @@ def apiOverview(request):
 
 
 
-    # Input XML 
+    # # Input XML 
     # <cm:ta_control_message xmlns:val="TAValuation" xmlns:acc="TAAccounting" xmlns:tra="TATrade" xmlns:ps="TAProcessStatus" xmlns:ece="TAExpectedCreditEvent" xmlns:adj="TAAdjustment" xmlns:sett="TASettlement" xmlns:cm="TAControlMessage" xmlns:bal="TABalance" xmlns:et="TAExtendedAttributes" xmlns:mov="TAMovement" xmlns:conv="TAConversion" xmlns:ns15="TACallAccountInterest" xmlns:mh="TAMessageHeader" xmlns:ns14="TACompoundInterest">
     #         <header>
     #             <mh:business_object_id>148</mh:business_object_id>

@@ -20,11 +20,11 @@ from rest_framework.parsers import JSONParser
 
 
 def insert_data_filterTable(filter_data_dict):
-    if(cache.get('filter_data_dict') == None):
-        print("Cache is empty")
-        finalDict = {
+    # if(cache.get('filter_data_dict') == None):
+    #     print("Cache is empty")
+    #     finalDict = {
 
-        }
+    #     }
 
 
     # format for this finalDict will be
@@ -43,13 +43,13 @@ def insert_data_filterTable(filter_data_dict):
 
         #     }
         # }
-    else:
-        print("Data in cache")
-        finalDict = cache.get("filter_data_dict")
-        print(finalDict)
+    # else:
+    #     print("Data in cache")
+    #     finalDict = cache.get("filter_data_dict")
+    #     print(finalDict)
+    print(filter_data_dict)
     for result in filter_data_dict:
-        print(filter_data_dict)
-        print(result)
+        
         FilterData.objects.create(
            filter_ID = int(result['filter_ID']),
            filter_name= result['filter_name'],
@@ -62,22 +62,22 @@ def insert_data_filterTable(filter_data_dict):
            business_line = result['business_line'],
            region= result['region'] 
         ) 
-        exception_BusinessLine = result['exception_BusinessLine']
-        exception_Region = result['exception_Region']
-        if(exception_BusinessLine not in finalDict):
-            print(exception_BusinessLine,"not in cache")
-            finalDict[exception_BusinessLine] = {}
-            finalDict[exception_BusinessLine][exception_Region] = []
-        elif(exception_Region not in finalDict[exception_BusinessLine]):
-            print(exception_Region, "not in cache")
+    #     exception_BusinessLine = result['exception_BusinessLine']
+    #     exception_Region = result['exception_Region']
+    #     if(exception_BusinessLine not in finalDict):
+    #         print(exception_BusinessLine,"not in cache")
+    #         finalDict[exception_BusinessLine] = {}
+    #         finalDict[exception_BusinessLine][exception_Region] = []
+    #     elif(exception_Region not in finalDict[exception_BusinessLine]):
+    #         print(exception_Region, "not in cache")
 
-            finalDict[exception_BusinessLine][exception_Region] = []
-        else:
-            print(exception_BusinessLine, exception_Region, "in cache")
-        print("Appending into finaldict,", finalDict)
-        finalDict[exception_BusinessLine][exception_Region].append(result)
-        print("Appended into finaldict,", finalDict)
-    cache.set("filter_data_dict",finalDict)
+    #         finalDict[exception_BusinessLine][exception_Region] = []
+    #     else:
+    #         print(exception_BusinessLine, exception_Region, "in cache")
+    #     print("Appending into finaldict,", finalDict)
+    #     finalDict[exception_BusinessLine][exception_Region].append(result)
+    #     print("Appended into finaldict,", finalDict)
+    # cache.set("filter_data_dict",finalDict)
 
         
 

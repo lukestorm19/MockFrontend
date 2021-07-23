@@ -3,7 +3,7 @@ import { Input, CustomInput } from 'reactstrap';
 import Datepicker from './Datepicker';
 export const Filter = ({ column }) => {
   return (
-    <div style={{ marginTop: 5 }}>
+    <div style={{ marginTop: 5 , marginBottom: 5}}>
       {column.canFilter && column.render('Filter')}
     </div>
   );
@@ -39,6 +39,8 @@ export function DateFilter({
           const val = e.target.value
           setFilter((old = []) => [val ? val : undefined, old[1]])
         }}
+
+        placeholder="date"
         type="date"
         value={filterValue[0] || ''}
       />
@@ -49,6 +51,7 @@ export function DateFilter({
           const val = e.target.value
           setFilter((old = []) => [old[0], val ? val.concat('T23:59:59.999Z') : undefined])
         }}
+        placeholder="date"
         type="date"
         value={filterValue[1]?.slice(0, 10) || ''}
       />

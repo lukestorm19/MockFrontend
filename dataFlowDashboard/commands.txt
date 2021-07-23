@@ -8,3 +8,4 @@ celery -A DashboardBackend beat --loglevel=info
 
 rabbitmq-plugins enable rabbitmq_management
 
+http://localhost:15672/#/

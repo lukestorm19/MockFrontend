@@ -1,5 +1,7 @@
+import { useDispatch, useSelector } from "react-redux";
+import { logout, selectUser } from "../../features/userSlice";
 
-import React, {Component} from 'react'
+import React, {Component,useEffect, useState, useMemo} from 'react'
 import { Pie, defaults } from 'react-chartjs-2'
 import Loader from 'react-loader-spinner';
 import Dropdown from '../DropDown/Dropdown';
@@ -8,41 +10,44 @@ import { Chart } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 Chart.register(ChartDataLabels);
 
-export default class Charts extends Component {
-    
-  state = {
-    loading: true,
-    record: null
-  };
-  
-  async componentDidMount() {
-    try{
-     const url = "https://mocki.io/v1/371fb4a1-2acd-43d0-85c8-8a3f057435db";
-     //const url = "https://mocki.io/v1/371fb4a1-2acd-43d0-85c8-";
+const Charts = () => {
+ const [highException, setData1] = useState([]);
+ const [lowException, setData2] = useState([]);
+ const [filtered, setData3] = useState([]);
+ 
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  useEffect(() => {
+      const doFetch = async () => {
+      const response = await fetch('http://localhost:8000/getProcessedRecords/');      
+      const body = await response.json();      
+      const records = body;
+      const response_filter = await fetch('http://localhost:8000/getFilteredRecords');      
+      const body_filter = await response_filter.json();      
+      const records_filter = body_filter;
 
-     const response = await fetch(url);
-     const data = await response.json();
-     this.setState({record:data, loading:false});
-   }
-    catch(err){
-     console.log(err)
-   }
-   
-  }
-  
-  
-  render() {
-    
-    if (this.state.loading) {
-      return <div style={{marginTop:55, marginLeft:160}}><Loader type="Circles" color="#00BFFF" height={80} width={80} /> </div>;
-    }
+        const highException = records.filter(item => item.exception_BusinessLine === user.businessLine && 
+        item.exception_Region === user.region && 
+        item.exception_level === "HIGH").length
+        const lowException = records.filter(item => item.exception_BusinessLine === user.businessLine && 
+        item.exception_Region === user.region && 
+        item.exception_level === "LOW").length
+        const filtered = records_filter.filter(item => item.business_line === user.businessLine && 
+        item.region === user.region).length
+        console.log(filtered)
+        setData1(highException);
+        setData2(lowException);
+        setData3(filtered);
 
-    if (!this.state.record) {
-      return <div>didn't get records</div>;
-    }
+        //console.log(user_records);
+      
+    };
+    doFetch();
+  }, []);
  
     
-    return (
+
+      return (
       
       <div className="Chart"> 
       
@@ -53,7 +58,7 @@ export default class Charts extends Component {
           datasets: [
             {
               
-              data: [this.state.record.number_of_records.filtered_records, this.state.record.number_of_records.high_exception_records,this.state.record.number_of_records.low_exception_records,this.state.record.number_of_records.processed_records],
+              data: [filtered,highException,lowException,10],
               backgroundColor: [
                 '#855CF8',
                 '#E289F2',
@@ -113,8 +118,9 @@ export default class Charts extends Component {
       />
     </div>
     );
-  }
+   
   
 }
 
 
+export default Charts;

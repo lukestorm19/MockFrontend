@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_celery_beat',
     'clear_cache',
-
     #  'rest_framework_ xml',
 ]
 REST_FRAMEWORK = {

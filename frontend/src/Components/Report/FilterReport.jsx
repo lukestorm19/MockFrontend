@@ -32,11 +32,7 @@ const FilterReport = () => {
         setData(user_records);
         console.log(user_records);
       }
-      if (records.filter(item => item.business_line === 'NA' && item.region === 'NA')){
-        const user_records = records.filter(item => item.filter_component === 'TAINBOUND')
-        setData(user_records);
-        console.log(user_records);
-      }
+      
      
     };
     doFetch();
@@ -82,6 +78,7 @@ const FilterReport = () => {
            ,{  
               Header: 'Date',  
               accessor: 'cob_dt',
+              id: "date",
               Filter:DateFilter,
               filter:dateBetweenFilterFn,
               },

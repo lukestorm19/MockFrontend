@@ -15,7 +15,7 @@ const Bars = () => {
  const [highException_accounting, setData4] = useState([]);
  const [lowException_tailayer, setData5] = useState([]);
  const [lowException_accounting, setData6] = useState([]);
-  const [loading, setLoading] = useState(true)
+   const [loading, setLoading] = useState(true)
  
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -49,8 +49,8 @@ const Bars = () => {
         item.exception_Region === user.region && 
         item.exception_level === "LOW" && item.exception_component === "TAILAYER").length
         setData5(lowException_tailayer)
-        setTimeout(() => setLoading(false), 1000)
-        
+        setTimeout(() => setLoading(false), 500)
+
         //console.log(user_records);
       
     };
@@ -72,9 +72,6 @@ const Bars = () => {
     return (
       <>
      {loading === false ? (
-    
-      
-      
       <div className="BarChart"> 
       
        <Bar
@@ -194,7 +191,7 @@ const Bars = () => {
       />
     </div>
     ) : (
-        <div style={{marginTop:120, marginLeft:230}}><Loader type="Circles" color="#00BFFF" height={80} width={80} /> </div>
+        <div style={{marginTop:100, marginLeft:200}}><Loader type="Circles" color="#00BFFF" height={80} width={80} /> </div>
 
       )}
     </>

@@ -47,9 +47,9 @@ def insert_data_filterTable(filter_data_dict):
     #     print("Data in cache")
     #     finalDict = cache.get("filter_data_dict")
     #     print(finalDict)
+    print(filter_data_dict)
     for result in filter_data_dict:
-        print(filter_data_dict)
-        print(result)
+        
         FilterData.objects.create(
            filter_ID = int(result['filter_ID']),
            filter_name= result['filter_name'],

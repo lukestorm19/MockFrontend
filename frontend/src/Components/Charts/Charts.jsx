@@ -14,7 +14,9 @@ const Charts = () => {
  const [highException, setData1] = useState([]);
  const [lowException, setData2] = useState([]);
  const [filtered, setData3] = useState([]);
- 
+   const [loading, setLoading] = useState(true)
+   
+
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   useEffect(() => {
@@ -38,7 +40,7 @@ const Charts = () => {
         setData1(highException);
         setData2(lowException);
         setData3(filtered);
-
+        setTimeout(() => setLoading(false), 500)
         //console.log(user_records);
       
     };
@@ -48,7 +50,8 @@ const Charts = () => {
     
 
       return (
-      
+      <>
+     {loading === false ? (
       <div className="Chart"> 
       
        <Pie
@@ -117,6 +120,11 @@ const Charts = () => {
         }}
       />
     </div>
+    ) : (
+        <div style={{marginTop:60, marginLeft:180}}><Loader type="Circles" color="#00BFFF" height={80} width={80} /> </div>
+
+      )}
+    </>
     );
    
   

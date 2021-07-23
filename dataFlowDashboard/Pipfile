@@ -9,6 +9,7 @@ djangorestframework = "*"
 django-cors-headers = "*"
 django-celery-beat = "*"
 djangorestframework-xml = "*"
+celery = "*"
 
 [dev-packages]
 

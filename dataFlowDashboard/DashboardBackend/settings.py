@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
      'rest_framework',
     'corsheaders',
-    'django_celery_beat'
+    'django_celery_beat',
+    'clear_cache',
     #  'rest_framework_ xml',
 ]
 REST_FRAMEWORK = {

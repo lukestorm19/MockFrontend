@@ -20,14 +20,18 @@ th {
  }  
 
 input {
-    width:50px;
+    
     /* display: inline-block; */
     align-items: center;
     float:left;
+    width:100%;
+    
   }
                  
 table tr:nth-child(even) {            
-        background-color: #eee;     }
+        background-color: #eee;   
+    
+      }
      
 table tr:nth-child(odd) {            
     background-color:#fff;      }

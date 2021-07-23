@@ -61,19 +61,32 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
     setPageSize,
     setAllFilters,
     state: { pageIndex, pageSize },
+    initialState,
   } = useTable(
     {
       columns,
       data,
       defaultColumn: { Filter: DefaultColumnFilter },
-      initialState: { pageIndex: 0, pageSize: 10 },
+      initialState: { pageIndex: 0, pageSize: 10,
+        sortBy: [
+          { 
+              
+            id: "exception_level", 
+            desc: false
+            }, 
+          { 
+            id: "date", 
+            desc: true
+            },
+        ]},
+      
     },
     useFilters,
     useSortBy,
     useExpanded,
     usePagination
   );
-
+  
   const generateSortingIndicator = (column) => {
     return column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : '';
   };

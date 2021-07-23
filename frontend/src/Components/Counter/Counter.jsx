@@ -42,10 +42,10 @@ export default class Counter extends Component {
         </Row>
         </Container>*/}
    
-          <div className="Filtered">Filtered <div className="filter">{this.state.record.number_of_records.filtered_records}</div></div>
-          <div className="HighException">High Exception <div className="highexception">{this.state.record.number_of_records.high_exception_records}</div></div>
-          <div className="LowException">Low Exception <div className="lowexception">{this.state.record.number_of_records.low_exception_records}</div></div>
-          <div className="Processed">Processed<div className="processed">{this.state.record.number_of_records.processed_records}</div></div>
+          <div className="Filtered">Filtered <div className="filter">1</div></div>
+          <div className="HighException">High Exception <div className="highexception">4</div></div>
+          <div className="LowException">Low Exception <div className="lowexception">1</div></div>
+          <div className="Processed">Processed<div className="processed">10</div></div>
      
 
         

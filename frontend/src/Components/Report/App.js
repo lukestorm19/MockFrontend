@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { SelectColumnFilter,DateFilter } from '../Table/Filter';
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../features/userSlice";
-import "./Button.css";
+import "./Button.scss";
 import exportFromJSON from 'export-from-json'
 import DateRangeFilter from '../DateFilter/DateRangeFilter'
 const fileName = 'download'  

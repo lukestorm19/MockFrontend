@@ -56,6 +56,8 @@
 // };
  
 // export default DateFilter;
+
+/*
 import React from 'react'
 
 export default function DateRangeFilter(sd,ed) {
@@ -68,7 +70,7 @@ export default function DateRangeFilter(sd,ed) {
       var start = new Date(sd);
       var end = new Date(ed);
       var result = records.filter(new Date(item.exception_COBDT)>=new Date(sd) && new Date(item.exception_COBDT)<=new Date(ed))
-      setData(result;
+      setData(result);
     };
   return (
     <div>
@@ -91,3 +93,4 @@ export default function DateRangeFilter(sd,ed) {
     </div>
   )
 }
+*/

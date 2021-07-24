@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../features/userSlice";
+import useHooks from '../UseHooks/useHooks.js';
 
 import React, {Component,useEffect, useState, useMemo} from 'react'
 import {Bar} from 'react-chartjs-2';
@@ -9,46 +10,52 @@ import Charts from './Charts';
 
 const Bars = () => {
 
- const [highException_tailayer, setData1] = useState([]);
- const [filtered_tailayer, setData2] = useState([]);
- const [filtered_tainbound, setData3] = useState([]);
- const [highException_accounting, setData4] = useState([]);
- const [lowException_tailayer, setData5] = useState([]);
- const [lowException_accounting, setData6] = useState([]);
-   const [loading, setLoading] = useState(true)
- 
-  const dispatch = useDispatch();
-  const user = useSelector(selectUser);
+//  const [highException_tailayer, setData1] = useState([]);
+//  const [filtered_tailayer, setData2] = useState([]);
+//  const [filtered_tainbound, setData3] = useState([]);
+//  const [highException_accounting, setData4] = useState([]);
+//  const [lowException_tailayer, setData5] = useState([]);
+//  const [lowException_accounting, setData6] = useState([]);
+ const [loading, setLoading] = useState(true)
+ const [highException_tailayer,
+filtered_tailayer,
+filtered_tainbound,
+highException_accounting,
+lowException_accounting,
+lowException_tailayer] = useHooks();
+
+  // const dispatch = useDispatch();
+  // const user = useSelector(selectUser);
   useEffect(() => {
       const doFetch = async () => {
-      const response = await fetch('http://localhost:8000/getProcessedRecords/');      
-      const body = await response.json();      
-      const records = body;
-      const response_filter = await fetch('http://localhost:8000/getFilteredRecords');      
-      const body_filter = await response_filter.json();      
-      const records_filter = body_filter;
-      const highException_tailayer = records.filter(item => item.exception_BusinessLine === user.businessLine && 
-        item.exception_Region === user.region && 
-        item.exception_level === "HIGH" && item.exception_component === "TAILAYER").length
-        setData1(highException_tailayer)
-       const filtered_tailayer = records_filter.filter(item => item.business_line === user.businessLine && 
-        item.region === user.region && item.filter_component === "TAILAYER").length
-        setData2(filtered_tailayer);
-        const filtered_tainbound = records_filter.filter(item => item.business_line === user.businessLine && 
-        item.region === user.region && item.filter_component === "TAINBOUND").length
-        setData3(filtered_tainbound);
-        const highException_accounting = records.filter(item => item.exception_BusinessLine === user.businessLine && 
-        item.exception_Region === user.region && 
-        item.exception_level === "HIGH" && item.exception_component === "Accounting").length
-        setData4(highException_accounting)
-        const lowException_accounting = records.filter(item => item.exception_BusinessLine === user.businessLine && 
-        item.exception_Region === user.region && 
-        item.exception_level === "LOW" && item.exception_component === "Accounting").length
-        setData6(lowException_accounting)
-        const lowException_tailayer = records.filter(item => item.exception_BusinessLine === user.businessLine && 
-        item.exception_Region === user.region && 
-        item.exception_level === "LOW" && item.exception_component === "TAILAYER").length
-        setData5(lowException_tailayer)
+      // const response = await fetch('http://localhost:8000/getProcessedRecords/');      
+      // const body = await response.json();      
+      // const records = body;
+      // const response_filter = await fetch('http://localhost:8000/getFilteredRecords');      
+      // const body_filter = await response_filter.json();      
+      // const records_filter = body_filter;
+      // const highException_tailayer = records.filter(item => item.exception_BusinessLine === user.businessLine && 
+      //   item.exception_Region === user.region && 
+      //   item.exception_level === "HIGH" && item.exception_component === "TAILAYER").length
+      //   setData1(highException_tailayer)
+      //  const filtered_tailayer = records_filter.filter(item => item.business_line === user.businessLine && 
+      //   item.region === user.region && item.filter_component === "TAILAYER").length
+      //   setData2(filtered_tailayer);
+      //   const filtered_tainbound = records_filter.filter(item => item.business_line === user.businessLine && 
+      //   item.region === user.region && item.filter_component === "TAINBOUND").length
+      //   setData3(filtered_tainbound);
+      //   const highException_accounting = records.filter(item => item.exception_BusinessLine === user.businessLine && 
+      //   item.exception_Region === user.region && 
+      //   item.exception_level === "HIGH" && item.exception_component === "Accounting").length
+      //   setData4(highException_accounting)
+      //   const lowException_accounting = records.filter(item => item.exception_BusinessLine === user.businessLine && 
+      //   item.exception_Region === user.region && 
+      //   item.exception_level === "LOW" && item.exception_component === "Accounting").length
+      //   setData6(lowException_accounting)
+      //   const lowException_tailayer = records.filter(item => item.exception_BusinessLine === user.businessLine && 
+      //   item.exception_Region === user.region && 
+      //   item.exception_level === "LOW" && item.exception_component === "TAILAYER").length
+      //   setData5(lowException_tailayer)
         setTimeout(() => setLoading(false), 500)
 
         //console.log(user_records);

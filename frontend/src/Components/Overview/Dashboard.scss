@@ -1,22 +1,21 @@
 .Dashboard{
     width:100%;
-    
+    overflow:auto;
    
     height:100%;
-    position:fixed;
+    position:relative;
     left: 320px;
 }
 .TotalCount{
-    position:absolute;
-    left:-150px;
+    position:fixed;
+    left:330px;
     
-
     
 }
 .Bar{
-    position:absolute;
-    top:100px;
-    
+    position:fixed;
+    top:200px;
+    left:320px;
     width:40%;
     height:55%;
     padding: 30px 30px 30px 10px;
@@ -26,9 +25,9 @@
 }
 
 .Pie{
-    position:absolute;
-    top:100px;
-    left:650px;
+    position:fixed;
+    top:200px;
+    left:970px;
     width:30%;
     height:55%;
     padding: 100px 10px 10px 10px;
@@ -37,13 +36,8 @@
 }
 
 .Counter{
-    position:absolute;
-    top:560px;
-    left:100px;
+    position:fixed;
+    top:660px;
+    left:400px;
 }
 
-.Cob{
-    position:absolute;
-    
-    left:800px;
-}

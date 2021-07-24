@@ -36,7 +36,7 @@ export default function TotalCount() {
     return (
         <Row>
         <div className="totalNo">
-          <Col className="total">{count}</Col> <Col className="totalText">Total Number <br/>of Records</Col>
+          <Col className="total">{count}</Col> <Col className="totalText">Total Records</Col>
         </div>
         </Row>
     )

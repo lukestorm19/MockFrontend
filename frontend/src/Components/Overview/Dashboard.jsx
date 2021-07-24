@@ -10,7 +10,7 @@ import {Container, Col, Row} from 'reactstrap';
 export default function Dashboard() {
   
     return (
-        <div className="Dashboard">
+        <main className="Dashboard">
         <div className = "TotalCount">
             <TotalCount/>
         </div>
@@ -28,7 +28,7 @@ export default function Dashboard() {
          
         
         
-        </div>
+        </main>
         
         
     )

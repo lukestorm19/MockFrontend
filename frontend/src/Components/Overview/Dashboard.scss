@@ -1,10 +1,12 @@
 .Dashboard{
     width:100%;
-    overflow:auto;
+    
    
     height:100%;
     position:relative;
-    left: 320px;
+    left:330px;
+    
+    
 }
 .TotalCount{
     position:fixed;
@@ -17,7 +19,7 @@
     top:200px;
     left:320px;
     width:40%;
-    height:55%;
+    height:45%;
     padding: 30px 30px 30px 10px;
     box-shadow: 0 3px 10px 10px rgba(0, 0, 0, 0.1);
     border-radius :20px;
@@ -29,7 +31,7 @@
     top:200px;
     left:970px;
     width:30%;
-    height:55%;
+    height:45%;
     padding: 100px 10px 10px 10px;
     box-shadow: 0 3px 10px 10px rgba(0, 0, 0, 0.1);
     border-radius :20px;
@@ -37,7 +39,7 @@
 
 .Counter{
     position:fixed;
-    top:660px;
+    top:590px;
     left:400px;
 }
 

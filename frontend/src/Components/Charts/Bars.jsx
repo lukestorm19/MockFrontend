@@ -148,7 +148,7 @@ lowException_tailayer] = useHooks();
 
           ],
         }}
-        height={400}
+        height={300}
         width={200}
         
         options = {{  

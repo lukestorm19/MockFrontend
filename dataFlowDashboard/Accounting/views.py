@@ -6,10 +6,10 @@ from Exceptions.models import ExceptionType
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from django.forms.models import model_to_dict
 from django.core.cache import cache
 from Accounting.serializers import AccountingDataSerializer
-import FastData.views as FastDataViews
+from FastData import views as FastDataViews
+
 # Create your views here.
 
 def Accounting_Query(): 
@@ -28,6 +28,9 @@ def Accounting_Query():
            exception_ProfitCenter=i.exception_ProfitCenter,exception_BusinessLine=i.exception_BusinessLine,
            exception_Region=i.exception_Region)
         new_entry.save()
+    print("Sending cache a trigger from accounting")
+    FastDataViews.onDataInsert()
+    
     #     exception_BusinessLine = i.exception_BusinessLine
     #     exception_Region = i.exception_Region
         

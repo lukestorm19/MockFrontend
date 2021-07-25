@@ -20,7 +20,7 @@ from TAI import views as tai_views
 from Exceptions import views as exceptions_views
 from Users import views as users_views
 from Filters import views as filters_views
-#from FastData import views as fastDataViews
+from FastData import views as fastDataViews
 
 #from Accounting import views as accounting_views
 urlpatterns = [
@@ -35,5 +35,8 @@ urlpatterns = [
     #path('getAccountingRecords/', accounting_views.getAccountingRecords),
 
    #path('getCurrentData/businessLine=<str:businessLine>/region=<str:region>/', fastDataViews.getCacheContent),
-   path("getCurrentData/", exceptions_views.getCurrentData)
+    path("getCurrentData/", exceptions_views.getCurrentData),
+    path("getCacheData/bl=<str:userBL>/region=<str:userRegion>",fastDataViews.getCacheContent),
+    path("getFilterCacheData/bl=<str:userBL>/region=<str:userRegion>",fastDataViews.getFilterCacheContent)
+    
 ]

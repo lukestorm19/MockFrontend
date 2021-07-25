@@ -1,0 +1,40 @@
+.Dashboard{
+    width:100%;      
+    height:100%;
+    left:330px; 
+}
+.TotalCount{
+    position: absolute;
+    left: 350px;
+    top:70px;
+}
+
+.Bar{
+    position: absolute;
+    top:175px; 
+    left: 330px;
+    width:600px;
+    height: 325px;
+    padding: 20px 20px 10px 20px;
+    box-shadow: 0 3px 10px 10px rgba(0, 0, 0, 0.1);
+    border-radius :20px;    
+}
+.Pie{
+    position:absolute;
+    top:175px; 
+    left:1000px;
+    width:500px;
+    height: 320px;
+    padding: 60px 10px 60px 10px;
+    box-shadow: 0 3px 10px 10px rgba(0, 0, 0, 0.1);
+    border-radius :20px;
+}
+
+.Counter{
+    position:absolute;
+    top:530px;
+    bottom: 50px;
+    left:450px;
+
+}
+

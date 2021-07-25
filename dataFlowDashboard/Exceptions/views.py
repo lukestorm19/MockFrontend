@@ -1,3 +1,4 @@
+from FastData.models import FlagInsertTable
 from django.shortcuts import render
 from Exceptions.models import ExceptionType
 from django.http import HttpResponse
@@ -12,6 +13,7 @@ from TAI.views import insert_data_exceptionTable
 from Filters.views import insert_data_filterTable
 import os
 import tarfile
+from FastData import views as FastDataViews
 
 #POST REQUEST TAI AND FILTER
 def readFile(path,filename, isXML = False):
@@ -40,9 +42,13 @@ def readFile(path,filename, isXML = False):
         print(data_dict)
         print(path)
         print("**********************")
+        
     if "Filter" in path:
         insert_data_filterTable([data_dict])
+        FastDataViews.onDataInsert(False)
+
     else :
+        FastDataViews.onDataInsert(True)
         insert_data_exceptionTable(data_dict)    
 
 
@@ -62,8 +68,8 @@ def fileIsReady(request):
     # call the task
     # fileName = "data.xml"
 
-    # tasks.insert_db_task(loc, filename="3f0e2d794cfe8e125af6a89f76b518c5.json")#for TAI
-    tasks.insert_db_task(loc, filename="1bd263d98e55962ecdbad254802d4fea.json")#for Filter
+    tasks.insert_db_task(loc, filename="3f0e2d794cfe8e125af6a89f76b518c5.json")#for TAI
+    #tasks.insert_db_task(loc, filename="1bd263d98e55962ecdbad254802d4fea.json")#for Filter
 
     # readFile(loc)
     # var = parse(request)

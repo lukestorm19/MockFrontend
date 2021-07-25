@@ -17,7 +17,7 @@ width:180px;
 left:50px;
 padding-left:10px;
 padding-top: 10px;
-background: #F7F9FA;
+background: #ecedee;
 border-radius: 16px;
 text-align: left;
 font-family: "Quicksand-Medium";
@@ -45,7 +45,7 @@ width:180px;
 left:280px;
 padding-left:10px;
 padding-top: 10px;
-background: #F7F9FA;
+background: #ecedee;
 border-radius: 16px;
 text-align: left;
 font-family: "Quicksand-Medium";
@@ -73,7 +73,7 @@ width:180px;
 left:510px;
 padding-left:10px;
 padding-top: 10px;
-background: #F7F9FA;
+background: #ecedee;
 border-radius: 16px;
 text-align: left;
 font-family: "Quicksand-Medium";
@@ -100,7 +100,7 @@ width:180px;
 left:740px;
 padding-left:10px;
 padding-top: 10px;
-background: #F7F9FA;
+background: #ecedee;
 border-radius: 16px;
 text-align: left;
 font-family: "Quicksand-Medium";
@@ -123,66 +123,4 @@ color: #855CF8;
     margin-bottom:200px;
 }
 
-.totalNo{
-    
-    margin-left: 170px;       
-    margin-top: 20px;
-    margin-bottom:52px;
-   
 
-/* White Base */
-height:60px;
-width:330px;
-background: #FFFFFF;
-/* Shadow Blue · 16dp */
-
-box-shadow: 0px 16px 24px rgba(54, 123, 245, 0.16), 0px 6px 12px rgba(54, 123, 245, 0.16);
-border-radius: 99px;
-
-}
-
-.total{
-
-margin-left: 35px;
-
-margin-top:7px;
-margin-right: 50px;;
-
-font-family: Roboto;
-font-style: normal;
-font-weight: bold;
-font-size: 30px;
-
-
-
-align-items: center;
-letter-spacing: 0.1px;
-
-color: #F5366F;
-}
-
-.totalText{
-
-left:70px;
-right: 30px;
-top:-45px;
-
-/* 20 sp • H6 Quicksand */
-
-font-family: Roboto;
-font-style: normal;
-font-weight: 500;
-font-size: 20px;
-line-height: 28px;
-/* or 140% */
-
-
-align-items: center;
-text-align: center;
-letter-spacing: 0.15px;
-
-/* Blue Base */
-
-color: #367BF5;
-
-}

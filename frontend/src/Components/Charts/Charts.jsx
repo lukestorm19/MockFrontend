@@ -47,7 +47,8 @@ const Charts = () => {
     doFetch();
   }, []);
  
-    
+  const total = filtered+highException+lowException+10;
+  
 
       return (
       <>
@@ -57,11 +58,11 @@ const Charts = () => {
        <Pie
        
         data={{
-          labels: ['Filtered', 'High Exception', 'Low Exception', 'Processed'],
+          labels: ['Filtered (in %)', 'High Exception (in %)', 'Low Exception (in %)', 'Processed (in %)'],
           datasets: [
             {
               
-              data: [filtered,highException,lowException,10],
+              data: [Math.round((filtered/total)*100),Math.round((highException/total)*100),Math.round((lowException/total)*100),Math.round((10/total)*100)],
               backgroundColor: [
                 '#855CF8',
                 '#E289F2',
@@ -86,11 +87,12 @@ const Charts = () => {
         
         options = {{
             label:{
-              render:'percentage',
+              render:'value',
             },
             plugins:{
                 datalabels: {
-                
+                 
+                   
                  color: '#ffffff',
                  fontFamily:"Quicksand"
                 },

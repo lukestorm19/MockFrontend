@@ -8,6 +8,7 @@ import Dropdown from '../DropDown/Dropdown';
 import Bars from './Bars';
 import { Chart } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+
 Chart.register(ChartDataLabels);
 
 const Charts = () => {
@@ -62,7 +63,8 @@ const Charts = () => {
           datasets: [
             {
               
-              data: [Math.round((filtered/total)*100),Math.round((highException/total)*100),Math.round((lowException/total)*100),Math.round((10/total)*100)],
+              // data: [Math.round((filtered/total)*100),Math.round((highException/total)*100),Math.round((lowException/total)*100),Math.round((10/total)*100)],
+              data : [filtered, highException, lowException, 10],
               backgroundColor: [
                 '#855CF8',
                 '#E289F2',
@@ -86,14 +88,14 @@ const Charts = () => {
         width={200}
         
         options = {{
-            label:{
-              render:'value',
-            },
+            
             plugins:{
+              
                 datalabels: {
                  
-                   
-                 color: '#ffffff',
+                  render:'percentage',
+                  position:'outside',
+                 color: '#000000',
                  fontFamily:"Quicksand"
                 },
                 legend:{

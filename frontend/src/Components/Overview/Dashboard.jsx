@@ -3,7 +3,7 @@ import Counter from '../Counter/Counter'
 import Charts from '../Charts/Charts'
 import Dropdown from '../DropDown/Dropdown'
 import Bars from '../Charts/Bars'
-import './Dashboard.css'
+import './Dashboard.scss'
 import Cobdt from '../Cobdt/Cobdt';
 import TotalCount from '../TotalCount/TotalCount'
 import {Container, Col, Row} from 'reactstrap';

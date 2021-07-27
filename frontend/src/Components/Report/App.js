@@ -13,23 +13,27 @@ const exportType = 'xls'
 
 const App = () => {
   const [data, setData] = useState([]);
-  /*
+//  
+  
   const [date, setDate] = useState({
-    sd: new Date(),
-    ed: new Date().toLocaleDateString(),
-  });*/
+    sd: new Date().toISOString().slice(0, 10),
+    ed: new Date().toISOString().slice(0, 10),
+  });
+  
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   useEffect(() => {
       const doFetch = async () => {
-      const response = await fetch('http://localhost:8000/getProcessedRecords/');      
+      const response = await fetch(`http://localhost:8000/getCacheData/bl=${user.businessLine}/region=${user.region}`);      
       const body = await response.json();      
       const records = body;
-      if (records.filter(item => item.exception_BusinessLine === user.businessLine && item.exception_Region === user.region)){
-        const user_records = records.filter(item => item.exception_BusinessLine === user.businessLine && item.exception_Region === user.region)
-        setData(user_records);
-        console.log(user_records);
-      }/*
+      
+      const user_records = records;
+      
+     
+      setData(user_records);
+      console.log(user_records);
+      /*
       if (records.filter(item => item.business_line === 'ALL' && item.region === 'ALL')){
         const user_records = records;
         setData(user_records);
@@ -39,16 +43,17 @@ const App = () => {
     doFetch();
   }, []);
 
-/*
-  function getData(sd,ed){
+
+function getData(sd,ed){
     const doFetch = async () => {
       console.log(sd,ed)
-      const response = await fetch('https://mocki.io/v1/ce62db04-c3ee-43e3-b410-b36c180149b4');
+      const response = await fetch(`http://localhost:8000/getProcessedRecords/bl=${user.businessLine}/region=${user.region}/startDate=${sd}/endDate=${ed}`);
       const body = await response.json();
       const records = body;
-      const user_records = records.filter(item => item.exception_BusinessLine === user.businessLine
-      && item.exception_Region === user.region
-      && new Date(item.exception_COBDT)>=new Date(sd) && new Date(item.exception_COBDT)<=new Date(ed))
+      const user_records = records;
+      // const user_records = records.filter(item => item.exception_BusinessLine === user.businessLine
+      // && item.exception_Region === user.region
+      // && new Date(item.exception_COBDT)>=new Date(sd) && new Date(item.exception_COBDT)<=new Date(ed))
         console.log(user_records);
          setData(user_records);  
     };
@@ -73,7 +78,8 @@ const App = () => {
   });
   getData(date.sd,date.ed);
 }   
-*/
+
+
   
   function dateBetweenFilterFn(rows, id, filterValues) {
     let sd = filterValues[0] ? new Date(filterValues[0]) : undefined
@@ -92,6 +98,7 @@ const App = () => {
     } else {
       return rows
     }
+    
   }
 
   const columns = useMemo(
@@ -142,12 +149,12 @@ const App = () => {
   function refreshPage() {
     // window.location.reload();
     const doFetch = async () => {
-      const response = await fetch('http://localhost:8000/getProcessedRecords');
+      const response = await fetch(`http://localhost:8000/getCacheData/bl=${user.businessLine}/region=${user.region}`);
       const body = await response.json();
       const records = body;
-      console.log(body);
-      const user_records = records.filter(item => item.exception_BusinessLine === user.businessLine && item.exception_Region === user.region)
-      console.log(user_records);
+      
+      const user_records = records;
+      
       
       setData(user_records);
     };
@@ -156,17 +163,21 @@ const App = () => {
   const ExportToExcel = () => {  
     exportFromJSON({ data, fileName, exportType })  
   } 
+
+
   return (   
     
     <Container style={{ marginLeft: "330px" }}>
     
-    {/*
+    
       <div style={{paddingBottom:"0px"}}>
         <input style={{width:"150px",marginTop:"40px",marginRight:"10px"}}
           name="sd"
           type="date"
           onChange={handleChange}
           value={date.sd}
+          dateFormat="YYYY-MM-DD"
+          
         />    
         
         <input style={{width:"150px",marginTop:"40px"}}
@@ -174,9 +185,10 @@ const App = () => {
           type="date"
           onChange={handleChange}
           value={date.ed}
+          dateFormat="YYYY-MM-DD"
         /> 
           
-      </div>*/}
+      </div> 
     <button className="btn1" onClick={refreshPage}>⟳</button>
     <button type="button" className="btn2" onClick={ExportToExcel}>Export To Excel</button>  
       <TableContainer

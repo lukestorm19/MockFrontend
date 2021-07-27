@@ -7,70 +7,70 @@ const useHooks = () => {
  const [highException, setHighException] = useState([]);
  const [lowException, setLowException] = useState([]);
  const [filtered, setFiltered] = useState([]);
- const [highException_tailayer, setHighExceptionTailayer] = useState([]);
- const [filtered_tailayer, setFilteredTailayer] = useState([]);
- const [filtered_tainbound, setFilteredTainbound] = useState([]);
- const [highException_accounting, setHighExceptionAccounting] = useState([]);
- const [lowException_tailayer, setLowExceptionTailayer] = useState([]);
- const [lowException_accounting, setLowExceptionAccounting] = useState([]);
+ const [filteredTailayer, setFilteredTailayer] = useState([]);
+ const [filteredTainbound, setFilteredTainbound] = useState([]);
+ const [highExceptionTailayer, setHighExceptionTailayer] = useState([]);
+  const [lowExceptionTailayer, setLowExceptionTailayer] = useState([]);
+  const [highExceptionAccounting, setHighExceptionAccounting] = useState([]);
+ const [lowExceptionAccounting, setLowExceptionAccounting] = useState([]);
+
+
 
  const dispatch = useDispatch();
  const user = useSelector(selectUser);
 
    useEffect(() => {
       const doFetch = async () => {
-
-      const response = await fetch('http://localhost:8000/getProcessedRecords/');      
+      
+      const response = await fetch(`http://localhost:8000/getCacheData/bl=${user.businessLine}/region=${user.region}`);      
       const body = await response.json();      
       const records = body;
+      console.log("new exception",records);
 
-      const response_filter = await fetch('http://localhost:8000/getFilteredRecords');      
+      const response_filter = await fetch(`http://127.0.0.1:8000/getFilterCacheData/bl=${user.businessLine}/region=${user.region}`);      
       const body_filter = await response_filter.json();      
       const records_filter = body_filter;
+      console.log("new filter", records_filter);
 
-        const highException = records.filter(item => item.exception_BusinessLine === user.businessLine && 
-        item.exception_Region === user.region && 
-        item.exception_level === "HIGH").length
+        const highException = records.filter(item => item.exception_level.toUpperCase() === "HIGH").length
+       
+        const lowException = records.filter(item => item.exception_level.toUpperCase() === "LOW").length
 
-        const lowException = records.filter(item => item.exception_BusinessLine === user.businessLine && 
-        item.exception_Region === user.region && 
-        item.exception_level === "LOW").length
-
-        const filtered = records_filter.filter(item => item.business_line === user.businessLine && 
-        item.region === user.region).length
-        console.log("lowException chart", lowException)
-
-        const highException_tailayer = records.filter(item => item.exception_BusinessLine === user.businessLine && 
-        item.exception_Region === user.region && 
-        item.exception_level === "HIGH" && item.exception_component === "TAILAYER").length
-
-        const filtered_tailayer = records_filter.filter(item => item.business_line === user.businessLine && 
-        item.region === user.region && item.filter_component === "TAILAYER").length
-
-        const filtered_tainbound = records_filter.filter(item => item.business_line === user.businessLine && 
-        item.region === user.region && item.filter_component === "TAINBOUND").length
-
-        const highException_accounting = records.filter(item => item.exception_BusinessLine === user.businessLine && 
-        item.exception_Region === user.region && 
-        item.exception_level === "HIGH" && item.exception_component === "Accounting").length
-
-        const lowException_accounting = records.filter(item => item.exception_BusinessLine === user.businessLine && 
-        item.exception_Region === user.region && 
-        item.exception_level === "LOW" && item.exception_component === "Accounting").length
+        const filtered = records_filter.length
         
-        const lowException_tailayer = records.filter(item => item.exception_BusinessLine === user.businessLine && 
-        item.exception_Region === user.region && 
-        item.exception_level === "LOW" && item.exception_component === "TAILAYER").length
+        const filteredTailayer = records_filter.filter(item => item.filter_component === "TAILAYER").length
+
+        const filteredTainbound = records_filter.filter(item => item.filter_component === "TAINBOUND").length
+
+        const highExceptionTailayer = records.filter(item => 
+        item.exception_component === "TAILAYER"  && item.exception_level.toUpperCase() === "HIGH" ).length
+        
+        const lowExceptionTailayer = records.filter(item => 
+        item.exception_component === "TAILAYER" &&  item.exception_level.toUpperCase() === "LOW" ).length
+        
+        const highExceptionAccounting = records.filter(item => 
+        item.exception_component === "Accounting" && item.exception_level.toUpperCase() === "HIGH"  ).length
+        console.log(highExceptionAccounting);
+        const lowExceptionAccounting = records.filter(item => 
+        item.exception_component === "Accounting" &&  item.exception_level.toUpperCase() === "LOW" ).length
+        // console.log("taibound filter",filtered_tainbound)
+
+        
+
+        
+        
+        
 
         setHighException(highException);
         setLowException(lowException);
         setFiltered(filtered);
-        setHighExceptionTailayer(highException_tailayer)
-        setFilteredTailayer(filtered_tailayer);
-        setFilteredTainbound(filtered_tainbound);
-        setHighExceptionAccounting(highException_accounting)
-        setLowExceptionAccounting(lowException_accounting)
-        setLowExceptionTailayer(lowException_tailayer)
+        setFilteredTailayer(filteredTailayer);
+        setFilteredTainbound(filteredTainbound);
+        setHighExceptionTailayer(highExceptionTailayer);
+        setLowExceptionTailayer(lowExceptionTailayer);
+        setHighExceptionAccounting(highExceptionAccounting);
+        setLowExceptionAccounting(lowExceptionAccounting);
+        
 
         //setTimeout(() => setLoading(false), 500)
         //console.log(user_records);
@@ -78,16 +78,22 @@ const useHooks = () => {
     };
     doFetch();
     }, []);
-
+console.log(
+filteredTailayer,
+filteredTainbound,
+highExceptionTailayer,
+lowExceptionTailayer,
+highExceptionAccounting,
+lowExceptionAccounting);
 return [highException, 
 lowException, 
 filtered, 
-highException_tailayer,
-filtered_tailayer,
-filtered_tainbound,
-highException_accounting,
-lowException_accounting,
-lowException_tailayer];
+filteredTailayer,
+filteredTainbound,
+highExceptionTailayer,
+lowExceptionTailayer,
+highExceptionAccounting,
+lowExceptionAccounting];
 };
 
 export default useHooks;

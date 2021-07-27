@@ -1,3 +1,4 @@
+from FastData.models import FlagInsertTable
 from django.shortcuts import render
 from Exceptions.models import ExceptionType
 from django.http import HttpResponse
@@ -12,6 +13,7 @@ from TAI.views import insert_data_exceptionTable
 from Filters.views import insert_data_filterTable
 import os
 import tarfile
+from FastData import views as FastDataViews
 
 #POST REQUEST TAI AND FILTER
 def readFile(path,filename, isXML = False):
@@ -40,9 +42,13 @@ def readFile(path,filename, isXML = False):
         print(data_dict)
         print(path)
         print("**********************")
+        
     if "Filter" in path:
         insert_data_filterTable([data_dict])
+        FastDataViews.onDataInsert(False)
+
     else :
+        FastDataViews.onDataInsert(True)
         insert_data_exceptionTable(data_dict)    
 
 
@@ -119,10 +125,31 @@ def apiOverview(request):
 
 
 @api_view(['GET'])
-def getProcessedRecords(request):
-    records = ExceptionType.objects.all()
-    serializer = ExceptionTypeSerializer(records, many=True)
-    return Response(serializer.data)
+def getProcessedRecords(request,userBL,userRegion,startDate = None,endDate = None):
+    print(userBL, userRegion, startDate, endDate)
+    try:
+        if userBL == "ALL" and userRegion == "ALL":
+            print("ALL")
+            if startDate == "None" and endDate == "None":
+                records = ExceptionType.objects.all()
+            else:
+                print("ALL BUT DATE")
+                records = ExceptionType.objects.filter(exception_COBDT__gte = startDate,exception_COBDT__lte = endDate)
+        else:
+            if startDate and endDate == None:
+                records = ExceptionType.objects.filter(exception_BusinessLine = userBL,exception_Region = userRegion)
+
+            else:    
+                records = ExceptionType.objects.filter(exception_BusinessLine = userBL,exception_Region = userRegion,exception_COBDT__gte = startDate,exception_COBDT__lte = endDate)
+        
+        serializer = ExceptionTypeSerializer(records, many=True)
+
+        return Response(serializer.data)
+
+    except Exception as e:
+        print(e)
+        return Response(e)
+
 """
 @api_view(['GET'])
 def getProcessedRecords(request, businessLine, region):

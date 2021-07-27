@@ -20,23 +20,83 @@ const exportType = 'xls'
 
 const FilterReport = () => {
   const [data, setData] = useState([]);
+  const [date, setDate] = useState({
+    sd: new Date(),
+    ed: new Date().toLocaleDateString(),
+  });
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  useEffect(() => {
-       const doFetch = async () => {
-      const response = await fetch('http://localhost:8000/getFilteredRecords');
-      const body = await response.json();
-      const records = body;
-      if (records.filter(item => item.business_line === user.businessLine && item.region === user.region)){
-        const user_records = records.filter(item => item.business_line === user.businessLine && item.region === user.region)
-        setData(user_records);
-        console.log(user_records);
-      }
+  // useEffect(() => {
+  //      const doFetch = async () => {
+  //     const response = await fetch(`http://localhost:8000/getFilterCacheData/bl=${user.businessLine}/region=${user.region}`);
+  //     const body = await response.json();
+  //     const records = body;
+      
+  //       const user_records = records;
+  //       setData(user_records);
+  //       console.log(user_records);
+  //     }
       
      
+  //   }
+  //   doFetch();
+  // }, []);
+  useEffect(() => {
+      const doFetch = async () => {
+      const response = await fetch(`http://localhost:8000/getFilterCacheData/bl=${user.businessLine}/region=${user.region}`);      
+      const body = await response.json();      
+      const records = body;
+      
+      const user_records = records;
+      
+     
+      setData(user_records);
+      console.log(user_records);
+      /*
+      if (records.filter(item => item.business_line === 'ALL' && item.region === 'ALL')){
+        const user_records = records;
+        setData(user_records);
+        console.log(user_records);
+      }*/
     };
     doFetch();
   }, []);
+
+  function getData(sd,ed){
+    const doFetch = async () => {
+      console.log(sd,ed)
+      const response = await fetch(`http://localhost:8000/getFilteredRecords/bl=${user.businessLine}/region=${user.region}/startDate=${sd}/endDate=${ed}`);
+      const body = await response.json();
+      const records = body;
+      const user_records = records;
+      // const user_records = records.filter(item => item.exception_BusinessLine === user.businessLine
+      // && item.exception_Region === user.region
+      // && new Date(item.exception_COBDT)>=new Date(sd) && new Date(item.exception_COBDT)<=new Date(ed))
+        console.log(user_records);
+         setData(user_records);  
+    };
+    doFetch();   
+  }
+
+  function handleChange(event){
+    const { value, name } = event.target;
+    setDate(prevValue => {
+    if (name === "sd") {
+    return {
+     sd : value,
+     ed : prevValue.ed
+    };
+    }
+    else if (name === "ed") {
+    return {
+      sd: prevValue.sd,
+      ed: value
+    };
+  }
+  });
+  getData(date.sd.toLocaleString(),date.ed.toLocaleString());
+}   
+
 
   function dateBetweenFilterFn(rows, id, filterValues) {
     let sd = filterValues[0] ? new Date(filterValues[0]) : undefined
@@ -79,8 +139,8 @@ const FilterReport = () => {
               Header: 'Date',  
               accessor: 'cob_dt',
               id: "date",
-              Filter:DateFilter,
-              filter:dateBetweenFilterFn,
+              // Filter:DateFilter,
+              // filter:dateBetweenFilterFn,
               },
             {  
                 Header: 'PC',  
@@ -111,11 +171,13 @@ const FilterReport = () => {
   function refreshPage() {
     // window.location.reload();
     const doFetch = async () => {
-      const response = await fetch('http://localhost:8000/getFilteredRecords');
-      const body = await response.json();
+      const response = await fetch(`http://localhost:8000/getFilterCacheData/bl=${user.businessLine}/region=${user.region}`);      
+      const body = await response.json();      
       const records = body;
-      const user_records = records.filter(item => item.business_line === user.businessLine && item.region === user.region)
-      console.log(user_records);      
+      
+      const user_records = records;
+      
+     
       setData(user_records);
     };
     doFetch();
@@ -123,10 +185,32 @@ const FilterReport = () => {
   const ExportToExcel = () => {  
     exportFromJSON({ data, fileName, exportType })  
   } 
+
+
+
+console.log(date);
   return (
     <div style={{marginTop:100, marginLeft: "30px"}}>
     <Dropdown />
     <Container style={{marginLeft: 300}}>
+    <div style={{paddingBottom:"0px"}}>
+        <input style={{width:"150px",marginTop:"40px",marginRight:"10px"}}
+          name="sd"
+          type="date"
+          onChange={handleChange}
+          value={date.sd}
+          dateFormat="yyyy-MM-dd"
+        />    
+        
+        <input style={{width:"150px",marginTop:"40px"}}
+          name="ed"
+          type="date"
+          onChange={handleChange}
+          value={date.ed}
+          dateFormat="yyyy-MM-dd"
+        /> 
+          
+      </div> 
     <button className="btn1" onClick={refreshPage}>⟳</button>
     <button type="button" className="btn2" onClick={ExportToExcel}>Export To Excel</button>
       <TableContainer

@@ -29,9 +29,9 @@ urlpatterns = [
     path('fileIsReady/', exceptions_views.fileIsReady),
     
     path('', exceptions_views.apiOverview),
-    path('getProcessedRecords/', exceptions_views.getProcessedRecords),
+    path('getProcessedRecords/bl=<str:userBL>/region=<str:userRegion>/startDate=<str:startDate>/endDate=<str:endDate>', exceptions_views.getProcessedRecords),
     path('getUserRecords/', users_views.getUserRecords),
-    path('getFilteredRecords/', filters_views.getFilteredRecords),
+    path('getFilteredRecords/bl=<str:userBL>/region=<str:userRegion>/startDate=<str:startDate>/endDate=<str:endDate>', filters_views.getFilteredRecords),
     #path('getAccountingRecords/', accounting_views.getAccountingRecords),
 
    #path('getCurrentData/businessLine=<str:businessLine>/region=<str:region>/', fastDataViews.getCacheContent),

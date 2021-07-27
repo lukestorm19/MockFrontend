@@ -30,10 +30,12 @@ from django.http import HttpResponse
 from datetime import date
 @api_view(['GET',])
 def getCacheContent(request, userBL, userRegion):
+    onDataInsert(True)
     from time import time
     start = time()  
-    rows = ExceptionType.objects.filter(exception_COBDT = date.today())
-    print("Time taken to run the query:", time() - start," seconds")
+    
+    # rows = ExceptionType.objects.filter(exception_COBDT = date.today())
+    # print("Time taken to run the query:", time() - start," seconds")
 
     print("Cache",cache.get("finalDict"))
 
@@ -59,6 +61,10 @@ def getCacheContent(request, userBL, userRegion):
         # get data from the model for current cobdt and insert into cache
         # finalDict = [ x.exception_ID for x in ExceptionType.objects.filter(exception_COBDT = date.today()) ]#the data
         rows = ExceptionType.objects.filter(exception_COBDT = date.today())
+        # rows = ExceptionType.objects.all()
+
+
+        
         for i in rows:
             exception_BusinessLine = i.exception_BusinessLine
             exception_Region = i.exception_Region
@@ -90,6 +96,16 @@ def getCacheContent(request, userBL, userRegion):
     # cache has all the data
     # check if business line and region in cache in cache and return
     print("Time taken to run:", time() - start," seconds")
+    if(userBL == "ALL"):
+        # return the whole caache
+        print("THE WHOLE CACHE")
+        print(finalDict)
+        rowList = []
+        for bline in finalDict.keys():
+            for bregion in finalDict[bline]:
+                rowList.extend(finalDict[bline][bregion])
+        return Response(rowList)
+        
     if(userBL  in checkDict):
         if(userRegion in checkDict[userBL]):
             return Response(finalDict[userBL][userRegion])
@@ -158,6 +174,14 @@ def getFilterCacheContent(request, userBL, userRegion):
     # cache has all the data
     # check if business line and region in cache in cache and return
     print("Time taken to run:", time() - start," seconds")
+    if(userBL == "ALL"):
+        # return the whole caache
+        print("THE WHOLE CACHE")
+        rowList = []
+        for bline in filterfinalDict.keys():
+            for bregion in filterfinalDict[bline]:
+                rowList.extend(filterfinalDict[bline][bregion])
+        return Response(rowList)
     if(userBL  in filtercheckDict):
         if(userRegion in filtercheckDict[userBL]):
             return Response(filterfinalDict[userBL][userRegion])

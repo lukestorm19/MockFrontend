@@ -129,12 +129,12 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
               <Fragment key={row.getRowProps().key}>
                 <tr>
                   {row.cells.map((cell) => {
-                    if (cell.value==="HIGH"){
+                    if (cell.value==="HIGH" || cell.value==="High"){
                       return (                      
                       <td{...cell.getCellProps()}><span  style ={highStyle}>{cell.render('Cell')}</span></td>
                     );
-                    }
-                    else if (cell.value==="LOW"){
+                    } 
+                    else if (cell.value==="LOW" || cell.value==="Low"){
                       return (                      
                       <td {...cell.getCellProps()}><span style ={lowStyle}>{cell.render('Cell')}</span></td>
                     );

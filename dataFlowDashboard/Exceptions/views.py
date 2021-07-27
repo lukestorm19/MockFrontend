@@ -125,10 +125,31 @@ def apiOverview(request):
 
 
 @api_view(['GET'])
-def getProcessedRecords(request):
-    records = ExceptionType.objects.all()
-    serializer = ExceptionTypeSerializer(records, many=True)
-    return Response(serializer.data)
+def getProcessedRecords(request,userBL,userRegion,startDate = None,endDate = None):
+    print(userBL, userRegion, startDate, endDate)
+    try:
+        if userBL == "ALL" and userRegion == "ALL":
+            print("ALL")
+            if startDate == "None" and endDate == "None":
+                records = ExceptionType.objects.all()
+            else:
+                print("ALL BUT DATE")
+                records = ExceptionType.objects.filter(exception_COBDT__gte = startDate,exception_COBDT__lte = endDate)
+        else:
+            if startDate and endDate == None:
+                records = ExceptionType.objects.filter(exception_BusinessLine = userBL,exception_Region = userRegion)
+
+            else:    
+                records = ExceptionType.objects.filter(exception_BusinessLine = userBL,exception_Region = userRegion,exception_COBDT__gte = startDate,exception_COBDT__lte = endDate)
+        
+        serializer = ExceptionTypeSerializer(records, many=True)
+
+        return Response(serializer.data)
+
+    except Exception as e:
+        print(e)
+        return Response(e)
+
 """
 @api_view(['GET'])
 def getProcessedRecords(request, businessLine, region):

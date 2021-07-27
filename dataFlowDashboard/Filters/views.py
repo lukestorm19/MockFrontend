@@ -93,10 +93,41 @@ def apiOverview(request):
 
 
 @api_view(['GET'])
-def getFilteredRecords(request):
-    records = FilterData.objects.all()
-    serializer = FilterDataSerializer(records, many=True)
-    return Response(serializer.data)
+def getFilteredRecords(request,userBL,userRegion,startDate = None,endDate = None):
+    print(userBL, userRegion, startDate, endDate)
+
+    try:
+        if userBL == "ALL" :
+            print("ALL")
+            if startDate == "None" and endDate == "None":
+                records = FilterData.objects.all()
+            else:
+                print("ALL BUT DATE")
+                records = FilterData.objects.filter(cob_dt__gte = startDate,cob_dt__lte = endDate)
+        elif userBL == "NA" :
+            print("NA")
+            if startDate == "None" and endDate == "None":
+                records = FilterData.objects.all()
+            else:
+                print("ALL BUT DATE")
+                records = FilterData.objects.filter(cob_dt__gte = startDate,cob_dt__lte = endDate)
+        
+        else:
+            if startDate == "None" and endDate == "None":
+                print("INSDIE NONE")
+                records = FilterData.objects.filter(business_line = userBL,region = userRegion)
+
+            else:    
+                records = FilterData.objects.filter(business_line = userBL,region = userRegion,cob_dt__gte = startDate,cob_dt_lte = endDate)
+        
+        serializer = FilterDataSerializer(records, many=True)
+
+        return Response(serializer.data)
+
+    except Exception as e:
+        print(e)
+        return Response(e)
+
 
 
     # Input XML 

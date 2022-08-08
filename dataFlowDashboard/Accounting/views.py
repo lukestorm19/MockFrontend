@@ -29,7 +29,7 @@ def Accounting_Query():
            exception_Region=i.exception_Region)
         new_entry.save()
     print("Sending cache a trigger from accounting")
-    FastDataViews.onDataInsert()
+    FastDataViews.onDataInsert(True)
     
     #     exception_BusinessLine = i.exception_BusinessLine
     #     exception_Region = i.exception_Region
